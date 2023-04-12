@@ -67,6 +67,7 @@ yarn dev
 ### Clean architecture requirements:
 
 - This project will strictly use a clean architecture.
+- Well try to decouple the business logic from the database and the frameworks so that the backend system will be scalable and modular.
 - The diagram below demonstrates the architecture:
 
 ![architecture](https://cdn.discordapp.com/attachments/975876776318361681/1095517674265661490/Untitled_Diagram.jpg)
