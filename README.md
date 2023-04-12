@@ -13,14 +13,12 @@ This will download the postgres image and start the database server on port 5432
 
 - Now you need to install the project's dependencies:
   
-  ```bash
-  npm install
-  ```
+```bash
+npm install
 
 #or
 
 yarn
-
 ```
 - After installing dependencies, run the project using:
 ```bash
