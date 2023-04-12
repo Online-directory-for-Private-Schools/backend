@@ -69,4 +69,4 @@ yarn dev
 - This project will strictly use a clean architecture.
 - The diagram below demonstrates the architecture:
 
-![architecture](https://cdn.discordapp.com/attachments/975876776318361681/1095516064936370218/Untitled_Diagram.jpg)
+![architecture](https://cdn.discordapp.com/attachments/975876776318361681/1095517674265661490/Untitled_Diagram.jpg)
