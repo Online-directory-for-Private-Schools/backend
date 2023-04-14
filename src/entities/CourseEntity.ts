@@ -1,4 +1,4 @@
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import { PrivateSchool } from "./PrivateSchoolEntity";
 
 @Entity()
@@ -47,8 +47,8 @@ export class Course {
     school: PrivateSchool;
 
 
-
-
+    @CreateDateColumn()
+    created_at: Date;
 
 
 
