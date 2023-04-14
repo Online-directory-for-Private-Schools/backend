@@ -1,5 +1,5 @@
 import { IsEmail, IsPhoneNumber } from "class-validator";
-import { Column, CreateDateColumn, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, JoinColumn, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 import { Photo } from "./PhotoEntity";
 
 
@@ -58,7 +58,12 @@ export class PrivateSchool {
 
     @OneToOne(() => Photo)
     @JoinColumn()
-    photo: Photo;
+    profile_pic: Photo;
 
+    @OneToMany(
+        ()=> Photo,
+        photo => photo.school
+    )
+    photos: Photo[];
 
 }

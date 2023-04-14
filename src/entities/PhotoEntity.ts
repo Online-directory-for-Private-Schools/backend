@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { PrivateSchool } from "./PrivateSchoolEntity";
 
 @Entity()
 export class Photo {
@@ -10,5 +11,12 @@ export class Photo {
 
     @Column()
     url: string;
-    
+
+
+    @ManyToOne(
+        ()=> PrivateSchool,
+        school => school.photos
+    )
+    school: PrivateSchool;
 }
+    
