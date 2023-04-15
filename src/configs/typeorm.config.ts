@@ -12,9 +12,9 @@ export const typeOrmDataSourceOptions: DataSourceOptions = {
     port: 5432,
     username: "postgres",
     password: "postgres",
-    synchronize: true,
+    synchronize: false,
     logging: true,
     entities: [Photo, PrivateSchool, Course, Review, Student, Schedule],
     subscribers: [],
-    migrations: [],
+    migrations: ["src/migrations/**/*.ts"]
 }
