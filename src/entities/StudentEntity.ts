@@ -1,5 +1,5 @@
 import { IsEmail, isPhoneNumber } from "class-validator";
-import { ChildEntity, Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { ChildEntity, Column, CreateDateColumn, Entity, PrimaryGeneratedColumn } from "typeorm";
 
 
 @Entity()
@@ -31,5 +31,8 @@ export class Student {
 
     @Column()
     country: string;
+
+    @CreateDateColumn()
+    created_at: Date;
 
 }
