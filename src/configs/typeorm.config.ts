@@ -1,3 +1,9 @@
+import { Course } from "../entities/CourseEntity";
+import { Photo } from "../entities/PhotoEntity";
+import { PrivateSchool } from "../entities/PrivateSchoolEntity";
+import { Review } from "../entities/ReviewEntity";
+import { Schedule } from "../entities/ScheduleEntity";
+import { Student } from "../entities/StudentEntity";
 import { DataSourceOptions } from "typeorm";
 
 export const typeOrmDataSourceOptions: DataSourceOptions = {
@@ -8,7 +14,7 @@ export const typeOrmDataSourceOptions: DataSourceOptions = {
     password: "postgres",
     synchronize: true,
     logging: true,
-    entities: [],
+    entities: [Photo, PrivateSchool, Course, Review, Student, Schedule],
     subscribers: [],
     migrations: [],
 }

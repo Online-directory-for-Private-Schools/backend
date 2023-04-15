@@ -4,10 +4,8 @@ import { ChildEntity, Column, CreateDateColumn, Entity, PrimaryGeneratedColumn }
 
 @Entity()
 export class Student {
-    @PrimaryGeneratedColumn({
-        type: "numeric"
-    })
-    id: string;
+    @PrimaryGeneratedColumn()
+    id: number;
 
     @Column()
     name: string

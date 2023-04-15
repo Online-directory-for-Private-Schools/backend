@@ -3,10 +3,8 @@ import { PrivateSchool } from "./PrivateSchoolEntity";
 
 @Entity()
 export class Photo {
-    @PrimaryGeneratedColumn({
-        type: "numeric"
-    })
-    id: string;
+    @PrimaryGeneratedColumn()
+    id: number;
 
 
     @Column()
@@ -15,7 +13,10 @@ export class Photo {
 
     @ManyToOne(
         ()=> PrivateSchool,
-        school => school.photos
+        school => school.photos,
+        {
+            onDelete: "CASCADE"
+        }
     )
     school: PrivateSchool;
 }

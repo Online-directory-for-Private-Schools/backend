@@ -2,14 +2,13 @@ import { IsEmail, IsPhoneNumber } from "class-validator";
 import { Column, CreateDateColumn, Entity, JoinColumn, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 import { Photo } from "./PhotoEntity";
 import { Course } from "./CourseEntity";
+import { Review } from "./ReviewEntity";
 
 
 @Entity()
 export class PrivateSchool {
-    @PrimaryGeneratedColumn({
-        type: "numeric"
-    })
-    id: string;
+    @PrimaryGeneratedColumn()
+    id: number;
 
     @Column()
     name: string;
@@ -57,7 +56,7 @@ export class PrivateSchool {
     lat: number;
 
 
-    @OneToOne(() => Photo)
+    @OneToOne(() => Photo, undefined, {onDelete: 'CASCADE'})
     @JoinColumn()
     profile_pic: Photo;
 
@@ -73,5 +72,12 @@ export class PrivateSchool {
         course => course.school
     )
     courses: Course[];
+
+
+    @OneToMany(
+        () => Review,
+        review => review.school
+    )
+    reviews: Review[];
 
 }

@@ -4,10 +4,8 @@ import { Schedule } from "./ScheduleEntity";
 
 @Entity()
 export class Course {
-    @PrimaryGeneratedColumn({
-        type: "numeric"
-    })
-    id: string;
+    @PrimaryGeneratedColumn()
+    id: number;
     
 
     @Column()
