@@ -9,7 +9,8 @@
     "dev": "nodemon src/index.ts",
     "build": "tsc",
     "start": "node dist/index.js",
-    "typeorm": "typeorm-ts-node-commonjs"
+    "typeorm": "typeorm-ts-node-commonjs",
+    "gen-migration": "typeorm migration:generate src/migrations/CreateEntities -d src/data-source.ts"
   },
   "devDependencies": {
     "@types/express": "^4.17.17",
