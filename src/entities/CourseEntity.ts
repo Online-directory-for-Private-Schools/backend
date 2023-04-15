@@ -1,5 +1,6 @@
-import { Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { PrivateSchool } from "./PrivateSchoolEntity";
+import { Schedule } from "./ScheduleEntity";
 
 @Entity()
 export class Course {
@@ -50,6 +51,12 @@ export class Course {
     @CreateDateColumn()
     created_at: Date;
 
+
+    @OneToMany(
+        () => Schedule,
+        (schedule) => schedule.course
+    )
+    schedules: Schedule[];
 
 
 }
