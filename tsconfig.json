@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
 
-    "baseUrl": "src",
+    // "baseUrl": "src",
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "outDir": "./dist",
@@ -23,5 +23,7 @@
     "noImplicitAny": true,
     "strictNullChecks": true,
     "allowSyntheticDefaultImports": true,
-  }
+  },
+  "include": ["src/**/*.ts"],
+  "exclude": ["node_modules"]
 }

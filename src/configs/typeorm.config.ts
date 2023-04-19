@@ -1,14 +1,15 @@
-import { User } from "../entities/UserEntity";
-import { Auth } from "../entities/AuthEntity";
-import { Course } from "../entities/CourseEntity";
-import { Photo } from "../entities/PhotoEntity";
-import { PrivateSchool } from "../entities/PrivateSchoolEntity";
-import { Review } from "../entities/ReviewEntity";
-import { Schedule } from "../entities/ScheduleEntity";
-import { Student } from "../entities/StudentEntity";
+import { User } from "../db/entities/UserEntity";
+import { Auth } from "../db/entities/AuthEntity";
+import { Course } from "../db/entities/CourseEntity";
+import { Photo } from "../db/entities/PhotoEntity";
+import { PrivateSchool } from "../db/entities/PrivateSchoolEntity";
+import { Review } from "../db/entities/ReviewEntity";
+import { Schedule } from "../db/entities/ScheduleEntity";
+import { Student } from "../db/entities/StudentEntity";
 import { DataSourceOptions } from "typeorm";
+import { SeederOptions } from "typeorm-extension";
 
-export const typeOrmDataSourceOptions: DataSourceOptions = {
+export const typeOrmDataSourceOptions: DataSourceOptions & SeederOptions = {
     type: "postgres",
     host: "localhost",
     port: 5432,
@@ -18,7 +19,9 @@ export const typeOrmDataSourceOptions: DataSourceOptions = {
     logging: true,
     entities: [Photo, PrivateSchool, Course, Review, Student, Schedule, Auth, User],
     subscribers: [],
-    migrations: ["src/migrations/**/*.ts"]
-}
+    migrations: ["src/db/migrations/**/*.{ts,js}"],
 
+    seeds: ["src/db/seeds/**/*.{ts,js}"],
+    factories: ["src/db/factories/**/*.{ts,js}"],
+}
 
