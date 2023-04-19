@@ -1,5 +1,5 @@
 import { IsEmail } from "class-validator";
-import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { BaseEntity, Column, CreateDateColumn, Entity, PrimaryGeneratedColumn } from "typeorm";
 
 
 export enum UserType {
@@ -9,7 +9,7 @@ export enum UserType {
 
 
 @Entity("users")
-export class User {
+export class User extends BaseEntity {
     @PrimaryGeneratedColumn()
     id: number;
 

@@ -1,4 +1,4 @@
-import { Column, Entity, JoinColumn, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm";
+import { BaseEntity, Column, Entity, JoinColumn, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 import { Course } from "./CourseEntity";
 import { Photo } from "./PhotoEntity";
 import { Review } from "./ReviewEntity";
@@ -6,7 +6,7 @@ import { User } from "./UserEntity";
 
 
 @Entity("private_schools")
-export class PrivateSchool {
+export class PrivateSchool extends BaseEntity {
 
     @PrimaryGeneratedColumn()
     id: number;

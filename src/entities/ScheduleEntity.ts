@@ -1,9 +1,9 @@
 import { IsDate } from "class-validator";
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { BaseEntity, Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import { Course } from "./CourseEntity";
 
 @Entity("schedules")
-export class Schedule {
+export class Schedule extends BaseEntity {
     @PrimaryGeneratedColumn()
     id: number;
 
