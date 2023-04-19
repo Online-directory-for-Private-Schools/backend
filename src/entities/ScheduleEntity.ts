@@ -2,7 +2,7 @@ import { IsDate } from "class-validator";
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import { Course } from "./CourseEntity";
 
-@Entity()
+@Entity("schedules")
 export class Schedule {
     @PrimaryGeneratedColumn()
     id: number;
@@ -18,7 +18,10 @@ export class Schedule {
 
     @ManyToOne(
         () => Course,
-        (course) => course.schedules
+        (course) => course.schedules,
+        {
+            cascade: true
+        }
     )
     course: Course;
 }

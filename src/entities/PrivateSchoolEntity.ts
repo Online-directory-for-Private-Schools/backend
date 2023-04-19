@@ -1,37 +1,23 @@
-import { IsEmail, IsPhoneNumber } from "class-validator";
-import { Column, CreateDateColumn, Entity, JoinColumn, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm";
-import { Photo } from "./PhotoEntity";
+import { Column, Entity, JoinColumn, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 import { Course } from "./CourseEntity";
+import { Photo } from "./PhotoEntity";
 import { Review } from "./ReviewEntity";
+import { User } from "./UserEntity";
 
 
-@Entity()
+@Entity("private_schools")
 export class PrivateSchool {
+
     @PrimaryGeneratedColumn()
     id: number;
 
     @Column()
     name: string;
 
-
-    @Column({
-        unique: true
-    })
-    @IsEmail()
-    email: string;
-
-
-
     @Column({
         nullable: true
     })
     bio: string;
-
-
-    @Column({
-        type: "numeric"
-    })
-    phone_number: string;
 
 
     @Column({
@@ -45,15 +31,31 @@ export class PrivateSchool {
     })
     isHiring: boolean
 
-    @CreateDateColumn()
-    created_at: Date;
-
 
     @Column()
     lng: number;
 
     @Column()
     lat: number;
+
+    @Column()
+    city: string;
+
+    @Column()
+    street_name: string;
+
+    @Column()
+    province: string;
+
+    @Column()
+    country: string;
+    
+
+    @OneToOne(
+        () => User
+    )
+    @JoinColumn()
+    owner: User;
 
 
     @OneToOne(() => Photo, undefined, {onDelete: 'CASCADE'})

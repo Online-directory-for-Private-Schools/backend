@@ -1,3 +1,4 @@
+import router from "./routes/routes.index"
 import { config } from "./configs/config"
 import { AppDataSource } from "./data-source"
 import express from "express"
@@ -6,6 +7,8 @@ import express from "express"
 let initialize =  async () => {
 
     const app = express()
+
+    app.use("/", router);
 
     try {
         await AppDataSource.initialize()

@@ -2,7 +2,7 @@ import { Column, CreateDateColumn, Entity, ManyToOne, OneToMany, PrimaryGenerate
 import { PrivateSchool } from "./PrivateSchoolEntity";
 import { Schedule } from "./ScheduleEntity";
 
-@Entity()
+@Entity("courses")
 export class Course {
     @PrimaryGeneratedColumn()
     id: number;
@@ -22,7 +22,7 @@ export class Course {
 
     @Column()
     module: string;
-
+ 
     @Column()
     level: string;  // How do we deal with levels?
 
@@ -41,7 +41,10 @@ export class Course {
 
     @ManyToOne(
         () => PrivateSchool,
-        (privateSchool) => privateSchool.courses
+        (privateSchool) => privateSchool.courses,
+        {
+            cascade: true
+        }
     )
     school: PrivateSchool;
 
@@ -52,7 +55,10 @@ export class Course {
 
     @OneToMany(
         () => Schedule,
-        (schedule) => schedule.course
+        (schedule) => schedule.course,
+        {
+            onDelete: 'CASCADE'
+        }
     )
     schedules: Schedule[];
 

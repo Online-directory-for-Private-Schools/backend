@@ -1,3 +1,5 @@
+import { User } from "../entities/UserEntity";
+import { Auth } from "../entities/AuthEntity";
 import { Course } from "../entities/CourseEntity";
 import { Photo } from "../entities/PhotoEntity";
 import { PrivateSchool } from "../entities/PrivateSchoolEntity";
@@ -12,9 +14,11 @@ export const typeOrmDataSourceOptions: DataSourceOptions = {
     port: 5432,
     username: "postgres",
     password: "postgres",
-    synchronize: false,
+    synchronize: true,
     logging: true,
-    entities: [Photo, PrivateSchool, Course, Review, Student, Schedule],
+    entities: [Photo, PrivateSchool, Course, Review, Student, Schedule, Auth, User],
     subscribers: [],
     migrations: ["src/migrations/**/*.ts"]
 }
+
+

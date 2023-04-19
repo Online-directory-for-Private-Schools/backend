@@ -1,8 +1,8 @@
-import { Column, Entity, JoinColumn, ManyToOne, OneToOne, PrimaryColumn, PrimaryGeneratedColumn } from "typeorm";
-import { Student } from "./StudentEntity";
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import { PrivateSchool } from "./PrivateSchoolEntity";
+import { Student } from "./StudentEntity";
 
-@Entity()
+@Entity("reviews")
 export class Review {
 
 
@@ -26,13 +26,20 @@ export class Review {
 
 
     @ManyToOne(
-        () => Student
+        () => Student,
+        {
+            cascade: true
+        }
     )
     student: Student;
 
     @ManyToOne(
         () => PrivateSchool,
-        PrivateSchool => PrivateSchool.reviews
+        PrivateSchool => PrivateSchool.reviews,
+        {
+            cascade: true
+        }
+
     )
     school: PrivateSchool;
 

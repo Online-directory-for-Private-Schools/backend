@@ -12,7 +12,7 @@ docker compose up -d
 This will download the postgres image and start the database server on port 5432
 
 - Now you need to install the project's dependencies:
-  
+
 ```bash
 npm install
 
@@ -20,15 +20,18 @@ npm install
 
 yarn
 ```
+
 - After installing dependencies, run the project using:
-```bash
-npm run dev
+  
+  ```bash
+  npm run dev
+  ```
 
 # or
 
 yarn dev
-```
 
+```
 ## Structure explanation
 
 #### /configs:
@@ -71,3 +74,4 @@ yarn dev
 - The diagram below demonstrates the architecture:
 
 ![architecture](https://cdn.discordapp.com/attachments/975876776318361681/1095517674265661490/Untitled_Diagram.jpg)
+```

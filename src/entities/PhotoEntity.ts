@@ -1,7 +1,7 @@
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import { PrivateSchool } from "./PrivateSchoolEntity";
 
-@Entity()
+@Entity("photos")
 export class Photo {
     @PrimaryGeneratedColumn()
     id: number;
@@ -15,7 +15,7 @@ export class Photo {
         ()=> PrivateSchool,
         school => school.photos,
         {
-            onDelete: "CASCADE"
+            cascade: true
         }
     )
     school: PrivateSchool;
