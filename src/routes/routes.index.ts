@@ -1,13 +1,15 @@
 import { Router } from "express";
 
-import { SchoolRouter } from "./school/school.route";
-import { UserRouter } from "./user/user.route";
+import { SchoolRouter as schoolRouter } from "./school/school.route";
+import { UserRouter as userRouter } from "./user/user.route";
+import { authRouter } from "./auth/auth.route";
 
 const router = Router()
 
 
-router.use('/schools', SchoolRouter);
-router.use('/users', UserRouter);
+router.use('/schools', schoolRouter);
+router.use('/users', userRouter);
+router.use('/auth', authRouter);
 
 
 export default router;
