@@ -32,11 +32,15 @@ export class PrivateSchool extends BaseEntity {
     isHiring: boolean
 
 
-    @Column()
-    lng: number;
+    @Column({
+        type: "numeric"
+    })
+    lng: string;
 
-    @Column()
-    lat: number;
+    @Column({
+        type: "numeric"
+    })
+    lat: string;
 
     @Column()
     city: string;
@@ -58,7 +62,7 @@ export class PrivateSchool extends BaseEntity {
     owner: User;
 
 
-    @OneToOne(() => Photo, undefined, {onDelete: 'CASCADE'})
+    @OneToOne(() => Photo, undefined, {cascade: true})
     @JoinColumn()
     profile_pic: Photo;
 
