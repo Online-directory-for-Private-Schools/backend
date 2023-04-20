@@ -16,7 +16,8 @@ interface SchoolCreationInfo {
 }
 
 
-export default async function createSchool(schoolInfo: SchoolCreationInfo) : Promise<CreateSchoolService> {
+export default async function createSchoolService(schoolInfo: SchoolCreationInfo) : Promise<CreateSchoolService> {
+
 
 
     // check if user exists or not
@@ -37,6 +38,17 @@ export default async function createSchool(schoolInfo: SchoolCreationInfo) : Pro
         return {
             error: {
                 message: "you are not allowed to create schools"
+            }
+        }
+    }
+
+
+    const schoolExists = await PrivateSchool.findOneBy({owner: {id: schoolInfo.userId}})
+
+    if(schoolExists) {
+        return {
+            error: {
+                message: "You can't create more than one school, yet"
             }
         }
     }

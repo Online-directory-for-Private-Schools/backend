@@ -62,7 +62,7 @@ export class PrivateSchool extends BaseEntity {
     owner: User;
 
 
-    @OneToOne(() => Photo, undefined, {onDelete: 'CASCADE'})
+    @OneToOne(() => Photo, undefined, {cascade: true})
     @JoinColumn()
     profile_pic: Photo;
 
