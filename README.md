@@ -5,33 +5,32 @@
 - You need to install docker on your machine in order to easily create the postgresql database.
 - when you successfully install docker run:
 
-```bash
-docker compose up -d
-```
+  ```bash
+  docker compose up -d
+  ```
 
 This will download the postgres image and start the database server on port 5432
 
 - Now you need to install the project's dependencies:
 
-```bash
-npm install
+  ```bash
+  npm install
 
-#or
+  #or
 
-yarn
-```
+  yarn
+  ```
 
 - After installing dependencies, run the project using:
   
   ```bash
   npm run dev
+
+  # or
+
+  yarn dev
+
   ```
-
-# or
-
-yarn dev
-
-```
 ## Structure explanation
 
 #### /configs:
@@ -42,17 +41,24 @@ yarn dev
 
 - Has methods that are invoked by the HTTP API calls
 
-#### /entities:
-
-- Has model definitions for the Typeorm entity classes (User, PrivateSchool, Course,...)
 
 #### /middlewares:
 
 - Has middleware functions that will be invoked on the API endpoints (for example authentication middlewares)
 
-#### /migrations:
+#### /db/migrations:
 
 - This folder is managed by Typeorm, we'll use it to store the migration scripts for the database.
+
+#### /db/entities:
+
+- Has model definitions for the Typeorm entity classes (User, PrivateSchool, Course,...)
+
+#### /db/factories:
+- Has factory functions that will be used by the seeders to generate fake data for the database.
+
+#### /db/seeds:
+- Has seeder classes that can be invoked to fill the database with fake testing data.
 
 #### /routes:
 
@@ -74,4 +80,4 @@ yarn dev
 - The diagram below demonstrates the architecture:
 
 ![architecture](https://cdn.discordapp.com/attachments/975876776318361681/1095517674265661490/Untitled_Diagram.jpg)
-```
+
