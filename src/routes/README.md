@@ -1,10 +1,56 @@
-## /school/
+## 0. Note:
 
-Post: create
+- The data interfaces for the request and response objects can be found at **src/interfaces/requests.interfaces.ts** and **src/interfaces/reponses.interfaces.ts**
 
-get: return all schools
+- Middleware to protect the endpoints hasn't been implemented yet
 
-### /school/:school_id
+
+
+## A. Implemented
+
+#### /schools/
+
+###### 1. Post:
+
+- create a new school for the signed in user who has type of **school_owner**
+
+###### 2. Get: (will be implemented with filters and pagination later)
+
+- get all schools in the database
+
+#### /students/
+
+###### 1. Post:
+
+- create a student profile for the user who has type of **student**
+
+#### /auth/login/
+
+###### 1. Post:
+
+- check user credentials (email/pw) and return a signed JWT
+
+#### /auth/register
+
+###### 1. Post:
+
+- create a new **User** and **Auth** records in the database
+
+
+
+---
+
+
+
+## B. NOT Implemented
+
+#### /user/:user_id/
+
+get: return user
+put: update user
+delete: remove user
+
+#### /school/:school_id
 
 put: edit
 
@@ -12,7 +58,7 @@ delete: remove
 
 get: school
 
-## /school/:school_id/courses
+#### /school/:school_id/courses
 
 post: create new course
 
@@ -37,23 +83,3 @@ post: add new schedule
 put: edit schedule
 
 delete: remove schedule entry
-
-
-
-## /auth/login
-post: login
-
-## /auth/logout
-post: logout
-
-
-## /auth/register
-post: register
-
-
-
-## /user/:user_id/
-get: return user
-put: update user
-delete: remove user
-
