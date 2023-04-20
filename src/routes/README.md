@@ -34,7 +34,7 @@
 
 ###### 1. Post:
 
-- create a new **User** and **Auth** records in the database
+- create a new **User** and **Auth** records in the database and return a signed JWT
 
 
 
