@@ -31,8 +31,12 @@ This will download the postgres image and start the database server on port 5432
   
   yarn dev
   ```
-  
-  ## Structure explanation
+
+## API endpoints structure:
+
+- Explained here: [src/routes/README.md](https://github.com/Online-directory-for-Private-Schools/backend/blob/main/src/routes/README.md)
+
+## Structure explanation
 
 #### /configs:
 
@@ -82,7 +86,3 @@ This will download the postgres image and start the database server on port 5432
 - The diagram below demonstrates the architecture:
 
 ![architecture](https://cdn.discordapp.com/attachments/975876776318361681/1095517674265661490/Untitled_Diagram.jpg)
-
-## API endpoints structure:
-
-- Explained here: [src/routes/README.md](https://github.com/Online-directory-for-Private-Schools/backend/blob/main/src/routes/README.md)
