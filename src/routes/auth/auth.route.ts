@@ -1,5 +1,6 @@
 import { Router } from "express";
 import registerController from "../../controllers/auth/register.controller";
+import loginController from "../../controllers/auth/login.controller";
 
 const router = Router();
 
@@ -13,9 +14,7 @@ router.get("/", (req, res) => {
 
 router.post("/register", registerController)
 
-router.post("/login", (req, res) => {
-    res.status(501).send("login endpoint");
-})
+router.post("/login", loginController)
 
 router.post("/logout", (req, res) => {
     res.status(501).send("logout endpoint");

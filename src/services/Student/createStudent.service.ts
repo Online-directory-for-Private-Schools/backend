@@ -1,6 +1,7 @@
 import { Student } from "../../db/entities/StudentEntity";
 import { User, UserType } from "../../db/entities/UserEntity";
-import { CreateStudentService } from "../../interfaces";
+import { CreateStudentService } from "../../interfaces/student.interface";
+
 
 interface StudentCreationInfo {
     userId: string;

@@ -2,17 +2,27 @@ import { Request, Response } from "express";
 import { UserType } from "../../db/entities/UserEntity";
 import createUserAccountService from "../../services/auth/createUser.service";
 import { TypeORMError } from "typeorm";
+import { RegisterRequest } from "../../interfaces/requests.interface";
+import jwt from "jsonwebtoken";
+import { config } from "../../configs/config";
+import { AuthResponse } from "../../interfaces/responses.interface";
 
 export default async function registerController(req: Request, res: Response) {
+    let resp: AuthResponse;
+
     if (!isRequestValid(req.body)) {
-        res.status(400).json({
-            error: "Invalid request",
-        });
+        resp = {
+            error: {
+                message: "Invalid request",
+            },
+        };
+
+        res.status(400).json(resp);
 
         return;
     }
 
-    const { name, email, phone_number, password, type } = req.body;
+    const { name, email, phone_number, password, type }: RegisterRequest = req.body;
 
     try {
         const { user, error } = await createUserAccountService({
@@ -23,26 +33,34 @@ export default async function registerController(req: Request, res: Response) {
             type,
         });
 
-        // Todo: do JWT authentication here
-
-        if (error) {
-            res.status(400).json(error);
+        if (error || !user) {
+            resp = { error };
+            res.status(400).json(resp);
             return;
         }
 
-        res.status(200).json({
+        const token = jwt.sign({...user}, config.jwtSecret, { expiresIn: "2 days" });
+
+        resp = {
             user,
-        });
+        };
+
+        res.cookie("token", token);
+        res.status(200).json(resp);
     } catch (error) {
-        if(error instanceof TypeORMError) {
-            console.log(error.message)
+        if (error instanceof TypeORMError) {
+            console.log(error.message);
         }
-        
-        return res.status(500).json({
+
+        console.log(error)
+
+        resp = {
             error: {
                 message: "an error occurred while registering a new user",
             },
-        });
+        };
+
+        return res.status(500).json(resp);
     }
 }
 

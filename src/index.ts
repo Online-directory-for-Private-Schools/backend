@@ -1,3 +1,7 @@
+import dotenv from "dotenv"
+dotenv.config()
+
+
 import router from "./routes/routes.index"
 import { config } from "./configs/config"
 import { AppDataSource } from "./data-source"

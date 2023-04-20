@@ -1,19 +1,28 @@
 import { Request, Response } from "express";
 import createSchoolService from "../../services/School/createSchool.service";
 import { TypeORMError } from "typeorm";
+import { CreateSchoolRequest } from "../../interfaces/requests.interface";
+import { CreateSchoolResponse } from "../../interfaces/responses.interface";
 
 export default async function createSchoolController(req: Request, res: Response) {
+
+    let resp: CreateSchoolResponse;
+
     if (!isRequestValid(req.body)) {
-        res.status(400).json({
+
+
+        resp = {
             error: {
                 message: "Invalid request",
             },
-        });
+        }
+
+        res.status(400).json(resp);
 
         return;
     }
 
-    const { name, bio, isHiring, lng, lat, city, province, street_name, country, userId } =
+    const { name, bio, isHiring, lng, lat, city, province, street_name, country, userId }: CreateSchoolRequest =
         req.body;
 
     try {
@@ -31,7 +40,8 @@ export default async function createSchoolController(req: Request, res: Response
         });
 
         if (error) {
-            res.status(400).json(error);
+            resp = {error}
+            res.status(400).json(resp);
             return;
         }
 
@@ -43,11 +53,13 @@ export default async function createSchoolController(req: Request, res: Response
             console.log(error.message)
         }
 
-        return res.status(500).json({
+        resp = {
             error: {
                 message: "an error has occured while creating the school",
             },
-        });
+        }
+
+        return res.status(500).json(resp);
     }
 }
 

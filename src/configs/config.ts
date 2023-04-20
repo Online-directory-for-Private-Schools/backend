@@ -4,5 +4,6 @@ dotenv.config()
 
 
 export const config = {
-    port: process.env.PORT || 3001
+    port: process.env.PORT || 3001,
+    jwtSecret: process.env.JWT_SECRET || ""
 }

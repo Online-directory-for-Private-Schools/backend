@@ -1,7 +1,8 @@
 import bcrypt from "bcrypt";
 import { Auth } from "../../db/entities/AuthEntity";
 import { User, UserType } from "../../db/entities/UserEntity";
-import { CreateUserService } from "../../interfaces";
+import { AuthService } from "../../interfaces/user.interface";
+
 
 
 
@@ -15,7 +16,7 @@ interface UserRegistrationInfo {
 }
 
 
-export default async function createUser({name, email, password, phone_number, type}: UserRegistrationInfo) : Promise<CreateUserService> {
+export default async function createUserService({name, email, password, phone_number, type}: UserRegistrationInfo) : Promise<AuthService> {
 
     // check if user with given info exists
 
@@ -47,6 +48,7 @@ export default async function createUser({name, email, password, phone_number, t
     const auth = new Auth();
     auth.hashed_password = hashedPw;
     auth.user = user;
+
 
 
     // save user and their auth records
