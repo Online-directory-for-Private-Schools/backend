@@ -3,8 +3,9 @@
 ## Configuration
 
 - You need to install docker on your machine in order to easily create the postgresql database.
-- when you successfully install docker run:
 
+- when you successfully install docker run:
+  
   ```bash
   docker compose up -d
   ```
@@ -12,12 +13,12 @@
 This will download the postgres image and start the database server on port 5432
 
 - Now you need to install the project's dependencies:
-
+  
   ```bash
   npm install
-
+  
   #or
-
+  
   yarn
   ```
 
@@ -25,13 +26,13 @@ This will download the postgres image and start the database server on port 5432
   
   ```bash
   npm run dev
-
+  
   # or
-
+  
   yarn dev
-
   ```
-## Structure explanation
+  
+  ## Structure explanation
 
 #### /configs:
 
@@ -40,7 +41,6 @@ This will download the postgres image and start the database server on port 5432
 #### /controllers:
 
 - Has methods that are invoked by the HTTP API calls
-
 
 #### /middlewares:
 
@@ -55,9 +55,11 @@ This will download the postgres image and start the database server on port 5432
 - Has model definitions for the Typeorm entity classes (User, PrivateSchool, Course,...)
 
 #### /db/factories:
+
 - Has factory functions that will be used by the seeders to generate fake data for the database.
 
 #### /db/seeds:
+
 - Has seeder classes that can be invoked to fill the database with fake testing data.
 
 #### /routes:
@@ -73,7 +75,7 @@ This will download the postgres image and start the database server on port 5432
 
 - General utility functions used here and there by all the system.
 
-### Clean architecture requirements:
+## Clean architecture requirements:
 
 - This project will strictly use a clean architecture.
 - Well try to decouple the business logic from the database and the frameworks so that the backend system will be scalable and modular.
@@ -81,3 +83,6 @@ This will download the postgres image and start the database server on port 5432
 
 ![architecture](https://cdn.discordapp.com/attachments/975876776318361681/1095517674265661490/Untitled_Diagram.jpg)
 
+## API endpoints structure:
+
+- Explained here: [src/routes/README.md](https://github.com/Online-directory-for-Private-Schools/backend/blob/main/src/routes/README.md)

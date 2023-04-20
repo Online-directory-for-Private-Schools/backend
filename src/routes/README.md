@@ -4,8 +4,6 @@
 
 - Middleware to protect the endpoints hasn't been implemented yet
 
-
-
 ## A. Implemented
 
 #### /schools/
@@ -36,11 +34,7 @@
 
 - create a new **User** and **Auth** records in the database and return a signed JWT
 
-
-
 ---
-
-
 
 ## B. NOT Implemented
 
