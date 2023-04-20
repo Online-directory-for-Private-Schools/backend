@@ -32,11 +32,15 @@ export class PrivateSchool extends BaseEntity {
     isHiring: boolean
 
 
-    @Column()
-    lng: number;
+    @Column({
+        type: "numeric"
+    })
+    lng: string;
 
-    @Column()
-    lat: number;
+    @Column({
+        type: "numeric"
+    })
+    lat: string;
 
     @Column()
     city: string;

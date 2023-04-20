@@ -8,6 +8,7 @@ import { runSeeders } from "typeorm-extension"
 let initialize =  async () => {
 
     const app = express()
+    app.use(express.json())
 
     app.use("/", router);
 
