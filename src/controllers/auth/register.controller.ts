@@ -39,7 +39,7 @@ export default async function registerController(req: Request, res: Response) {
             return;
         }
 
-        const token = jwt.sign({...user}, config.jwtSecret, { expiresIn: "2 days" });
+        const token = jwt.sign({id: user.id}, config.jwtSecret, { expiresIn: "2 days" });
 
         resp = {
             user,
