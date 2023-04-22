@@ -1,6 +1,5 @@
 
 import { Router } from "express";
-import createStudentController from "../../controllers/Student/createStudent.controller";
 import { requireAuth } from "../../middlewares/auth/requireAuth.middleware";
 
 
@@ -9,11 +8,23 @@ const router = Router()
 
 router.use(requireAuth)
 
-router.post("/", createStudentController)
 
+router.get("/:id", (req, res) => {
+    
+})
+
+
+router.put("/:id", (req, res) => {
+
+})
+
+
+router.delete("/:id", (req, res) => {
+
+})
 
 
 
 export {
-    router as StudentRouter
+    router as UserRouter
 };

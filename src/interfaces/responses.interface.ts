@@ -18,3 +18,6 @@ export interface AuthResponse {
     user?: User;
     error?: ResponseError
 }
+
+
+export interface GetUserResponse extends AuthResponse {}

@@ -1,13 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import jwt from "jsonwebtoken";
 import { config } from "../../configs/config";
-
-
-interface AuthRequest extends Request {
-    user: {
-        id: string;
-    }
-}
+import { AuthRequest } from "../../interfaces/requests.interface";
 
 
 interface AuthTokenUser {

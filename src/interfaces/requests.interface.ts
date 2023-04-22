@@ -1,3 +1,4 @@
+import { Request } from "express";
 import { UserType } from "../db/entities/UserEntity";
 
 export interface LoginRequest {
@@ -33,3 +34,9 @@ export interface CreateStudentRequest {
     userId: string
 }
 
+
+export interface AuthRequest extends Request {
+    user: {
+        id: string;
+    }
+}
