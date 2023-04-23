@@ -42,11 +42,12 @@ export default async function registerController(req: Request, res: Response) {
         const token = jwt.sign({id: user.id}, config.jwtSecret, { expiresIn: "2 days" });
 
         resp = {
-            user,
+            token,
+            user
         };
 
-        res.cookie("token", token);
         res.status(200).json(resp);
+        
     } catch (error) {
         if (error instanceof TypeORMError) {
             console.log(error.message);

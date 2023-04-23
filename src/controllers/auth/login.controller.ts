@@ -37,11 +37,13 @@ export default async function loginController(req: Request, res: Response) {
         const token = jwt.sign({...user}, config.jwtSecret, { expiresIn: "2 days" });
 
         resp = {
+            token,
             user,
         };
 
-        res.cookie("token", token);
         res.status(200).json(resp);
+
+
     } catch (error) {
         if (error instanceof TypeORMError) {
             console.log(error.message);

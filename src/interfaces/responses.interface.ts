@@ -17,4 +17,5 @@ export interface CreateStudentResponse {
 export interface AuthResponse {
     user?: User;
     error?: ResponseError
+    token?: string
 }
