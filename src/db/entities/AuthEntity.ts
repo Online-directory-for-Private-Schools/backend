@@ -8,8 +8,7 @@ export class Auth extends BaseEntity {
     @OneToOne(
         () => User,
         {
-            cascade: true
-
+            onDelete: "CASCADE"
         }
     )
     @JoinColumn({

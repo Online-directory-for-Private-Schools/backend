@@ -1,15 +1,15 @@
 import { Request, Response } from "express";
-import { GetUserResponse } from "../../interfaces/responses.interface";
 import { AuthRequest } from "../../interfaces/requests.interface";
-import getUserService from "../../services/user/getUser.service";
+import { DeleteUserResponse } from "../../interfaces/responses.interface";
+import deleteUserService from "../../services/user/deleteUser.service";
 import checkUserRequest from "./utils/checkRequest.util";
 
-export default async function getUserController(req: Request, res: Response) {
+export default async function deleteUserController(req: Request, res: Response) {
     const { authUser } = req as AuthRequest;
 
     const { id } = req.params;
 
-    let resp: GetUserResponse;
+    let resp: DeleteUserResponse;
 
     const { ok, errMessage, status } = checkUserRequest(id, authUser.id);
 
@@ -26,11 +26,11 @@ export default async function getUserController(req: Request, res: Response) {
     }
 
     try {
-        // call getUser service
-        const { user, error } = await getUserService({ id });
+        // call deleteUser service
+        const { error } = await deleteUserService({ id });
 
         // error checking
-        if (error || !user) {
+        if (error) {
             resp = {
                 error,
             };
@@ -38,19 +38,20 @@ export default async function getUserController(req: Request, res: Response) {
             return res.status(400).json(resp);
         }
 
-        resp = { user };
-
-        return res.json(resp);
-
-    } catch (error) {
-
+       
         resp = {
-            error: {
-                message: "An error occurred while retrieving user"
-            }
+            info: "Successfully deleted user"
         }
 
-        return res.status(500).json(resp);
+        return res.json(resp);
+        
+    } catch (error) {
+        resp = {
+            error: {
+                message: "An error occurred while deleting user",
+            },
+        };
 
+        return res.status(500).json(resp);
     }
 }

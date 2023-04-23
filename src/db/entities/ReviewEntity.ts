@@ -28,7 +28,7 @@ export class Review extends BaseEntity {
     @ManyToOne(
         () => Student,
         {
-            cascade: true
+            onDelete: "CASCADE"
         }
     )
     student: Student;
@@ -37,7 +37,7 @@ export class Review extends BaseEntity {
         () => PrivateSchool,
         PrivateSchool => PrivateSchool.reviews,
         {
-            cascade: true
+            onDelete: "CASCADE"
         }
 
     )

@@ -36,7 +36,7 @@ export interface CreateStudentRequest {
 
 
 export interface AuthRequest extends Request {
-    user: {
+    authUser: {
         id: string;
     }
 }

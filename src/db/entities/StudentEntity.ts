@@ -19,7 +19,7 @@ export class Student extends BaseEntity {
     @OneToOne(
         () => User,
         {
-            cascade: true,
+            onDelete: "CASCADE",
         }
     )
     @JoinColumn()

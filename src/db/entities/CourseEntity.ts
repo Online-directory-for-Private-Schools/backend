@@ -43,7 +43,7 @@ export class Course extends BaseEntity {
         () => PrivateSchool,
         (privateSchool) => privateSchool.courses,
         {
-            cascade: true
+            onDelete: "CASCADE"
         }
     )
     school: PrivateSchool;
