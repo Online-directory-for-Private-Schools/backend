@@ -7,12 +7,14 @@ import { config } from "./configs/config"
 import { AppDataSource } from "./data-source"
 import express from "express"
 import { runSeeders } from "typeorm-extension"
-
+import cors from "cors"
 
 let initialize =  async () => {
 
     const app = express()
     app.use(express.json())
+    app.use(cors())
+    
 
     app.use("/", router);
 
