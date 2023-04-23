@@ -22,3 +22,8 @@ export interface AuthResponse {
 
 
 export interface GetUserResponse extends AuthResponse {}
+
+export interface DeleteUserResponse {
+    info?: string;
+    error?: ResponseError
+}

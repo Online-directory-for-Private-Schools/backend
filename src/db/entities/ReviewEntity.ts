@@ -37,7 +37,7 @@ export class Review extends BaseEntity {
         () => PrivateSchool,
         PrivateSchool => PrivateSchool.reviews,
         {
-            cascade: true
+            onDelete: "CASCADE"
         }
 
     )
