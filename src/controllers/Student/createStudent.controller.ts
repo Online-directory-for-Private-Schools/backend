@@ -4,6 +4,12 @@ import { TypeORMError } from "typeorm";
 import { CreateStudentRequest } from "../../interfaces/requests.interface";
 import { CreateStudentResponse } from "../../interfaces/responses.interface";
 
+
+
+/**
+ * 
+ * @deprecated  student controllers will be removed due to merging the student entity with the user entity
+ */
 export default async function createStudentController(req: Request, res: Response) {
 
     let resp: CreateStudentResponse;

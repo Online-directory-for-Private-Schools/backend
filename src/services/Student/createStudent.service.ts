@@ -1,3 +1,5 @@
+
+
 import { Student } from "../../db/entities/StudentEntity";
 import { User, UserType } from "../../db/entities/UserEntity";
 import { CreateStudentService } from "../../interfaces/student.interface";
@@ -10,6 +12,10 @@ interface StudentCreationInfo {
     province: string;
 }
 
+/**
+ * 
+ * @deprecated  student services will be removed due to merging the student entity with the user entity
+ */
 export default async function createStudentService(
     studentInfo: StudentCreationInfo
 ): Promise<CreateStudentService> {
