@@ -35,9 +35,24 @@ export class User extends BaseEntity {
     type: string;
 
 
+    @Column({
+        nullable: true
+    })
+    city: string;
+
+        @Column({
+        nullable: true
+    })
+    province: string;
+
+    @Column({
+        nullable: true
+    })
+    country: string;
+
+
     @CreateDateColumn()
     created_at: Date;
-
 
 
 }

@@ -11,6 +11,9 @@ export interface RegisterRequest extends LoginRequest {
     name: string;
     phone_number?: string;
     type: UserType;
+    city: string;
+    province: string;
+    country: string;
 }
 
 export interface CreateSchoolRequest {

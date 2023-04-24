@@ -15,9 +15,9 @@ export const typeOrmDataSourceOptions: DataSourceOptions & SeederOptions = {
     port: 5432,
     username: "postgres",
     password: "postgres",
-    synchronize: true,
+    synchronize: false,
     logging: true,
-    entities: [Photo, PrivateSchool, Course, Review, Student, Schedule, Auth, User],
+    entities: [Photo, PrivateSchool, Course, Review, Schedule, Auth, User],
     subscribers: [],
     migrations: ["src/db/migrations/**/*.{ts,js}"],
 

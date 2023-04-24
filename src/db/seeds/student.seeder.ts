@@ -1,6 +1,6 @@
-import { Seeder, SeederFactoryManager } from 'typeorm-extension';
 import { DataSource } from 'typeorm';
-import { Student } from '../entities/StudentEntity';
+import { Seeder, SeederFactoryManager } from 'typeorm-extension';
+import { User } from '../entities/UserEntity';
 
 
 export default class StudentSeeder implements Seeder {
@@ -9,7 +9,7 @@ export default class StudentSeeder implements Seeder {
         factoryManager: SeederFactoryManager
     ): Promise<any> {
 
-        const studentFactory = factoryManager.get(Student);
+        const studentFactory = factoryManager.get(User);
 
         // save 5 factory generated entities, to the database
         await studentFactory.saveMany(50);

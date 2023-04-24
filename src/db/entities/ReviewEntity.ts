@@ -1,6 +1,6 @@
 import { BaseEntity, Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import { PrivateSchool } from "./PrivateSchoolEntity";
-import { Student } from "./StudentEntity";
+import { User } from "./UserEntity";
 
 @Entity("reviews")
 export class Review extends BaseEntity {
@@ -26,12 +26,12 @@ export class Review extends BaseEntity {
 
 
     @ManyToOne(
-        () => Student,
+        () => User,
         {
             onDelete: "CASCADE"
         }
     )
-    student: Student;
+    user: User;
 
     @ManyToOne(
         () => PrivateSchool,

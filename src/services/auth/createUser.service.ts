@@ -2,23 +2,22 @@ import bcrypt from "bcrypt";
 import { Auth } from "../../db/entities/AuthEntity";
 import { User, UserType } from "../../db/entities/UserEntity";
 import { AuthService } from "../../interfaces/user.interface";
+import { RegisterRequest } from "../../interfaces/requests.interface";
 
 
 
 
 
-interface UserRegistrationInfo {
-    name: string;
-    email: string;
-    password: string;
-    phone_number?: string;
-    type: UserType
+interface UserRegistrationInfo extends RegisterRequest {
+
 }
 
 
-export default async function createUserService({name, email, password, phone_number, type}: UserRegistrationInfo) : Promise<AuthService> {
+export default async function createUserService(regInfo: UserRegistrationInfo) : Promise<AuthService> {
 
     // check if user with given info exists
+
+    const {name, email, password, phone_number, type, city, country, province} = regInfo;
 
 
     const userExists = await User.findOneBy({email})
@@ -36,6 +35,9 @@ export default async function createUserService({name, email, password, phone_nu
     const user = new User()
     user.name = name;
     user.email = email
+    user.city = city
+    user.country = country
+    user.province = province
     if(phone_number)
         user.phone_number = phone_number
     user.type = type

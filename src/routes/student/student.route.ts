@@ -9,6 +9,11 @@ const router = Router()
 
 router.use(requireAuth)
 
+
+/**
+ * 
+ * @deprecated  /student routes will be removed due to merging the student entity with the user entity
+ */
 router.post("/", createStudentController)
 
 
