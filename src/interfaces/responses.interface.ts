@@ -19,3 +19,11 @@ export interface AuthResponse {
     error?: ResponseError
     token?: string
 }
+
+
+export interface GetUserResponse extends AuthResponse {}
+
+export interface DeleteUserResponse {
+    info?: string;
+    error?: ResponseError
+}

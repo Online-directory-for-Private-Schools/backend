@@ -15,7 +15,7 @@ export class Photo extends BaseEntity {
         ()=> PrivateSchool,
         school => school.photos,
         {
-            cascade: true
+            onDelete: "CASCADE"
         }
     )
     school: PrivateSchool;

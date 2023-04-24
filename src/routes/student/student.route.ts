@@ -12,6 +12,8 @@ router.use(requireAuth)
 router.post("/", createStudentController)
 
 
+
+
 export {
     router as StudentRouter
 };

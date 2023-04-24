@@ -36,12 +36,17 @@
 
 ---
 
+
 ## B. NOT Implemented
+
 
 #### /user/:user_id/
 
+
 get: return user
+
 put: update user
+
 delete: remove user
 
 #### /school/:school_id

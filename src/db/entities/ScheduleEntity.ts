@@ -20,7 +20,7 @@ export class Schedule extends BaseEntity {
         () => Course,
         (course) => course.schedules,
         {
-            cascade: true
+            onDelete: "CASCADE"
         }
     )
     course: Course;

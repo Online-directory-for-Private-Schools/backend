@@ -1,13 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import jwt from "jsonwebtoken";
 import { config } from "../../configs/config";
-
-
-interface AuthRequest extends Request {
-    user: {
-        id: string;
-    }
-}
+import { AuthRequest } from "../../interfaces/requests.interface";
 
 
 interface AuthTokenUser {
@@ -18,8 +12,6 @@ export async function requireAuth(req: Request, res: Response, next: NextFunctio
     try {
         const authHeader = req.header("Authorization")
 
-
-        console.log(authHeader)
 
         if (!authHeader) {
             res.status(401).json({
@@ -39,7 +31,7 @@ export async function requireAuth(req: Request, res: Response, next: NextFunctio
         const { id } = jwt.verify(token, config.jwtSecret) as AuthTokenUser;
 
         // adding the user id to the request object
-        (req as AuthRequest).user = { id };
+        (req as AuthRequest).authUser = { id };
 
         // executing the protected controller function after we have validated the token
         next();
