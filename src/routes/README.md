@@ -8,7 +8,7 @@
 
 #### /schools/
 
-###### 1. Post:
+###### 1. POST:
 
 - create a new school for the signed in user who has type of **school_owner**
 
@@ -18,36 +18,47 @@
 
 #### /students/
 
-###### 1. Post:
+###### 1. POST:
 
 - create a student profile for the user who has type of **student**
 
 #### /auth/login/
 
-###### 1. Post:
+###### 1. POST:
 
 - check user credentials (email/pw) and return a signed JWT
 
 #### /auth/register
 
-###### 1. Post:
+###### 1. POST:
 
 - create a new **User** and **Auth** records in the database and return a signed JWT
 
 ---
 
+#### /user/:user_id/
+
+- requires Authorization header to be set.
+
+###### 1. GET:
+
+- Return a user object whose id is user_id 
+
+###### 2. PUT:
+
+- Update user whose id is user_id's data (name, phone number, city, province, country)
+
+
+###### 3. DELETE
+
+- remove user whose id is user_id from the database.
+
+
+
 
 ## B. NOT Implemented
 
 
-#### /user/:user_id/
-
-
-get: return user
-
-put: update user
-
-delete: remove user
 
 #### /school/:school_id
 
@@ -59,7 +70,7 @@ get: school
 
 #### /school/:school_id/courses
 
-post: create new course
+POST: create new course
 
 get: get all courses
 
@@ -75,7 +86,7 @@ delete: remove
 
 get: gel all schedules
 
-post: add new schedule
+POST: add new schedule
 
 ## /course/:course_id/schedule/:schedule_id
 
