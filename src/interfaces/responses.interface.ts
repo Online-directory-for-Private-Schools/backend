@@ -23,7 +23,7 @@ export interface AuthResponse {
 
 export interface GetUserResponse extends AuthResponse {}
 
-export interface DeleteUserResponse {
+export interface DeleteResponse {
     info?: string;
     error?: ResponseError
 }

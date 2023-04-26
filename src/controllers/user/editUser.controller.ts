@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { AuthRequest } from "../../interfaces/requests.interface";
-import { DeleteUserResponse, GetUserResponse } from "../../interfaces/responses.interface";
+import { DeleteResponse, GetUserResponse } from "../../interfaces/responses.interface";
 import deleteUserService from "../../services/user/deleteUser.service";
 import checkUserRequest from "./utils/checkRequest.util";
 import filterObjectFromFalsyValues from "../../utils/truthifyObject.util";
