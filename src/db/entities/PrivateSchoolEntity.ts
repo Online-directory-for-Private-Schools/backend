@@ -56,7 +56,10 @@ export class PrivateSchool extends BaseEntity {
     
 
     @OneToOne(
-        () => User
+        () => User,
+        {
+            eager: true
+        }
     )
     @JoinColumn()
     owner: User;

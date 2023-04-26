@@ -2,11 +2,11 @@ import { Request, Response } from "express";
 import createSchoolService from "../../services/School/createSchool.service";
 import { TypeORMError } from "typeorm";
 import { CreateSchoolRequest } from "../../interfaces/requests.interface";
-import { CreateSchoolResponse } from "../../interfaces/responses.interface";
+import { SchoolResponse } from "../../interfaces/responses.interface";
 
 export default async function createSchoolController(req: Request, res: Response) {
 
-    let resp: CreateSchoolResponse;
+    let resp: SchoolResponse;
 
     if (!isRequestValid(req.body)) {
 

@@ -1,6 +1,6 @@
 import { PrivateSchool } from "../../db/entities/PrivateSchoolEntity";
 import { User, UserType } from "../../db/entities/UserEntity";
-import { CreateSchoolService } from "../../interfaces/school.interface";
+import { SchoolService } from "../../interfaces/school.interface";
 
 interface SchoolCreationInfo {
     userId: string;
@@ -16,7 +16,7 @@ interface SchoolCreationInfo {
 }
 
 
-export default async function createSchoolService(schoolInfo: SchoolCreationInfo) : Promise<CreateSchoolService> {
+export default async function createSchoolService(schoolInfo: SchoolCreationInfo) : Promise<SchoolService> {
 
 
 

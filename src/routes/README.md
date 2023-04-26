@@ -16,11 +16,9 @@
 
 - get all schools in the database
 
-#### /students/
+#### /user/
 
 ###### 1. POST:
-
-- create a student profile for the user who has type of **student**
 
 #### /auth/login/
 

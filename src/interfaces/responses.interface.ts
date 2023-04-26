@@ -3,7 +3,7 @@ import { Student } from "../db/entities/StudentEntity";
 import { User } from "../db/entities/UserEntity";
 import { ResponseError } from "./responseError.interface";
 
-export interface CreateSchoolResponse {
+export interface SchoolResponse {
     school?: PrivateSchool;
     error?: ResponseError
 }
