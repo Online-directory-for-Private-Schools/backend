@@ -48,6 +48,15 @@ export interface EditSchoolRequest {
 }
 
 
+export interface SearchSchoolsRequest {
+    name?: string;
+    city?: string;
+    country?: string;
+    province?: string;
+    isHiring?: boolean;
+}
+
+
 export interface CreateStudentRequest {
     city: string
     province: string

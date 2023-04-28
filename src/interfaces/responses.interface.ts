@@ -8,6 +8,13 @@ export interface SchoolResponse {
     error?: ResponseError
 }
 
+export interface SearchSchoolsResponse {
+    schools?: PrivateSchool[];
+    error?: ResponseError;
+}
+
+
+
 export interface CreateStudentResponse {
     student?: Student;
     error?: ResponseError
