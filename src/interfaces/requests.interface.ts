@@ -29,6 +29,35 @@ export interface CreateSchoolRequest {
     userId: string;
 }
 
+export interface GetSchoolRequest {
+    id: number
+}
+
+
+export interface EditSchoolRequest {
+    id: number;
+    name?: string;
+    bio?: string;
+    isHiring?: boolean;
+    city?: string;
+    province?: string;
+    street_name?: string;
+    country?: string;
+    lat?: string;
+    lng?: string;
+}
+
+
+export interface SearchSchoolsRequest {
+    name?: string;
+    city?: string;
+    country?: string;
+    province?: string;
+    isHiring?: boolean;
+    limit?: number;
+    page?: number
+}
+
 
 export interface CreateStudentRequest {
     city: string

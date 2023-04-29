@@ -3,10 +3,22 @@ import { Student } from "../db/entities/StudentEntity";
 import { User } from "../db/entities/UserEntity";
 import { ResponseError } from "./responseError.interface";
 
-export interface CreateSchoolResponse {
+export interface SchoolResponse {
     school?: PrivateSchool;
     error?: ResponseError
 }
+
+export interface SearchSchoolsResponse {
+    data?: {
+        schools?: PrivateSchool[];
+        currentPage?: number;
+        totalPages?: number;
+        totalSchools?: number;
+    }
+    error?: ResponseError;
+}
+
+
 
 export interface CreateStudentResponse {
     student?: Student;
@@ -23,7 +35,7 @@ export interface AuthResponse {
 
 export interface GetUserResponse extends AuthResponse {}
 
-export interface DeleteUserResponse {
+export interface DeleteResponse {
     info?: string;
     error?: ResponseError
 }
