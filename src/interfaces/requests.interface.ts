@@ -54,6 +54,8 @@ export interface SearchSchoolsRequest {
     country?: string;
     province?: string;
     isHiring?: boolean;
+    limit?: number;
+    page?: number
 }
 
 

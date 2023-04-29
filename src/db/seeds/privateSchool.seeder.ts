@@ -12,6 +12,6 @@ export default class PrivateSchoolSeeder implements Seeder {
         const privateSchoolFactory = factoryManager.get(PrivateSchool);
 
         // save 5 factory generated entities, to the database
-        await privateSchoolFactory.saveMany(50);
+        await privateSchoolFactory.saveMany(500);
     }
 }

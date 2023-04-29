@@ -5,32 +5,34 @@ import isObjectEmpty from "../../utils/isObjectEmpty.util";
 import makeErrorResponseUtil from "../../services/School/utils/makeErrorResponse.util";
 import { SearchSchoolsResponse } from "../../interfaces/responses.interface";
 import { searchSchoolsService } from "../../services/School/searchSchools.service";
+import checkIfNumericOrUndefined from "../../utils/checkIfNumberOrUndefined.util";
 
 export default async function searchSchoolsController(req: Request, res: Response){
     
-    const {name, city, country, province, isHiring} : SearchSchoolsRequest = req.query;
+    const {name, city, country, province, isHiring, page, limit} : SearchSchoolsRequest = req.query;
 
     let resp: SearchSchoolsResponse;
 
 
     // filtering the request to only have non-false values
-    const filteredBodyObj = filterObjectFromFalsyValues({name, city, country, province, isHiring});
+    const filteredBodyObj = filterObjectFromFalsyValues({name, city, country, province, isHiring, page: +page!, limit: +limit!});
+
     
 
     try {
 
-        const {schools, error} = await searchSchoolsService(filteredBodyObj)
+        const {data, error} = await searchSchoolsService(filteredBodyObj)
 
 
                 // error checking
-                if (error || !schools) {
+                if (error || !data) {
                     resp = { error }
         
                     return res.status(400).json(resp);
                 }
         
                
-                resp = { schools }
+                resp = { data }
         
                 return res.json(resp);
 
@@ -47,3 +49,5 @@ export default async function searchSchoolsController(req: Request, res: Respons
 
     
 }
+
+

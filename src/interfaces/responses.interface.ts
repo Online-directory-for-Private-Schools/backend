@@ -9,7 +9,12 @@ export interface SchoolResponse {
 }
 
 export interface SearchSchoolsResponse {
-    schools?: PrivateSchool[];
+    data?: {
+        schools?: PrivateSchool[];
+        currentPage?: number;
+        totalPages?: number;
+        totalSchools?: number;
+    }
     error?: ResponseError;
 }
 
