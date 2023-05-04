@@ -16,7 +16,7 @@ let initialize =  async () => {
     app.use(cors())
     
 
-    app.use("/", router);
+    // app.use("/", router);
 
     try {
         await AppDataSource.initialize()

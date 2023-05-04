@@ -8,6 +8,10 @@ import { Schedule } from "../db/entities/ScheduleEntity";
 import { Student } from "../db/entities/StudentEntity";
 import { DataSourceOptions } from "typeorm";
 import { SeederOptions } from "typeorm-extension";
+import { City } from "../db/entities/Address/CityEntity";
+import { Country } from "../db/entities/Address/CountryEntity";
+import { Province } from "../db/entities/Address/ProvinceEntity";
+import { Street } from "../db/entities/Address/StreetEntity";
 
 export const typeOrmDataSourceOptions: DataSourceOptions & SeederOptions = {
     type: "postgres",
@@ -15,9 +19,9 @@ export const typeOrmDataSourceOptions: DataSourceOptions & SeederOptions = {
     port: 5432,
     username: "postgres",
     password: "postgres",
-    synchronize: false,
+    synchronize: true,
     logging: true,
-    entities: [Photo, PrivateSchool, Course, Review, Schedule, Auth, User],
+    entities: [Photo, PrivateSchool, Course, Review, Schedule, Auth, User, City, Country, Province, Street],
     subscribers: [],
     migrations: ["src/db/migrations/**/*.{ts,js}"],
 
