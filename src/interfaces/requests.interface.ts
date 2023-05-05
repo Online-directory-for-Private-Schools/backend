@@ -1,6 +1,15 @@
 import { Request } from "express";
 import { UserType } from "../db/entities/UserEntity";
 
+
+export interface EditUserRequest {
+    id: string;
+    name?: string;
+    phone_number?: string;
+    cityId?: number
+}
+
+
 export interface LoginRequest {
     email: string;
     password: string;
@@ -11,9 +20,7 @@ export interface RegisterRequest extends LoginRequest {
     name: string;
     phone_number?: string;
     type: UserType;
-    city: string;
-    province: string;
-    country: string;
+    cityId: number;
 }
 
 export interface CreateSchoolRequest {
@@ -22,10 +29,8 @@ export interface CreateSchoolRequest {
     isHiring?: boolean;
     lng: string;
     lat: string;
-    city: string;
-    province: string;
+    cityId: number;
     street_name: string;
-    country: string;
     userId: string;
 }
 
@@ -39,10 +44,8 @@ export interface EditSchoolRequest {
     name?: string;
     bio?: string;
     isHiring?: boolean;
-    city?: string;
-    province?: string;
-    street_name?: string;
-    country?: string;
+    cityId?: number;
+    streetName?: string;
     lat?: string;
     lng?: string;
 }

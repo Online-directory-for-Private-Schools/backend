@@ -13,7 +13,8 @@ export class Province extends BaseEntity {
         (country) => country.provinces,
         {
             onDelete: "CASCADE",
-            nullable: false
+            nullable: false,
+            eager: true
         }
     )
     country: Country;

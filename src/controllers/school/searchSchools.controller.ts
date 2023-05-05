@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import { SearchSchoolsRequest } from "../../interfaces/requests.interface";
 import filterObjectFromFalsyValues from "../../utils/truthifyObject.util";
 import isObjectEmpty from "../../utils/isObjectEmpty.util";
-import makeErrorResponseUtil from "../../services/School/utils/makeErrorResponse.util";
+import makeRespError from "../../utils/makeRespError.util";
 import { SearchSchoolsResponse } from "../../interfaces/responses.interface";
 import { searchSchoolsService } from "../../services/School/searchSchools.service";
 import checkIfNumericOrUndefined from "../../utils/checkIfNumberOrUndefined.util";
@@ -40,7 +40,7 @@ export default async function searchSchoolsController(req: Request, res: Respons
         
     } catch (error) {
         // TODO: [SEG310-86] handle error types
-        resp = makeErrorResponseUtil("an error occured while searching for schools")
+        resp = makeRespError("an error occured while searching for schools")
 
         console.log(error)
 

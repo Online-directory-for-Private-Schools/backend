@@ -1,4 +1,4 @@
-import { ResponseError } from "../../../interfaces/responseError.interface";
+import { ResponseError } from "../interfaces/responseError.interface";
 
 // TODO: [SEG310-85] [Backend] refactor all constollers to use this function
 

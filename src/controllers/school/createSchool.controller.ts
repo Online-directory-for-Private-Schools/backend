@@ -3,6 +3,10 @@ import createSchoolService from "../../services/School/createSchool.service";
 import { TypeORMError } from "typeorm";
 import { CreateSchoolRequest } from "../../interfaces/requests.interface";
 import { SchoolResponse } from "../../interfaces/responses.interface";
+import makeRespError from "../../utils/makeRespError.util";
+import { isNumber } from "class-validator";
+import sendErrorResponse from "../utils/makeErrorResponse.util";
+import isNumeric from "../../utils/isNumeric.util";
 
 export default async function createSchoolController(req: Request, res: Response) {
 
@@ -10,20 +14,29 @@ export default async function createSchoolController(req: Request, res: Response
 
     if (!isRequestValid(req.body)) {
 
-
-        resp = {
-            error: {
-                message: "Invalid request",
-            },
-        }
+        resp = makeRespError("Invalid request");
 
         res.status(400).json(resp);
 
         return;
     }
+    
 
-    const { name, bio, isHiring, lng, lat, city, province, street_name, country, userId }: CreateSchoolRequest =
+    const { name, bio, isHiring, lng, lat, cityId, street_name, userId }: CreateSchoolRequest =
         req.body;
+
+
+    if(!isNumber(cityId)) {
+        return sendErrorResponse("cityId must be a positive number", 400, res);
+    }
+
+    if(cityId < 0) {
+        return sendErrorResponse("cityId must be a positive number", 400, res);
+    }
+
+    if(!isNumeric(lat) || !isNumeric(lng)) {
+        return sendErrorResponse("lat and lng must be numeric", 400, res);
+    }
 
     try {
         const { school, error } = await createSchoolService({
@@ -32,10 +45,8 @@ export default async function createSchoolController(req: Request, res: Response
             isHiring,
             lng,
             lat,
-            city,
-            province,
+            cityId,
             street_name,
-            country,
             userId,
         });
 
@@ -53,20 +64,15 @@ export default async function createSchoolController(req: Request, res: Response
             console.log(error.message)
         }
 
-        resp = {
-            error: {
-                message: "an error has occured while creating the school",
-            },
-        }
-
-        return res.status(500).json(resp);
+        return sendErrorResponse("an error has occured while creating the school", 500, res);
     }
 }
 
-const isRequestValid = ({ userId, name, lng, lat, city, province, street_name, country }: any) => {
-    const isFull = ![userId, name, lng, lat, city, province, street_name, country].includes(
+const isRequestValid = ({ userId, name, lng, lat, cityId, street_name}: any) => {
+    const isFull = ![userId, name, lng, lat, cityId, street_name].includes(
         undefined
     );
 
     return isFull;
 };
+

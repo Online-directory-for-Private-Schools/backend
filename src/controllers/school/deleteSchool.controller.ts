@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { AuthRequest } from "../../interfaces/requests.interface";
 import { DeleteResponse, SchoolResponse } from "../../interfaces/responses.interface";
-import makeErrorResponseUtil from "../../services/School/utils/makeErrorResponse.util";
+import makeRespError from "../../utils/makeRespError.util";
 import { deleteSchoolService } from "../../services/School/deleteSchool.service";
 
 export default async function deleteSchoolController(req: Request, res: Response){
@@ -13,7 +13,7 @@ export default async function deleteSchoolController(req: Request, res: Response
 
 
     if(!Number(id)) {
-        resp = makeErrorResponseUtil("id has to be a number")
+        resp = makeRespError("id has to be a number")
 
         res.status(400).json(resp)
 
@@ -40,7 +40,7 @@ export default async function deleteSchoolController(req: Request, res: Response
 
         
     } catch (error) {
-        resp = makeErrorResponseUtil("error while deleting the school")
+        resp = makeRespError("error while deleting the school")
 
         return res.status(500).json(resp)
     }

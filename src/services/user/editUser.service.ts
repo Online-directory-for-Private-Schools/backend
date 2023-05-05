@@ -1,37 +1,46 @@
 import { AppDataSource } from "../../data-source";
+import { City } from "../../db/entities/Address/CityEntity";
 import { User } from "../../db/entities/UserEntity";
+import { EditSchoolRequest, EditUserRequest } from "../../interfaces/requests.interface";
 import { UserService } from "../../interfaces/user.interface";
+import makeRespErrorUtil from "../../utils/makeRespError.util";
+import filterObjectFromFalsyValues from "../../utils/truthifyObject.util";
 import getUserService from "./getUser.service";
 
-interface EditUserInfo {
-    id: string;
-    name?: string;
-    phone_number?: string;
-    city?: string;
-    provinces?: string;
-    country?: string;
-}
 
-export default async function editUserService(userInfo: EditUserInfo): Promise<UserService> {
-    const { id } = userInfo;
+
+export default async function editUserService(userInfo: EditUserRequest): Promise<UserService> {
+    const { id, cityId, name, phone_number } = userInfo;
 
     let user = await User.findOneBy({ id });
 
     // checking if user exists
     if (!user) {
-        return {
-            error: {
-                message: "User with the provided id not found",
-            },
-        };
+        return makeRespErrorUtil("No user with the provided id was found")
     }
 
-    let res = await AppDataSource.createQueryBuilder()
-        .update(User, userInfo)
-        .where("id = :id", { id })
-        .returning("*")
-        .updateEntity(true)
-        .execute();
     
-    return { user: res.raw[0] as User };
+    if(cityId) {
+        // check if city exists
+        const cityExists = await City.findOneBy({ id: cityId });
+
+        if (!cityExists) {
+            return makeRespErrorUtil("City Doesn't exist");
+        }
+        
+        user.city = cityExists;
+    }
+
+    const filteredInfo = filterObjectFromFalsyValues({name, phone_number});
+
+    Object.keys(filteredInfo).forEach((key) => {
+        (user as any)[key] = filteredInfo[key];
+    });
+
+    await user.save();
+    await user.reload();
+
+
+    
+    return { user };
 }

@@ -3,7 +3,7 @@ import { Course } from "./CourseEntity";
 import { Photo } from "./PhotoEntity";
 import { Review } from "./ReviewEntity";
 import { User } from "./UserEntity";
-import { Street } from "./Address/StreetEntity";
+import { StreetAddress } from "./Address/StreetAddressEntity";
 
 
 @Entity("private_schools")
@@ -44,14 +44,14 @@ export class PrivateSchool extends BaseEntity {
     lat: string;
 
     @OneToOne(
-        () => Street,
+        () => StreetAddress,
         {
             onDelete: "CASCADE",
             eager: true
         }
     )
     @JoinColumn()
-    street: Street
+    street: StreetAddress
     
 
     @OneToOne(

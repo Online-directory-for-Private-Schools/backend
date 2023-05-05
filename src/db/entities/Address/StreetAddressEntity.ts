@@ -4,7 +4,7 @@ import { Province } from "./ProvinceEntity";
 import { City } from "./CityEntity";
 
 @Entity("streets")
-export class Street extends BaseEntity {
+export class StreetAddress extends BaseEntity {
     @PrimaryGeneratedColumn()
     id: number;
 
@@ -12,6 +12,7 @@ export class Street extends BaseEntity {
         () => City,
         {
             onDelete: "CASCADE",
+            eager: true
         }
     )
     city: City;

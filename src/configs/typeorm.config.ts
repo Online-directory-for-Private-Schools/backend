@@ -11,7 +11,7 @@ import { SeederOptions } from "typeorm-extension";
 import { City } from "../db/entities/Address/CityEntity";
 import { Country } from "../db/entities/Address/CountryEntity";
 import { Province } from "../db/entities/Address/ProvinceEntity";
-import { Street } from "../db/entities/Address/StreetEntity";
+import { StreetAddress } from "../db/entities/Address/StreetAddressEntity";
 
 export const typeOrmDataSourceOptions: DataSourceOptions & SeederOptions = {
     type: "postgres",
@@ -21,7 +21,7 @@ export const typeOrmDataSourceOptions: DataSourceOptions & SeederOptions = {
     password: "postgres",
     synchronize: true,
     logging: true,
-    entities: [Photo, PrivateSchool, Course, Review, Schedule, Auth, User, City, Country, Province, Street],
+    entities: [Photo, PrivateSchool, Course, Review, Schedule, Auth, User, City, Country, Province, StreetAddress],
     subscribers: [],
     migrations: ["src/db/migrations/**/*.{ts,js}"],
 
