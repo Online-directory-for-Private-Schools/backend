@@ -1,18 +1,17 @@
 import { Router } from "express";
 import { requireAuth } from "../../middlewares/auth/requireAuth.middleware";
+import getCountriesController from "../../controllers/address/getCountries.controller";
+import getProvincesController from "../../controllers/address/getProvinces.controller";
+import getCitiesController from "../../controllers/address/getCities.controller";
 
-const router = Router()
+const router = Router();
 
-router.use(requireAuth)
+router.use(requireAuth);
 
+router.get("/countries", getCountriesController);
 
-router.get("/countries", ()=>{})
+router.get("/provinces/:countryId", getProvincesController);
 
-router.get("/provinces/:countryId", ()=>{} )
+router.get("/cities/:provinceId", getCitiesController);
 
-router.get("/cities/:provinceId", () => {})
-
-
-export {
-    router as AddressesRouter
-}
+export { router as AddressesRouter };
