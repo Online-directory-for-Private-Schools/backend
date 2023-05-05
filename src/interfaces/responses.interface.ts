@@ -1,3 +1,6 @@
+import { City } from "../db/entities/Address/CityEntity";
+import { Country } from "../db/entities/Address/CountryEntity";
+import { Province } from "../db/entities/Address/ProvinceEntity";
 import { PrivateSchool } from "../db/entities/PrivateSchoolEntity";
 import { Student } from "../db/entities/StudentEntity";
 import { User } from "../db/entities/UserEntity";
@@ -38,4 +41,19 @@ export interface GetUserResponse extends AuthResponse {}
 export interface DeleteResponse {
     info?: string;
     error?: ResponseError
+}
+
+export interface CountriesResponse {
+    countries?: Country[];
+    error?: ResponseError;
+}
+
+export interface ProvincesResponse {
+    provinces?: Province[];
+    error?: ResponseError;
+}
+
+export interface CitiesResponse {
+    cities?: City[];
+    error?: ResponseError;
 }
