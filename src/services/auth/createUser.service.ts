@@ -3,21 +3,21 @@ import { Auth } from "../../db/entities/AuthEntity";
 import { User, UserType } from "../../db/entities/UserEntity";
 import { AuthService } from "../../interfaces/user.interface";
 import { RegisterRequest } from "../../interfaces/requests.interface";
+import { City } from "../../db/entities/Address/CityEntity";
+import makeRespErrorUtil from "../../utils/makeRespError.util";
+import { AppDataSource } from "../../data-source";
 
 
 
 
 
-interface UserRegistrationInfo extends RegisterRequest {
-
-}
 
 
-export default async function createUserService(regInfo: UserRegistrationInfo) : Promise<AuthService> {
+export default async function createUserService(regInfo: RegisterRequest) : Promise<AuthService> {
 
     // check if user with given info exists
 
-    const {name, email, password, phone_number, type, city, country, province} = regInfo;
+    const {name, email, password, phone_number, type, cityId} = regInfo;
 
 
     const userExists = await User.findOneBy({email})
@@ -31,13 +31,19 @@ export default async function createUserService(regInfo: UserRegistrationInfo) :
         }
     }
 
+
+    // check if city exists
+    const cityExists = await City.findOneBy({id: cityId})
+
+    if(!cityExists) {
+        return makeRespErrorUtil("city does not exist");
+    }
+
     // create user entities
     const user = new User()
     user.name = name;
     user.email = email
-    user.city = city
-    user.country = country
-    user.province = province
+    user.city = cityExists
     if(phone_number)
         user.phone_number = phone_number
     user.type = type
@@ -53,9 +59,13 @@ export default async function createUserService(regInfo: UserRegistrationInfo) :
 
 
 
-    // save user and their auth records
-    await user.save()
-    await auth.save()
+    await AppDataSource.transaction(async (transactionalEntityManager) => {
+        await transactionalEntityManager.save(user);
+        await transactionalEntityManager.save(auth);
+
+    })
+
+
 
 
     // return user to controller

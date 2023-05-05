@@ -2,9 +2,12 @@ import { Request, Response } from "express";
 import { AuthRequest, EditSchoolRequest } from "../../interfaces/requests.interface";
 import { SchoolResponse } from "../../interfaces/responses.interface";
 import { editSchoolService } from "../../services/School/editSchool.service";
-import makeErrorResponseUtil from "../../services/School/utils/makeErrorResponse.util";
+import makeRespError from "../../utils/makeRespError.util";
 import isObjectEmpty from "../../utils/isObjectEmpty.util";
 import filterObjectFromFalsyValues from "../../utils/truthifyObject.util";
+import sendErrorResponse from "../utils/makeErrorResponse.util";
+import { isNumber } from "class-validator";
+import isNumeric from "../../utils/isNumeric.util";
 
 export default async function editSchoolController(req: Request, res: Response) {
 
@@ -15,29 +18,49 @@ export default async function editSchoolController(req: Request, res: Response) 
 
     
 
-    const { name, bio, city, country, isHiring, province, street_name, lat, lng }: EditSchoolRequest = req.body;
+    const { name, bio, cityId, isHiring, streetName, lat, lng }: EditSchoolRequest = req.body;
 
     let resp: SchoolResponse;
 
 
     if(!Number(id)) {
-        resp = makeErrorResponseUtil("id has to be a number")
+        return sendErrorResponse("id has to be a number", 400, res)
+    }
 
-        res.status(400).json(resp)
+    if(cityId && !streetName) {
+        return sendErrorResponse("you can't edit city without changing street name", 400, res);
+    }
 
-        return;
+    if(cityId) {
+        if(!isNumber(cityId)) {
+            return sendErrorResponse("cityId must be a positive number", 400, res);
+        }
+    
+        if(cityId < 0) {
+            return sendErrorResponse("cityId must be a positive number", 400, res);
+        }
+    }
+
+    if(lat){
+
+        if(!isNumeric(lat)) {
+            return sendErrorResponse("lat must be numeric", 400, res);
+        }
+        
+    }
+
+    if(lng) {
+        if(!isNumeric(lng)) {
+            return sendErrorResponse("lng must be numeric", 400, res);
+        }
     }
 
 
-    const filteredBodyObj = filterObjectFromFalsyValues({ name, bio, city, country, isHiring, province, street_name, lat, lng });
+    const filteredBodyObj = filterObjectFromFalsyValues({ name, bio, cityId, isHiring, lat, streetName, lng });
     
 
     if(isObjectEmpty(filteredBodyObj)) {
-        resp = makeErrorResponseUtil("At least one school attribute needs to be provided")
-
-        res.status(400).json(resp)
-
-        return;
+        return sendErrorResponse("At least one school attribute needs to be provided", 400, res);
     }
 
 
@@ -61,7 +84,7 @@ export default async function editSchoolController(req: Request, res: Response) 
         
     } catch (error) {
         // TODO: [SEG310-86] handle error types
-        resp = makeErrorResponseUtil("an error occured while editing the school")
+        resp = makeRespError("an error occured while editing the school")
 
         console.log(error)
 

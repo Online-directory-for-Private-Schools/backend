@@ -1,5 +1,6 @@
 import { IsEmail } from "class-validator";
-import { BaseEntity, Column, CreateDateColumn, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { BaseEntity, Column, CreateDateColumn, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn } from "typeorm";
+import { City } from "./Address/CityEntity";
 
 
 export enum UserType {
@@ -35,20 +36,15 @@ export class User extends BaseEntity {
     type: string;
 
 
-    @Column({
-        nullable: true
-    })
-    city: string;
-
-        @Column({
-        nullable: true
-    })
-    province: string;
-
-    @Column({
-        nullable: true
-    })
-    country: string;
+    @OneToOne(
+        () => City,
+        {
+            onDelete: "CASCADE",
+            eager: true
+        }
+    )
+    @JoinColumn()
+    city: City
 
 
     @CreateDateColumn()

@@ -22,7 +22,7 @@ export default async function registerController(req: Request, res: Response) {
         return;
     }
 
-    const { name, email, phone_number, password, type, city, province, country }: RegisterRequest = req.body;
+    const { name, email, phone_number, password, type, cityId}: RegisterRequest = req.body;
 
     try {
         const { user, error } = await createUserAccountService({
@@ -31,9 +31,7 @@ export default async function registerController(req: Request, res: Response) {
             phone_number,
             password,
             type,
-            city,
-            province,
-            country
+            cityId,
         });
 
         if (error || !user) {
@@ -68,8 +66,8 @@ export default async function registerController(req: Request, res: Response) {
     }
 }
 
-const isRequestValid = ({ name, email, type, password, city, province, country }: any) => {
-    const isFull = ![name, email, password, city, province, country].includes(undefined);
+const isRequestValid = ({ name, email, type, password, cityId }: any) => {
+    const isFull = ![name, email, password, cityId].includes(undefined);
 
     const isTypeValid = [UserType.SCHOOL_OWNER, UserType.STUDENT].includes(type);
 

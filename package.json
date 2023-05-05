@@ -15,6 +15,7 @@
     "typeorm": "typeorm-ts-node-commonjs",
     "migration:gen": "scripts/gen-migration.sh",
     "migration:run": "scripts/run-migration.sh",
+    "migration:revert": "scripts/revert-migration.sh",
     "start:docker": "docker compose up -d"
   },
   "devDependencies": {

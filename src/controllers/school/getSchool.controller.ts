@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { SchoolResponse } from "../../interfaces/responses.interface";
 import { getSchoolService } from "../../services/School/getSchool.service";
-import makeErrorResponseUtil from "../../services/School/utils/makeErrorResponse.util";
+import makeRespError from "../../utils/makeRespError.util";
 
 export default async function getSchoolController(req: Request, res: Response){
     
@@ -11,7 +11,7 @@ export default async function getSchoolController(req: Request, res: Response){
 
 
     if(!id || !Number(id)) {
-        resp = makeErrorResponseUtil("please provide a correct ID to fetch a school")
+        resp = makeRespError("please provide a correct ID to fetch a school")
 
         return res.status(400).json(resp)
     }
@@ -37,7 +37,7 @@ export default async function getSchoolController(req: Request, res: Response){
         return res.status(200).json(resp)
     } catch (error) {
         
-        resp = makeErrorResponseUtil("an error occured while fetching school info")
+        resp = makeRespError("an error occured while fetching school info")
 
         return res.status(500).json(resp)
     }

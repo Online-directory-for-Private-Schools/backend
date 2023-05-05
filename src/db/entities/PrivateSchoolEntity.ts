@@ -3,6 +3,7 @@ import { Course } from "./CourseEntity";
 import { Photo } from "./PhotoEntity";
 import { Review } from "./ReviewEntity";
 import { User } from "./UserEntity";
+import { StreetAddress } from "./Address/StreetAddressEntity";
 
 
 @Entity("private_schools")
@@ -42,30 +43,25 @@ export class PrivateSchool extends BaseEntity {
     })
     lat: string;
 
-    @Column()
-    city: string;
-
-    @Column()
-    street_name: string;
-
-    @Column()
-    province: string;
-
-    @Column()
-    country: string;
-    
-
     @OneToOne(
-        () => User,
+        () => StreetAddress,
         {
+            onDelete: "CASCADE",
             eager: true
         }
     )
     @JoinColumn()
-    owner: User;
+    street: StreetAddress
+    
+
+    @OneToOne(
+        () => User
+    )
+    @JoinColumn()
+    owner: Promise<User>;
 
 
-    @OneToOne(() => Photo, undefined, {onDelete: "CASCADE"})
+    @OneToOne(() => Photo, {onDelete: "CASCADE"})
     @JoinColumn()
     profile_pic: Photo;
 
