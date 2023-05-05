@@ -1,5 +1,5 @@
 import { BaseEntity, Column, Entity, JoinColumn, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm";
-import { Course } from "./CourseEntity";
+import { Course } from "./Course/CourseEntity";
 import { Photo } from "./PhotoEntity";
 import { Review } from "./ReviewEntity";
 import { User } from "./UserEntity";

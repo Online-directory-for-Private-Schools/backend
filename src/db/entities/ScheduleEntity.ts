@@ -1,6 +1,6 @@
 import { IsDate } from "class-validator";
 import { BaseEntity, Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
-import { Course } from "./CourseEntity";
+import { Course } from "./Course/CourseEntity";
 
 @Entity("schedules")
 export class Schedule extends BaseEntity {

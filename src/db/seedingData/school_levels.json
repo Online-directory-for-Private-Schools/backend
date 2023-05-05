@@ -1,0 +1,336 @@
+[
+    {
+        "module_name": "arabic",
+        "module_name_fr": "arab",
+        "module_name_ar": "اللغة العربية",
+        "level": 3,
+        "year": 3,
+        "speciality": "experimental sciences",
+        "speciality_fr": "sciences expérimentales",
+        "speciality_ar": "علوم تجريبية"
+    },
+    {
+        "module_name": "mathemathics",
+        "module_name_fr": "mathématiques",
+        "module_name_ar": "رياضيات",
+        "level": 3,
+        "year": 3,
+        "speciality": "experimental sciences",
+        "speciality_fr": "sciences expérimentales",
+        "speciality_ar": "علوم تجريبية"
+    },
+    {
+        "module_name": "English",
+        "module_name_fr": "anglais",
+        "module_name_ar": "اللغة الانجليزية",
+        "level": 3,
+        "year": 3,
+        "speciality": "experimental sciences",
+        "speciality_fr": "sciences expérimentales",
+        "speciality_ar": "علوم تجريبية"
+    },
+    {
+        "module_name": "physics",
+        "module_name_fr": "physique",
+        "module_name_ar": "علوم فيزيائية",
+        "level": 3,
+        "year": 3,
+        "speciality": "experimental sciences",
+        "speciality_fr": "sciences expérimentales",
+        "speciality_ar": "علوم تجريبية"
+    },
+    {
+        "module_name": "science et vie",
+        "module_name_fr": "science and life",
+        "module_name_ar": "العلوم الطبيعية والحياة",
+        "level": 3,
+        "year": 3,
+        "speciality": "experimental sciences",
+        "speciality_fr": "sciences expérimentales",
+        "speciality_ar": "علوم تجريبية"
+    },
+    {
+        "module_name": "Islamic science",
+        "module_name_fr": "science Islamic",
+        "module_name_ar": "علوم اسلامية",
+        "level": 3,
+        "year": 3,
+        "speciality": "experimental sciences",
+        "speciality_fr": "sciences expérimentales",
+        "speciality_ar": "علوم تجريبية"
+    },
+    {
+        "module_name": "History and geography",
+        "module_name_fr": "Histoire & Geographie",
+        "module_name_ar": "تاريخ وجغرافيا",
+        "level": 3,
+        "year": 3,
+        "speciality": "experimental sciences",
+        "speciality_fr": "sciences expérimentales",
+        "speciality_ar": "علوم تجريبية"
+    },
+    {
+        "module_name": "Philosophy",
+        "module_name_fr": "Philosophie",
+        "module_name_ar": "فلسفة",
+        "level": 3,
+        "year": 3,
+        "speciality": "experimental sciences",
+        "speciality_fr": "sciences expérimentales",
+        "speciality_ar": "علوم تجريبية"
+    },
+        {
+            "module_name": "arabic",
+            "module_name_fr": "arab",
+            "module_name_ar": "اللغة العربية",
+            "level": 3,
+            "year": 3,
+            "speciality": "mathematics",
+            "speciality_fr": "mathélème",
+            "speciality_ar": "رياضيات"
+
+        },
+        {
+            "module_name": "mathemathics",
+            "module_name_fr": "mathématiques",
+            "module_name_ar": "رياضيات",
+            "level": 3,
+            "year": 3,
+            "speciality": "mathematics",
+            "speciality_fr": "mathélème",
+            "speciality_ar": "رياضيات"
+
+        },
+        {
+            "module_name": "English",
+            "module_name_fr": "anglais",
+            "module_name_ar": "اللغة الانجليزية",
+            "level": 3,
+            "year": 3,
+            "speciality": "mathematics",
+            "speciality_fr": "mathélème",
+            "speciality_ar": "رياضيات"
+        },
+        {
+            "module_name": "physics",
+            "module_name_fr": "physique",
+            "module_name_ar": "علوم فيزيائية",
+            "level": 3,
+            "year": 3,
+            "speciality": "mathematics",
+            "speciality_fr": "mathélème",
+            "speciality_ar": "رياضيات"
+        },
+        {
+            "module_name": "science",
+            "module_name_fr": "science",
+            "module_name_ar": "علوم تجريبية",
+            "level": 3,
+            "year": 3,
+            "speciality": "mathematics",
+            "speciality_fr": "mathélème",
+            "speciality_ar": "رياضيات"
+        },
+        {
+            "module_name": "Islamic science",
+            "module_name_fr": "science Islamic",
+            "module_name_ar": "علوم اسلامية",
+            "level": 3,
+            "year": 3,
+            "speciality": "mathematics",
+            "speciality_fr": "mathélème",
+            "speciality_ar": "رياضيات"
+        },
+        {
+            "module_name": "History and geography",
+            "module_name_fr": "Histoire & Geographie",
+            "module_name_ar": "تاريخ وجغرافيا",
+            "level": 3,
+            "year": 3,
+            "speciality": "mathematics",
+            "speciality_fr": "mathélème",
+            "speciality_ar": "رياضيات"
+        },
+        {
+            "module_name": "Philosophy",
+            "module_name_fr": "Philosophie",
+            "module_name_ar": "فلسفة",
+            "level": 3,
+            "year": 3,
+            "speciality": "mathematics",
+            "speciality_fr": "mathélème",
+            "speciality_ar": "رياضيات"
+        },
+
+    {
+        "module_name": "arabic",
+        "module_name_fr": "arab",
+        "module_name_ar": "اللغة العربية",
+        "level": 3,
+        "year": 3,
+        "speciality": "electrical engineering",
+        "speciality_fr": "génie électrique",
+        "speciality_ar": "هندسة كهربائية"
+
+    },
+    {
+        "module_name": "mathemathics",
+        "module_name_fr": "mathématiques",
+        "module_name_ar": "رياضيات",
+        "level": 3,
+        "year": 3,
+        "speciality": "electrical engineering",
+        "speciality_fr": "génie électrique",
+        "speciality_ar": "هندسة كهربائية"
+
+    },
+    {
+        "module_name": "English",
+        "module_name_fr": "anglais",
+        "module_name_ar": "اللغة الانجليزية",
+        "level": 3,
+        "year": 3,
+        "speciality": "electrical engineering",
+        "speciality_fr": "génie électrique",
+        "speciality_ar": "هندسة كهربائية"
+    },
+    {
+        "module_name": "physics",
+        "module_name_fr": "physique",
+        "module_name_ar": "علوم فيزيائية",
+        "level": 3,
+        "year": 3,
+        "speciality": "electrical engineering",
+        "speciality_fr": "génie électrique",
+        "speciality_ar": "هندسة كهربائية"
+    },
+    {
+        "module_name": "electrical engineering",
+        "module_name_fr": "génie électrique",
+        "module_name_ar": "هندسة كهربائية",
+        "level": 3,
+        "year": 3,
+        "speciality": "electrical engineering",
+        "speciality_fr": "génie électrique",
+        "speciality_ar": "هندسة كهربائية"
+    },
+    {
+        "module_name": "Islamic science",
+        "module_name_fr": "science Islamic",
+        "module_name_ar": "علوم اسلامية",
+        "level": 3,
+        "year": 3,
+        "speciality": "electrical engineering",
+        "speciality_fr": "génie électrique",
+        "speciality_ar": "هندسة كهربائية"
+    },
+    {
+        "module_name": "History and geography",
+        "module_name_fr": "Histoire & Geographie",
+        "module_name_ar": "تاريخ وجغرافيا",
+        "level": 3,
+        "year": 3,
+        "speciality": "electrical engineering",
+        "speciality_fr": "génie électrique",
+        "speciality_ar": "هندسة كهربائية"
+    },
+    {
+        "module_name": "Philosophy",
+        "module_name_fr": "Philosophie",
+        "module_name_ar": "فلسفة",
+        "level": 3,
+        "year": 3,
+        "speciality": "electrical engineering",
+        "speciality_fr": "génie électrique",
+        "speciality_ar": "هندسة كهربائية"
+    },
+
+
+
+
+
+    {
+        "module_name": "arabic",
+        "module_name_fr": "arab",
+        "module_name_ar": "اللغة العربية",
+        "level": 3,
+        "year": 3,
+        "speciality": "Civil engineering",
+        "speciality_fr": "génie civile",
+        "speciality_ar": "هندسة مدنية"
+
+    },
+    {
+        "module_name": "mathemathics",
+        "module_name_fr": "mathématiques",
+        "module_name_ar": "رياضيات",
+        "level": 3,
+        "year": 3,
+        "speciality": "Civil engineering",
+        "speciality_fr": "génie civile",
+        "speciality_ar": "هندسة مدنية"
+
+    },
+    {
+        "module_name": "English",
+        "module_name_fr": "anglais",
+        "module_name_ar": "اللغة الانجليزية",
+        "level": 3,
+        "year": 3,
+        "speciality": "Civil engineering",
+        "speciality_fr": "génie civile",
+        "speciality_ar": "هندسة مدنية"
+    },
+    {
+        "module_name": "physics",
+        "module_name_fr": "physique",
+        "module_name_ar": "علوم فيزيائية",
+        "level": 3,
+        "year": 3,
+        "speciality": "Civil engineering",
+        "speciality_fr": "génie civile",
+        "speciality_ar": "هندسة مدنية"
+    },
+    {
+        "module_name": "Civil engineering",
+        "module_name_fr": "génie civile",
+        "module_name_ar": "هندسة مدنية",
+        "level": 3,
+        "year": 3,
+        "speciality": "Civil engineering",
+        "speciality_fr": "génie civile",
+        "speciality_ar": "هندسة مدنية"
+    },
+    {
+        "module_name": "Islamic science",
+        "module_name_fr": "science Islamic",
+        "module_name_ar": "علوم اسلامية",
+        "level": 3,
+        "year": 3,
+        "speciality": "Civil engineering",
+        "speciality_fr": "génie civile",
+        "speciality_ar": "هندسة مدنية"
+    },
+    {
+        "module_name": "History and geography",
+        "module_name_fr": "Histoire & Geographie",
+        "module_name_ar": "تاريخ وجغرافيا",
+        "level": 3,
+        "year": 3,
+        "speciality": "Civil engineering",
+        "speciality_fr": "génie civile",
+        "speciality_ar": "هندسة مدنية"
+    },
+
+    {
+        "module_name": "Philosophy",
+        "module_name_fr": "Philosophie",
+        "module_name_ar": "فلسفة",
+        "level": 3,
+        "year": 3,
+        "speciality": "Civil engineering",
+        "speciality_fr": "génie civile",
+        "speciality_ar": "هندسة مدنية"
+    }
+ 
+]
