@@ -17,7 +17,9 @@ export async function deleteSchoolService(info: SchoolInfo, userId: string): Pro
         return makeRespError("school not found")
     }
 
-    if(school.owner.id !== userId) {
+    const owner = await school.owner
+
+    if(owner.id !== userId) {
         return makeRespError("you are not allowed to delete this school")
     }
 

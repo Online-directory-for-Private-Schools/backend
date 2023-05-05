@@ -57,7 +57,7 @@ export default async function createSchoolService(schoolInfo: CreateSchoolReques
     school.lng = schoolInfo.lng
     school.lat = schoolInfo.lat
     school.street = street
-    school.owner = userExists
+    school.owner = Promise.resolve(userExists)
 
 
     if(schoolInfo.bio)

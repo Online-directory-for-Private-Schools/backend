@@ -1,4 +1,4 @@
-import { ILike, Like } from "typeorm";
+import { FindOptionsWhere, ILike, Like } from "typeorm";
 import { PrivateSchool } from "../../db/entities/PrivateSchoolEntity";
 import { SearchSchoolsRequest } from "../../interfaces/requests.interface";
 import { SchoolService, SearchSchoolsService } from "../../interfaces/school.interface";
@@ -9,27 +9,57 @@ export async function searchSchoolsService(
 ): Promise<SearchSchoolsService> {
 
     const validName = info.name ? info.name.toLowerCase() : "";
-    const validCountry = info.country ? info.country.toLowerCase() : "";
-    const validProvince = info.province ? info.province.toLowerCase() : "";
-    const validCity = info.city ? info.city.toLowerCase() : "";
+
 
     // ILike does insensitive select
-    const query = {
-        name: ILike(`%${validName}%`),
-        country: ILike(`%${validCountry}%`),
-        city: ILike(`%${validCity}%`),
-        province: ILike(`%${validProvince}%`),
+    let query: FindOptionsWhere<PrivateSchool> = {
+        name: ILike(`%${validName}%`)
     };
 
     let { limit, page } = info;
 
-    // pagination
-    if (!limit) {
-        limit = 20;
+
+    // if cityId is provided, ignore provinceId and countryId
+    // if provinceId is provided, ignore countryId
+
+    if(info.cityId) {
+        query = {
+            ...query,
+            street: {
+                city: {
+                    id: info.cityId
+                }
+            }
+        }
     }
 
-    if (!page) {
-        page = 1;
+    if(info.provinceId && !info.cityId) {
+        query = {
+            ...query,
+            street: {
+                city: {
+                    province: {
+                        id: info.provinceId
+                    }
+                }
+            }
+        }
+    }
+
+
+    if(info.countryId && !info.cityId && !info.provinceId) {
+        query = {
+            ...query,
+            street: {
+                city: {
+                    province: {
+                        country: {
+                            id: info.countryId
+                        }
+                    }
+                }
+            }
+        }
     }
 
     const totalSchoolsCount = await PrivateSchool.countBy(query);
@@ -39,14 +69,14 @@ export async function searchSchoolsService(
         where: query,
         loadEagerRelations: false,
         take: limit,
-        skip: (page - 1) * limit,
+        skip: (page! - 1) * limit!,
     });
 
     return {
         data: {
             schools,
             currentPage: page,
-            totalPages: Math.ceil(totalSchoolsCount/limit),
+            totalPages: Math.ceil(totalSchoolsCount/limit!),
             totalSchools: totalSchoolsCount,
         }
     };

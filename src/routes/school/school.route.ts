@@ -16,7 +16,7 @@ router.use(requireAuth)
 
 
 
-// router.get("/", searchSchoolsController);
+router.get("/", searchSchoolsController);
 
 router.get("/:id", getSchoolController)
 

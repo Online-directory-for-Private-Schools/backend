@@ -20,7 +20,9 @@ export async function editSchoolService(
         return { error };
     }
 
-    if (school.owner.id !== userId) {
+    const owner = await school.owner
+
+    if (owner.id !== userId) {
         return makeRespErrorUtil("You do not authorized to edit the school");
     }
 

@@ -53,12 +53,12 @@ export interface EditSchoolRequest {
 
 export interface SearchSchoolsRequest {
     name?: string;
-    city?: string;
-    country?: string;
-    province?: string;
+    cityId?: number;
+    countryId?: number;
+    provinceId?: number;
     isHiring?: boolean;
     limit?: number;
-    page?: number
+    page?: number;
 }
 
 
