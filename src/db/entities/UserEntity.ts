@@ -1,5 +1,5 @@
 import { IsEmail } from "class-validator";
-import { BaseEntity, Column, CreateDateColumn, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn } from "typeorm";
+import { BaseEntity, Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 import { City } from "./Address/CityEntity";
 
 
@@ -36,14 +36,13 @@ export class User extends BaseEntity {
     type: string;
 
 
-    @OneToOne(
+    @ManyToOne(
         () => City,
         {
             onDelete: "CASCADE",
             eager: true
         }
     )
-    @JoinColumn()
     city: City
 
 

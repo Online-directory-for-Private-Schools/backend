@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { SearchSchoolsRequest } from "../../interfaces/requests.interface";
+import { ISearchSchoolsRequest } from "../../interfaces/requests.interface";
 import filterObjectFromFalsyValues from "../../utils/truthifyObject.util";
 import isObjectEmpty from "../../utils/isObjectEmpty.util";
 import makeRespError from "../../utils/makeRespError.util";
@@ -11,7 +11,7 @@ import sendErrorResponse from "../utils/makeErrorResponse.util";
 import isNumeric from "../../utils/isNumeric.util";
 
 export default async function searchSchoolsController(req: Request, res: Response) {
-    let { name, cityId, countryId, provinceId, isHiring, page, limit }: SearchSchoolsRequest =
+    let { name, cityId, countryId, provinceId, isHiring, page, limit }: ISearchSchoolsRequest =
         req.query;
 
     let resp: SearchSchoolsResponse;

@@ -1,7 +1,7 @@
 import { DataSource } from "typeorm";
 import { PrivateSchool } from "../../db/entities/PrivateSchoolEntity";
 import { User, UserType } from "../../db/entities/UserEntity";
-import { CreateSchoolRequest } from "../../interfaces/requests.interface";
+import { ICreateSchoolRequest } from "../../interfaces/requests.interface";
 import { SchoolService } from "../../interfaces/school.interface";
 import { AppDataSource } from "../../data-source";
 import { StreetAddress } from "../../db/entities/Address/StreetAddressEntity";
@@ -11,7 +11,7 @@ import makeRespErrorUtil from "../../utils/makeRespError.util";
 
 
 
-export default async function createSchoolService(schoolInfo: CreateSchoolRequest) : Promise<SchoolService> {
+export default async function createSchoolService(schoolInfo: ICreateSchoolRequest) : Promise<SchoolService> {
 
 
 
@@ -57,7 +57,7 @@ export default async function createSchoolService(schoolInfo: CreateSchoolReques
     school.lng = schoolInfo.lng
     school.lat = schoolInfo.lat
     school.street = street
-    school.owner = Promise.resolve(userExists)
+    school.owner = userExists
 
 
     if(schoolInfo.bio)
@@ -70,6 +70,8 @@ export default async function createSchoolService(schoolInfo: CreateSchoolReques
         await transactionalEntityManager.save(street);
         await transactionalEntityManager.save(school);
     })
+
+    await school.reload()
     
 
     return {

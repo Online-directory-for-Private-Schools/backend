@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import createSchoolService from "../../services/School/createSchool.service";
 import { TypeORMError } from "typeorm";
-import { CreateSchoolRequest } from "../../interfaces/requests.interface";
+import { ICreateSchoolRequest } from "../../interfaces/requests.interface";
 import { SchoolResponse } from "../../interfaces/responses.interface";
 import makeRespError from "../../utils/makeRespError.util";
 import { isNumber } from "class-validator";
@@ -22,7 +22,7 @@ export default async function createSchoolController(req: Request, res: Response
     }
     
 
-    const { name, bio, isHiring, lng, lat, cityId, street_name, userId }: CreateSchoolRequest =
+    const { name, bio, isHiring, lng, lat, cityId, street_name, userId }: ICreateSchoolRequest =
         req.body;
 
 

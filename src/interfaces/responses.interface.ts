@@ -1,6 +1,7 @@
 import { City } from "../db/entities/Address/CityEntity";
 import { Country } from "../db/entities/Address/CountryEntity";
 import { Province } from "../db/entities/Address/ProvinceEntity";
+import { Course } from "../db/entities/Course/CourseEntity";
 import { PrivateSchool } from "../db/entities/PrivateSchoolEntity";
 import { Student } from "../db/entities/StudentEntity";
 import { User } from "../db/entities/UserEntity";
@@ -56,4 +57,9 @@ export interface ProvincesResponse {
 export interface CitiesResponse {
     cities?: City[];
     error?: ResponseError;
+}
+
+export interface CourseResponse {
+    course?: Course,
+    error?: ResponseError
 }

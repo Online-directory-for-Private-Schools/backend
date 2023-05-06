@@ -1,13 +1,10 @@
 import { SchoolService } from "../../interfaces/school.interface";
-import checkSchoolExistenceUtil from "./utils/checkSchoolExistence.util";
+import getExistingSchool from "./utils/getExistingSchool.util";
 
 interface SchoolInfo {
     id: number;
 }
 
 export async function getSchoolService(info: SchoolInfo): Promise<SchoolService> {
-
-
-    return checkSchoolExistenceUtil(info);
-
+    return await getExistingSchool(info, false);
 }

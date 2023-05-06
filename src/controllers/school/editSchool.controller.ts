@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { AuthRequest, EditSchoolRequest } from "../../interfaces/requests.interface";
+import { IAuthRequest, IEditSchoolRequest } from "../../interfaces/requests.interface";
 import { SchoolResponse } from "../../interfaces/responses.interface";
 import { editSchoolService } from "../../services/School/editSchool.service";
 import makeRespError from "../../utils/makeRespError.util";
@@ -11,14 +11,14 @@ import isNumeric from "../../utils/isNumeric.util";
 
 export default async function editSchoolController(req: Request, res: Response) {
 
-    const { authUser } = req as AuthRequest;
+    const { authUser } = req as IAuthRequest;
 
     const { id } = req.params;
 
 
     
 
-    const { name, bio, cityId, isHiring, streetName, lat, lng }: EditSchoolRequest = req.body;
+    const { name, bio, cityId, isHiring, streetName, lat, lng }: IEditSchoolRequest = req.body;
 
     let resp: SchoolResponse;
 
@@ -27,9 +27,6 @@ export default async function editSchoolController(req: Request, res: Response) 
         return sendErrorResponse("id has to be a number", 400, res)
     }
 
-    if(cityId && !streetName) {
-        return sendErrorResponse("you can't edit city without changing street name", 400, res);
-    }
 
     if(cityId) {
         if(!isNumber(cityId)) {

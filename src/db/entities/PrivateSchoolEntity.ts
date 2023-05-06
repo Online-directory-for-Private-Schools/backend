@@ -58,7 +58,7 @@ export class PrivateSchool extends BaseEntity {
         () => User
     )
     @JoinColumn()
-    owner: Promise<User>;
+    owner: User;
 
 
     @OneToOne(() => Photo, {onDelete: "CASCADE"})

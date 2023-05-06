@@ -2,7 +2,7 @@ import bcrypt from "bcrypt";
 import { Auth } from "../../db/entities/AuthEntity";
 import { User, UserType } from "../../db/entities/UserEntity";
 import { AuthService } from "../../interfaces/user.interface";
-import { RegisterRequest } from "../../interfaces/requests.interface";
+import { IRegisterRequest } from "../../interfaces/requests.interface";
 import { City } from "../../db/entities/Address/CityEntity";
 import makeRespErrorUtil from "../../utils/makeRespError.util";
 import { AppDataSource } from "../../data-source";
@@ -13,7 +13,7 @@ import { AppDataSource } from "../../data-source";
 
 
 
-export default async function createUserService(regInfo: RegisterRequest) : Promise<AuthService> {
+export default async function createUserService(regInfo: IRegisterRequest) : Promise<AuthService> {
 
     // check if user with given info exists
 

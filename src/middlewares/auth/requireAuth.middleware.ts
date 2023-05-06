@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import jwt from "jsonwebtoken";
 import { config } from "../../configs/config";
-import { AuthRequest } from "../../interfaces/requests.interface";
+import { IAuthRequest } from "../../interfaces/requests.interface";
 
 
 interface AuthTokenUser {
@@ -31,7 +31,7 @@ export async function requireAuth(req: Request, res: Response, next: NextFunctio
         const { id } = jwt.verify(token, config.jwtSecret) as AuthTokenUser;
 
         // adding the user id to the request object
-        (req as AuthRequest).authUser = { id };
+        (req as IAuthRequest).authUser = { id };
 
         // executing the protected controller function after we have validated the token
         next();

@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import { UserType } from "../../db/entities/UserEntity";
 import createUserAccountService from "../../services/auth/createUser.service";
 import { TypeORMError } from "typeorm";
-import { RegisterRequest } from "../../interfaces/requests.interface";
+import { IRegisterRequest } from "../../interfaces/requests.interface";
 import jwt from "jsonwebtoken";
 import { config } from "../../configs/config";
 import { AuthResponse } from "../../interfaces/responses.interface";
@@ -22,7 +22,7 @@ export default async function registerController(req: Request, res: Response) {
         return;
     }
 
-    const { name, email, phone_number, password, type, cityId}: RegisterRequest = req.body;
+    const { name, email, phone_number, password, type, cityId}: IRegisterRequest = req.body;
 
     try {
         const { user, error } = await createUserAccountService({

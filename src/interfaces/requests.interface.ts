@@ -2,7 +2,7 @@ import { Request } from "express";
 import { UserType } from "../db/entities/UserEntity";
 
 
-export interface EditUserRequest {
+export interface IEditUserRequest {
     id: string;
     name?: string;
     phone_number?: string;
@@ -10,20 +10,20 @@ export interface EditUserRequest {
 }
 
 
-export interface LoginRequest {
+export interface ILoginRequest {
     email: string;
     password: string;
 }
 
 
-export interface RegisterRequest extends LoginRequest {
+export interface IRegisterRequest extends ILoginRequest {
     name: string;
     phone_number?: string;
     type: UserType;
     cityId: number;
 }
 
-export interface CreateSchoolRequest {
+export interface ICreateSchoolRequest {
     name: string;
     bio?: string;
     isHiring?: boolean;
@@ -34,13 +34,12 @@ export interface CreateSchoolRequest {
     userId: string;
 }
 
-export interface GetSchoolRequest {
+export interface IGetSchoolRequest {
     id: number
 }
 
 
-export interface EditSchoolRequest {
-    id: number;
+export interface IEditSchoolRequest {
     name?: string;
     bio?: string;
     isHiring?: boolean;
@@ -51,7 +50,7 @@ export interface EditSchoolRequest {
 }
 
 
-export interface SearchSchoolsRequest {
+export interface ISearchSchoolsRequest {
     name?: string;
     cityId?: number;
     countryId?: number;
@@ -62,7 +61,7 @@ export interface SearchSchoolsRequest {
 }
 
 
-export interface CreateStudentRequest {
+export interface ICreateStudentRequest {
     city: string
     province: string
     country: string
@@ -70,14 +69,14 @@ export interface CreateStudentRequest {
 }
 
 
-export interface AuthRequest extends Request {
+export interface IAuthRequest extends Request {
     authUser: {
         id: string;
     }
 }
 
 
-export interface CreateCourseRequest {
+export interface ICreateCourseRequest {
     title: string;
     teacher_name: string;
     description: string;
@@ -85,6 +84,18 @@ export interface CreateCourseRequest {
     schoolId: number;
     pricePerSession: number;
     monthlyPrice: number;
+    moduleId?: number;
+    nonAcademicTypeId?: number;
+}
+
+
+export interface IEditCourseRequest {
+    title?: string;
+    teacher_name?: string;
+    description?: string;
+    isActive?: boolean;
+    pricePerSession?: number;
+    monthlyPrice?: number;
     moduleId?: number;
     nonAcademicTypeId?: number;
 }

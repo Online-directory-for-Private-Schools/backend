@@ -1,11 +1,11 @@
 import { FindOptionsWhere, ILike, Like } from "typeorm";
 import { PrivateSchool } from "../../db/entities/PrivateSchoolEntity";
-import { SearchSchoolsRequest } from "../../interfaces/requests.interface";
+import { ISearchSchoolsRequest } from "../../interfaces/requests.interface";
 import { SchoolService, SearchSchoolsService } from "../../interfaces/school.interface";
 import makeRespError from "../../utils/makeRespError.util";
 
 export async function searchSchoolsService(
-    info: SearchSchoolsRequest
+    info: ISearchSchoolsRequest
 ): Promise<SearchSchoolsService> {
 
     const validName = info.name ? info.name.toLowerCase() : "";
