@@ -75,3 +75,16 @@ export interface AuthRequest extends Request {
         id: string;
     }
 }
+
+
+export interface CreateCourseRequest {
+    title: string;
+    teacher_name: string;
+    description: string;
+    isActive: boolean;
+    schoolId: number;
+    pricePerSession: number;
+    monthlyPrice: number;
+    moduleId?: number;
+    nonAcademicTypeId?: number;
+}
