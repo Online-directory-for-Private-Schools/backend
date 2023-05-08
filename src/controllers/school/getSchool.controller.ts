@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { SchoolResponse } from "../../interfaces/responses.interface";
+import { ISchoolResponse } from "../../interfaces/responses.interface";
 import { getSchoolService } from "../../services/School/getSchool.service";
 import makeRespError from "../../utils/makeRespError.util";
 import sendErrorResponse from "../utils/makeErrorResponse.util";
@@ -7,7 +7,7 @@ import sendErrorResponse from "../utils/makeErrorResponse.util";
 export default async function getSchoolController(req: Request, res: Response) {
     const { id } = req.params;
 
-    let resp: SchoolResponse;
+    let resp: ISchoolResponse;
 
     if (!id || !Number(id)) {
         resp = makeRespError("please provide a correct ID to fetch a school");

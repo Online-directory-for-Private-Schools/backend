@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { IAuthRequest, IEditSchoolRequest } from "../../interfaces/requests.interface";
-import { SchoolResponse } from "../../interfaces/responses.interface";
+import { ISchoolResponse } from "../../interfaces/responses.interface";
 import { editSchoolService } from "../../services/School/editSchool.service";
 import makeRespError from "../../utils/makeRespError.util";
 import isObjectEmpty from "../../utils/isObjectEmpty.util";
@@ -20,7 +20,7 @@ export default async function editSchoolController(req: Request, res: Response) 
 
     const { name, bio, cityId, isHiring, streetName, lat, lng }: IEditSchoolRequest = req.body;
 
-    let resp: SchoolResponse;
+    let resp: ISchoolResponse;
 
 
     if(!Number(id)) {

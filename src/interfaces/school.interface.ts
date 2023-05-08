@@ -1,10 +1,10 @@
 import { PrivateSchool } from "../db/entities/PrivateSchoolEntity";
-import { ResponseError } from "./responseError.interface";
-import { SearchSchoolsResponse } from "./responses.interface";
+import { IResponseError } from "./responseError.interface";
+import { ISearchSchoolsResponse } from "./responses.interface";
 
 export interface SchoolService {
     school?: PrivateSchool;
-    error?: ResponseError;
+    error?: IResponseError;
 }
 
-export interface SearchSchoolsService extends SearchSchoolsResponse {}
+export interface SearchSchoolsService extends ISearchSchoolsResponse {}

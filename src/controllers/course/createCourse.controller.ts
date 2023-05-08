@@ -3,7 +3,7 @@ import { IAuthRequest, ICreateCourseRequest } from "../../interfaces/requests.in
 import sendErrorResponse from "../utils/makeErrorResponse.util";
 import doesObjectContainFalsy from "../../utils/doesObjectContainFalsy.util";
 import createCourseService from "../../services/course/createCourse.service";
-import { CourseResponse } from "../../interfaces/responses.interface";
+import { ICourseResponse } from "../../interfaces/responses.interface";
 import xor from "../../utils/xor.util";
 
 export default async function createCourseController(req: Request, res: Response) {
@@ -65,7 +65,7 @@ export default async function createCourseController(req: Request, res: Response
             return sendErrorResponse(error.message, 400, res);
         }
 
-        const resp: CourseResponse = { course };
+        const resp: ICourseResponse = { course };
 
         return res.json(resp);
     } catch (error) {

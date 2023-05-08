@@ -3,13 +3,13 @@ import jwt from "jsonwebtoken";
 import { TypeORMError } from "typeorm";
 import { config } from "../../configs/config";
 import { ILoginRequest } from "../../interfaces/requests.interface";
-import { AuthResponse } from "../../interfaces/responses.interface";
+import { IAuthResponse } from "../../interfaces/responses.interface";
 import checkUserLoginService from "../../services/auth/checkUserLogin.service";
 
 // TODO: Refactor with Register controller
 
 export default async function loginController(req: Request, res: Response) {
-    let resp: AuthResponse;
+    let resp: IAuthResponse;
 
     if (!isRequestValid(req.body)) {
         resp = {

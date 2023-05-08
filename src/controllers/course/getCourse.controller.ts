@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import sendErrorResponse from "../utils/makeErrorResponse.util";
-import { CourseResponse } from "../../interfaces/responses.interface";
+import { ICourseResponse } from "../../interfaces/responses.interface";
 import { getCourseService } from "../../services/course/getCourse.service";
 
 export default async function getCourseController(req: Request, res: Response) {
@@ -17,7 +17,7 @@ export default async function getCourseController(req: Request, res: Response) {
             return sendErrorResponse(error!.message, 400, res);
         }
 
-        const resp: CourseResponse = {course}
+        const resp: ICourseResponse = {course}
 
         return res.json(resp);
 

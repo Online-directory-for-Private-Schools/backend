@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import createSchoolService from "../../services/School/createSchool.service";
 import { TypeORMError } from "typeorm";
 import { ICreateSchoolRequest } from "../../interfaces/requests.interface";
-import { SchoolResponse } from "../../interfaces/responses.interface";
+import { ISchoolResponse } from "../../interfaces/responses.interface";
 import makeRespError from "../../utils/makeRespError.util";
 import { isNumber } from "class-validator";
 import sendErrorResponse from "../utils/makeErrorResponse.util";
@@ -10,7 +10,7 @@ import isNumeric from "../../utils/isNumeric.util";
 
 export default async function createSchoolController(req: Request, res: Response) {
 
-    let resp: SchoolResponse;
+    let resp: ISchoolResponse;
 
     if (!isRequestValid(req.body)) {
 

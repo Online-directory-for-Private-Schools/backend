@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { IAuthRequest, IEditUserRequest } from "../../interfaces/requests.interface";
-import { DeleteResponse, GetUserResponse } from "../../interfaces/responses.interface";
+import { IDeleteResponse, IGetUserResponse } from "../../interfaces/responses.interface";
 import deleteUserService from "../../services/user/deleteUser.service";
 import checkUserRequest from "./utils/checkRequest.util";
 import filterObjectFromFalsyValues from "../../utils/truthifyObject.util";
@@ -21,7 +21,7 @@ export default async function editUserController(req: Request, res: Response) {
 
     const { ok, errMessage, status } = checkUserRequest(id, authUser.id);
 
-    let resp: GetUserResponse;
+    let resp: IGetUserResponse;
 
 
     if (!ok) {

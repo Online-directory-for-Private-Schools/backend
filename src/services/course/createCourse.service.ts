@@ -5,13 +5,13 @@ import { PrivateSchool } from "../../db/entities/PrivateSchoolEntity";
 import { NonAcademicCourseTypes } from "../../db/entities/schoolLevels/NonAcademicCourseType";
 import { SchoolModule } from "../../db/entities/schoolLevels/SchoolModuleEntity";
 import { ICreateCourseRequest } from "../../interfaces/requests.interface";
-import { CourseResponse } from "../../interfaces/responses.interface";
+import { ICourseResponse } from "../../interfaces/responses.interface";
 import makeRespErrorUtil from "../../utils/makeRespError.util";
 
 export default async function createCourseService(
     courseInfo: ICreateCourseRequest,
     reqUserId: string
-): Promise<CourseResponse> {
+): Promise<ICourseResponse> {
     const {
         title,
         teacher_name,

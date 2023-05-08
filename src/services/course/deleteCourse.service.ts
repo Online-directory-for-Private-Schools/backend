@@ -1,4 +1,4 @@
-import { CourseResponse } from "../../interfaces/responses.interface";
+import { ICourseResponse } from "../../interfaces/responses.interface";
 import makeRespErrorUtil from "../../utils/makeRespError.util";
 import getExistingCourse from "./utils/getExistingCourse.util";
 
@@ -9,7 +9,7 @@ interface CourseInfo {
 export default async function deleteCourseService(
     schoolInfo: CourseInfo,
     userId: string
-): Promise<CourseResponse> {
+): Promise<ICourseResponse> {
     const { courseId } = schoolInfo;
 
     const { course, error } = await getExistingCourse({ courseId });

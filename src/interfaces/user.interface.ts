@@ -1,10 +1,10 @@
 import { Student } from "../db/entities/StudentEntity";
 import { User } from "../db/entities/UserEntity";
-import { ResponseError } from "./responseError.interface";
+import { IResponseError } from "./responseError.interface";
 
 export interface AuthService {
     user?: User
-    error?: ResponseError
+    error?: IResponseError
 }
 
 
@@ -14,6 +14,6 @@ export interface UserService extends AuthService {
 
 
 export interface DeleteUserService {
-    error?: ResponseError
+    error?: IResponseError
 }
 

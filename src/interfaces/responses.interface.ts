@@ -5,61 +5,72 @@ import { Course } from "../db/entities/Course/CourseEntity";
 import { PrivateSchool } from "../db/entities/PrivateSchoolEntity";
 import { Student } from "../db/entities/StudentEntity";
 import { User } from "../db/entities/UserEntity";
-import { ResponseError } from "./responseError.interface";
+import { IResponseError } from "./responseError.interface";
 
-export interface SchoolResponse {
+export interface ISchoolResponse {
     school?: PrivateSchool;
-    error?: ResponseError
+    error?: IResponseError
 }
 
-export interface SearchSchoolsResponse {
+export interface ISearchSchoolsResponse {
     data?: {
         schools?: PrivateSchool[];
         currentPage?: number;
         totalPages?: number;
         totalSchools?: number;
     }
-    error?: ResponseError;
+    error?: IResponseError;
+}
+
+export interface ISearchCoursesResponse {
+    data?: {
+        courses?: Course[];
+        currentPage?: number;
+        totalPages?: number;
+        totalCourses?: number;
+    }
+    error?: IResponseError;
 }
 
 
 
-export interface CreateStudentResponse {
+
+export interface ICreateStudentResponse {
     student?: Student;
-    error?: ResponseError
+    error?: IResponseError
 }
 
 
-export interface AuthResponse {
+export interface IAuthResponse {
     user?: User;
-    error?: ResponseError
+    error?: IResponseError
     token?: string
 }
 
 
-export interface GetUserResponse extends AuthResponse {}
+export interface IGetUserResponse extends IAuthResponse {}
 
-export interface DeleteResponse {
+export interface IDeleteResponse {
     info?: string;
-    error?: ResponseError
+    error?: IResponseError
 }
 
-export interface CountriesResponse {
+export interface ICountriesResponse {
     countries?: Country[];
-    error?: ResponseError;
+    error?: IResponseError;
 }
 
-export interface ProvincesResponse {
+export interface IProvincesResponse {
     provinces?: Province[];
-    error?: ResponseError;
+    error?: IResponseError;
 }
 
-export interface CitiesResponse {
+export interface ICitiesResponse {
     cities?: City[];
-    error?: ResponseError;
+    error?: IResponseError;
 }
 
-export interface CourseResponse {
+export interface ICourseResponse {
     course?: Course,
-    error?: ResponseError
+    error?: IResponseError
 }

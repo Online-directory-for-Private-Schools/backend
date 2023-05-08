@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import createStudentService from "../../services/Student/createStudent.service";
 import { TypeORMError } from "typeorm";
 import { ICreateStudentRequest } from "../../interfaces/requests.interface";
-import { CreateStudentResponse } from "../../interfaces/responses.interface";
+import { ICreateStudentResponse } from "../../interfaces/responses.interface";
 
 
 
@@ -12,7 +12,7 @@ import { CreateStudentResponse } from "../../interfaces/responses.interface";
  */
 export default async function createStudentController(req: Request, res: Response) {
 
-    let resp: CreateStudentResponse;
+    let resp: ICreateStudentResponse;
 
     if (!isRequestValid(req.body)) {
         

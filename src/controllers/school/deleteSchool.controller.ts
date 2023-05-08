@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { IAuthRequest } from "../../interfaces/requests.interface";
-import { DeleteResponse, SchoolResponse } from "../../interfaces/responses.interface";
+import { IDeleteResponse, ISchoolResponse } from "../../interfaces/responses.interface";
 import makeRespError from "../../utils/makeRespError.util";
 import { deleteSchoolService } from "../../services/School/deleteSchool.service";
 
@@ -9,7 +9,7 @@ export default async function deleteSchoolController(req: Request, res: Response
 
     const { id } = req.params;
 
-    let resp: DeleteResponse;
+    let resp: IDeleteResponse;
 
 
     if(!Number(id)) {

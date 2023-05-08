@@ -50,15 +50,26 @@ export interface IEditSchoolRequest {
 }
 
 
-export interface ISearchSchoolsRequest {
+
+export enum ISearchOrderEnum {
+    ASCENDING="asc",
+    DESCENDING="desc"
+}
+
+
+export interface ISearchProps {
+    limit?: number;
+    page?: number;
+}
+
+export interface ISearchSchoolsRequest extends ISearchProps {
     name?: string;
     cityId?: number;
     countryId?: number;
     provinceId?: number;
     isHiring?: boolean;
-    limit?: number;
-    page?: number;
 }
+
 
 
 export interface ICreateStudentRequest {
@@ -75,6 +86,24 @@ export interface IAuthRequest extends Request {
     }
 }
 
+
+
+export interface ISearchCoursesRequest extends ISearchProps {
+    title?: string;
+    teacher_name?: string;
+    description?: string;
+    isActive?: boolean;
+    schoolId?: number;
+    pricePerSessionStart?: number;
+    pricePerSessionEnd?: number;
+    monthlyPriceStart?: number;
+    monthlyPriceEnd?: number;
+    moduleId?: number;
+    nonAcademicTypeId?: number;
+    cityId?: number;
+    provinceId?: number;
+    countryId?: number;
+}
 
 export interface ICreateCourseRequest {
     title: string;

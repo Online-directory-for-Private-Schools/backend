@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { IAuthRequest } from "../../interfaces/requests.interface";
-import { DeleteResponse } from "../../interfaces/responses.interface";
+import { IDeleteResponse } from "../../interfaces/responses.interface";
 import deleteUserService from "../../services/user/deleteUser.service";
 import checkUserRequest from "./utils/checkRequest.util";
 
@@ -9,7 +9,7 @@ export default async function deleteUserController(req: Request, res: Response) 
 
     const { id } = req.params;
 
-    let resp: DeleteResponse;
+    let resp: IDeleteResponse;
 
     const { ok, errMessage, status } = checkUserRequest(id, authUser.id);
 

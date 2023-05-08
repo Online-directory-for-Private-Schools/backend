@@ -5,10 +5,10 @@ import { TypeORMError } from "typeorm";
 import { IRegisterRequest } from "../../interfaces/requests.interface";
 import jwt from "jsonwebtoken";
 import { config } from "../../configs/config";
-import { AuthResponse } from "../../interfaces/responses.interface";
+import { IAuthResponse } from "../../interfaces/responses.interface";
 
 export default async function registerController(req: Request, res: Response) {
-    let resp: AuthResponse;
+    let resp: IAuthResponse;
 
     if (!isRequestValid(req.body)) {
         resp = {
