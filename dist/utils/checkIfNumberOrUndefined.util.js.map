@@ -1,0 +1,1 @@
+{"version":3,"file":"checkIfNumberOrUndefined.util.js","sourceRoot":"","sources":["../../src/utils/checkIfNumberOrUndefined.util.ts"],"names":[],"mappings":";;AAAA,SAAwB,yBAAyB,CAAC,GAAuB;IACrE,IAAI,GAAG,KAAK,SAAS,EAAE;QACnB,OAAO,IAAI,CAAC;KACf;IAED,OAAO,OAAO,CAAC,MAAM,CAAC,GAAG,CAAC,CAAC,CAAC;AAChC,CAAC;AAND,4CAMC"}
