@@ -6,7 +6,7 @@ import getCitiesController from "../../controllers/address/getCities.controller"
 
 const router = Router();
 
-router.use(requireAuth);
+// router.use(requireAuth);
 
 router.get("/countries", getCountriesController);
 
