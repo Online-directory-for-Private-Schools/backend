@@ -1,8 +1,8 @@
 import { Request, Response } from "express";
 import createStudentService from "../../services/Student/createStudent.service";
 import { TypeORMError } from "typeorm";
-import { CreateStudentRequest } from "../../interfaces/requests.interface";
-import { CreateStudentResponse } from "../../interfaces/responses.interface";
+import { ICreateStudentRequest } from "../../interfaces/requests.interface";
+import { ICreateStudentResponse } from "../../interfaces/responses.interface";
 
 
 
@@ -12,7 +12,7 @@ import { CreateStudentResponse } from "../../interfaces/responses.interface";
  */
 export default async function createStudentController(req: Request, res: Response) {
 
-    let resp: CreateStudentResponse;
+    let resp: ICreateStudentResponse;
 
     if (!isRequestValid(req.body)) {
         
@@ -27,7 +27,7 @@ export default async function createStudentController(req: Request, res: Respons
         return;
     }
 
-    const { city, province, country, userId }: CreateStudentRequest = req.body;
+    const { city, province, country, userId }: ICreateStudentRequest = req.body;
 
     try {
         const { student, error } = await createStudentService({ city, province, country, userId });

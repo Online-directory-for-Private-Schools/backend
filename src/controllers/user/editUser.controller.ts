@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
-import { AuthRequest, EditUserRequest } from "../../interfaces/requests.interface";
-import { DeleteResponse, GetUserResponse } from "../../interfaces/responses.interface";
+import { IAuthRequest, IEditUserRequest } from "../../interfaces/requests.interface";
+import { IDeleteResponse, IGetUserResponse } from "../../interfaces/responses.interface";
 import deleteUserService from "../../services/user/deleteUser.service";
 import checkUserRequest from "./utils/checkRequest.util";
 import filterObjectFromFalsyValues from "../../utils/truthifyObject.util";
@@ -12,16 +12,16 @@ import isNumeric from "../../utils/isNumeric.util";
 import { isNumber } from "class-validator";
 
 export default async function editUserController(req: Request, res: Response) {
-    const { authUser } = req as AuthRequest;
+    const { authUser } = req as IAuthRequest;
 
     const { id } = req.params;
 
-    const { name, phone_number, cityId }: EditUserRequest = req.body;
+    const { name, phone_number, cityId }: IEditUserRequest = req.body;
 
 
     const { ok, errMessage, status } = checkUserRequest(id, authUser.id);
 
-    let resp: GetUserResponse;
+    let resp: IGetUserResponse;
 
 
     if (!ok) {

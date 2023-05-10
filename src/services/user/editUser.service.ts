@@ -1,7 +1,7 @@
 import { AppDataSource } from "../../data-source";
 import { City } from "../../db/entities/Address/CityEntity";
 import { User } from "../../db/entities/UserEntity";
-import { EditSchoolRequest, EditUserRequest } from "../../interfaces/requests.interface";
+import { IEditSchoolRequest, IEditUserRequest } from "../../interfaces/requests.interface";
 import { UserService } from "../../interfaces/user.interface";
 import makeRespErrorUtil from "../../utils/makeRespError.util";
 import filterObjectFromFalsyValues from "../../utils/truthifyObject.util";
@@ -9,7 +9,7 @@ import getUserService from "./getUser.service";
 
 
 
-export default async function editUserService(userInfo: EditUserRequest): Promise<UserService> {
+export default async function editUserService(userInfo: IEditUserRequest): Promise<UserService> {
     const { id, cityId, name, phone_number } = userInfo;
 
     let user = await User.findOneBy({ id });

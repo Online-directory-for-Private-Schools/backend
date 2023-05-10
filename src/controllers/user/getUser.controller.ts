@@ -1,15 +1,15 @@
 import { Request, Response } from "express";
-import { GetUserResponse } from "../../interfaces/responses.interface";
-import { AuthRequest } from "../../interfaces/requests.interface";
+import { IGetUserResponse } from "../../interfaces/responses.interface";
+import { IAuthRequest } from "../../interfaces/requests.interface";
 import getUserService from "../../services/user/getUser.service";
 import checkUserRequest from "./utils/checkRequest.util";
 
 export default async function getUserController(req: Request, res: Response) {
-    const { authUser } = req as AuthRequest;
+    const { authUser } = req as IAuthRequest;
 
     const { id } = req.params;
 
-    let resp: GetUserResponse;
+    let resp: IGetUserResponse;
 
     const { ok, errMessage, status } = checkUserRequest(id, authUser.id);
 

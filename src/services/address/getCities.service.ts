@@ -1,10 +1,10 @@
 import { City } from "../../db/entities/Address/CityEntity";
 import { Country } from "../../db/entities/Address/CountryEntity";
 import { Province } from "../../db/entities/Address/ProvinceEntity";
-import { CitiesResponse, CountriesResponse } from "../../interfaces/responses.interface";
+import { ICitiesResponse, ICountriesResponse } from "../../interfaces/responses.interface";
 import makeRespErrorUtil from "../../utils/makeRespError.util";
 
-export default async function getCitiesService(provinceId: number): Promise<CitiesResponse> {
+export default async function getCitiesService(provinceId: number): Promise<ICitiesResponse> {
     // check if country exists
     const provinceExists = await Province.findOneBy({ id: provinceId });
 

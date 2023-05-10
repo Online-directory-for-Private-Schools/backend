@@ -1,53 +1,49 @@
 import { Request, Response } from "express";
-import { SearchSchoolsRequest } from "../../interfaces/requests.interface";
+import { ISearchSchoolsRequest } from "../../interfaces/requests.interface";
 import filterObjectFromFalsyValues from "../../utils/truthifyObject.util";
-import isObjectEmpty from "../../utils/isObjectEmpty.util";
 import makeRespError from "../../utils/makeRespError.util";
-import { SearchSchoolsResponse } from "../../interfaces/responses.interface";
+import { ISearchSchoolsResponse } from "../../interfaces/responses.interface";
 import { searchSchoolsService } from "../../services/School/searchSchools.service";
-import checkIfNumericOrUndefined from "../../utils/checkIfNumberOrUndefined.util";
 import { isNumber } from "class-validator";
 import sendErrorResponse from "../utils/makeErrorResponse.util";
 import isNumeric from "../../utils/isNumeric.util";
 
 export default async function searchSchoolsController(req: Request, res: Response) {
-    let { name, cityId, countryId, provinceId, isHiring, page, limit }: SearchSchoolsRequest =
+    let { name, cityId, countryId, provinceId, isHiring, page, limit }: ISearchSchoolsRequest =
         req.query;
 
-    let resp: SearchSchoolsResponse;
+    let resp: ISearchSchoolsResponse;
 
+    if(!page) {
+        page = 1
+    }
+
+    if(!limit) {
+        limit = 20
+    }
 
     if (!isNumber(+page!) || !isNumber(+limit!)) {
         return sendErrorResponse("page and limit must be numbers", 400, res);
     }
 
-    if(cityId) {
-        if(!isNumeric(cityId.toString())) {
+    if (cityId) {
+        if (!isNumeric(cityId.toString())) {
             return sendErrorResponse("cityId must be numeric", 400, res);
         }
     }
 
-    if(provinceId) {
-        if(!isNumeric(provinceId.toString())) {
+    if (provinceId) {
+        if (!isNumeric(provinceId.toString())) {
             return sendErrorResponse("provinceId must be numeric", 400, res);
         }
     }
 
-    if(countryId) {
-        if(!isNumeric(countryId.toString())) {
+    if (countryId) {
+        if (!isNumeric(countryId.toString())) {
             return sendErrorResponse("countryId must be numeric", 400, res);
         }
     }
 
-
-
-    if (!limit) {
-        limit = 20;
-    }
-
-    if (!page) {
-        page = 1;
-    }
 
     // filtering the request to only have non-false values
     const filteredBodyObj = filterObjectFromFalsyValues({
@@ -65,7 +61,7 @@ export default async function searchSchoolsController(req: Request, res: Respons
 
         // error checking
         if (error || !data) {
-            return sendErrorResponse(error?.message!, 500, res)
+            return sendErrorResponse(error?.message!, 500, res);
         }
 
         resp = { data };
