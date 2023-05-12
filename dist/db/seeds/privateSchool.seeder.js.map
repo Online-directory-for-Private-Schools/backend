@@ -1,1 +1,0 @@
-{"version":3,"file":"privateSchool.seeder.js","sourceRoot":"","sources":["../../../src/db/seeds/privateSchool.seeder.ts"],"names":[],"mappings":";;;;;;;;;;;AAEA,yEAAgE;AAGhE,MAAqB,mBAAmB;IACvB,GAAG,CACZ,UAAsB,EACtB,cAAoC;;YAGpC,MAAM,oBAAoB,GAAG,cAAc,CAAC,GAAG,CAAC,mCAAa,CAAC,CAAC;YAE/D,qDAAqD;YACrD,MAAM,oBAAoB,CAAC,QAAQ,CAAC,GAAG,CAAC,CAAC;QAC7C,CAAC;KAAA;CACJ;AAXD,sCAWC"}
