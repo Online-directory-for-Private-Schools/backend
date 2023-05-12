@@ -92,7 +92,7 @@ export interface ISearchCoursesRequest extends ISearchProps {
     title?: string;
     teacher_name?: string;
     description?: string;
-    isActive?: boolean;
+    isActive?: boolean | string;
     schoolId?: number;
     pricePerSessionStart?: number;
     pricePerSessionEnd?: number;

@@ -1,3 +1,3 @@
 export default function isNumeric(num: string) {
-    return Boolean(Number(num));
+    return !isNaN(+num) && !isNaN(parseFloat(num));
 }
