@@ -6,5 +6,5 @@ interface CourseInfo {
 }
 
 export async function getCourseService(courseInfo: CourseInfo): Promise<ICourseResponse> {
-    return await getExistingCourse(courseInfo);
+    return await getExistingCourse(courseInfo, false);
 }

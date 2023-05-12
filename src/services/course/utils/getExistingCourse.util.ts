@@ -7,7 +7,7 @@ interface CourseInfo {
     courseId: number;
 }
 
-export default async function getExistingCourse(courseInfo: CourseInfo): Promise<ICourseResponse> {
+export default async function getExistingCourse(courseInfo: CourseInfo, getOwner = true): Promise<ICourseResponse> {
 
     const { courseId } = courseInfo;
 
@@ -15,7 +15,7 @@ export default async function getExistingCourse(courseInfo: CourseInfo): Promise
         where: {id: courseId},
         relations: {
             school: {
-                owner: true
+                owner: getOwner
             }
         }
     })

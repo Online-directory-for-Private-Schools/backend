@@ -65,9 +65,12 @@ export default async function searchCoursesController(req: Request, res: Respons
 
 
     if(isActive !== undefined) {
-        if(typeof isActive !== "boolean") {
+        if(!["true", "false"].includes(isActive as string)) {
             return sendErrorResponse("isActive has to be a boolean", 400, res);
         }
+
+        // convert isActive to a real boolean
+        isActive = (isActive === "true" ? true : false)
     }
 
     if (cityId) {
@@ -95,6 +98,7 @@ export default async function searchCoursesController(req: Request, res: Respons
     }
 
     if (pricePerSessionStart) {
+        console.log(isNumeric(pricePerSessionStart.toString()))
         if (!isNumeric(pricePerSessionStart.toString())) {
             return sendErrorResponse("pricePerSessionStart must be numeric", 400, res);
         }

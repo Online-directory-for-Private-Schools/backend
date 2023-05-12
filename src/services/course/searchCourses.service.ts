@@ -31,42 +31,39 @@ export async function searchCoursesService(
     const validTeacherName = teacher_name ? teacher_name.toLowerCase() : "";
     const validDescription = description ? description.toLowerCase() : "";
 
-    
     if (!monthlyPriceStart) {
         monthlyPriceStart = 0;
     }
-    
+
     if (!pricePerSessionStart) {
         pricePerSessionStart = 0;
     }
 
     if (!pricePerSessionEnd) {
-        pricePerSessionEnd = pricePerSessionStart;
+        pricePerSessionEnd = Infinity;
     }
 
     if (!monthlyPriceEnd) {
-        monthlyPriceEnd = monthlyPriceStart;
+        monthlyPriceEnd = Infinity;
     }
 
     let query: FindOptionsWhere<AcademicCourse> | FindOptionsWhere<NonAcademicCourse> = {
         title: ILike(`%${validTitle}%`),
         description: ILike(`%${validDescription}%`),
-        teacher_name: ILike(`%${validTeacherName}%`)
+        teacher_name: ILike(`%${validTeacherName}%`),
     };
 
-    if(monthlyPriceEnd + monthlyPriceStart !== 0) {
-        query.monthlyPrice = Between(monthlyPriceStart, monthlyPriceEnd)
-    } 
-
-    if(pricePerSessionEnd + pricePerSessionStart !== 0) {
-        query.pricePerSession = Between(pricePerSessionStart, pricePerSessionEnd)
-    } 
-
-    if (isActive !== undefined) {
-        query.isActive = isActive;
+    if (monthlyPriceEnd + monthlyPriceStart !== 0) {
+        query.monthlyPrice = Between(monthlyPriceStart, monthlyPriceEnd);
     }
 
-    
+    if (pricePerSessionEnd + pricePerSessionStart !== 0) {
+        query.pricePerSession = Between(pricePerSessionStart, pricePerSessionEnd);
+    }
+
+    if (isActive !== undefined) {
+        query.isActive = isActive as boolean;
+    }
 
     if (moduleId) {
         query = {
@@ -89,7 +86,9 @@ export async function searchCoursesService(
     if (schoolId) {
         query = {
             ...query,
-            school: {},
+            school: {
+                id: schoolId,
+            },
         };
     }
 
@@ -140,16 +139,11 @@ export async function searchCoursesService(
 
     let courses: Course[] | NonAcademicCourse[] | AcademicCourse[];
 
+
     const relations = {
-        school: {
-            street: {
-                city: {
-                    province: {
-                        country: true,
-                    },
-                },
-            },
-        },
+        module: true,
+        nonAcademicType: true,
+        school: true,
     };
 
     const paginationOptions = {
@@ -158,27 +152,13 @@ export async function searchCoursesService(
         skip: (page! - 1) * limit!,
     };
 
-    if (moduleId) {
-        courses = await AcademicCourse.find({
-            where: query,
-            relations: { ...relations, module: true },
-            ...paginationOptions,
-        });
-    } else if (nonAcademicTypeId) {
-        courses = await NonAcademicCourse.find({
-            where: query,
-            relations: { ...relations, nonAcademicType: true },
-            ...paginationOptions,
-        });
-    } else {
-        courses = await Course.find({
-            where: query,
-            ...paginationOptions,
-        });
-    }
+    courses = await Course.find({
+        where: query,
+        relations,
+        ...paginationOptions,
+    });
 
     let totalCoursesCount = await Course.countBy(query);
-
 
     return {
         data: {

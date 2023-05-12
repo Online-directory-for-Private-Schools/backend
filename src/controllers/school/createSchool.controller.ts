@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import createSchoolService from "../../services/School/createSchool.service";
 import { TypeORMError } from "typeorm";
-import { ICreateSchoolRequest } from "../../interfaces/requests.interface";
+import { IAuthRequest, ICreateSchoolRequest } from "../../interfaces/requests.interface";
 import { ISchoolResponse } from "../../interfaces/responses.interface";
 import makeRespError from "../../utils/makeRespError.util";
 import { isNumber } from "class-validator";
@@ -11,6 +11,9 @@ import isNumeric from "../../utils/isNumeric.util";
 export default async function createSchoolController(req: Request, res: Response) {
 
     let resp: ISchoolResponse;
+
+
+    const {id: authUserId} = (req as IAuthRequest).authUser;
 
     if (!isRequestValid(req.body)) {
 
@@ -24,6 +27,12 @@ export default async function createSchoolController(req: Request, res: Response
 
     const { name, bio, isHiring, lng, lat, cityId, street_name, userId }: ICreateSchoolRequest =
         req.body;
+
+
+    
+    if(authUserId !== userId) {
+        return sendErrorResponse("You are not authorized to create a school for this user.", 401, res);
+    }
 
 
     if(!isNumber(cityId)) {
