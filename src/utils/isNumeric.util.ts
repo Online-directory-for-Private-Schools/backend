@@ -1,3 +1,3 @@
 export default function isNumeric(num: string) {
-    return Boolean(Number(num));
+    return Number(num) === 0 || Boolean(Number(num));
 }
