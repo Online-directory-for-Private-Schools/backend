@@ -57,12 +57,12 @@ export enum ISearchOrderEnum {
 }
 
 
-export interface ISearchProps {
+export interface ISearchPaginationOptions {
     limit?: number;
     page?: number;
 }
 
-export interface ISearchSchoolsRequest extends ISearchProps {
+export interface ISearchSchoolsRequest extends ISearchPaginationOptions {
     name?: string;
     cityId?: number;
     countryId?: number;
@@ -88,7 +88,7 @@ export interface IAuthRequest extends Request {
 
 
 
-export interface ISearchCoursesRequest extends ISearchProps {
+export interface ISearchCoursesRequest extends ISearchPaginationOptions {
     title?: string;
     teacher_name?: string;
     description?: string;
@@ -127,4 +127,23 @@ export interface IEditCourseRequest {
     monthlyPrice?: number;
     moduleId?: number;
     nonAcademicTypeId?: number;
+}
+
+
+export enum DaysEnum {
+    SUNDAY = "sunday",
+    MONDAY = "monday",
+    TUESDAY = "tuesday",
+    WEDNESDAY = "wednesday",
+    THURSDAY = "thursday",
+    FRIDAY = "friday",
+    SATURDAY = "saturday"
+}
+
+
+export interface IAddCourseScheduleRequest {
+    courseId: number;   // from req.param 
+    start_time: string;
+    end_time: string;
+    day: DaysEnum;
 }

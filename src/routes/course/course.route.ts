@@ -14,7 +14,13 @@ router.get("/", searchCoursesController);
 router.get("/:courseId", getCourseController);
 router.put("/:courseId", editCourseController);
 router.delete("/:courseId", deleteCourseController);
-
 router.post("/", createCourseController);
+
+router.post("/:courseId/schedules/");
+router.get("/:courseId/schedules/");
+router.put("/:courseId/schedules/:scheduleId");
+router.delete("/:courseId/schedules/:scheduleId");
+
+
 
 export { router as CourseRouter };
