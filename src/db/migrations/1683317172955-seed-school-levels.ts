@@ -107,15 +107,17 @@ export class SeedSchoolLevels1683317172955 implements MigrationInterface {
             name_fr: string;
         }
 
-        let specialities = new Set<ISpeciality>();
+        let specialities: ISpeciality[] = [];
 
         // adding specialities data to the specialities set
-        seedingModules.forEach(({ speciality, speciality_ar, speciality_fr }) => {
-            specialities.add({
-                name: speciality,
-                name_ar: speciality_ar,
-                name_fr: speciality_fr,
-            });
+        seedingModules.forEach(({ speciality: name, speciality_ar, speciality_fr }) => {
+            if(!specialities.some(spec => spec.name === name)) {
+                specialities.push({
+                    name: name,
+                    name_ar: speciality_ar,
+                    name_fr: speciality_fr,
+                });
+            }
         });
 
         Promise.all(
@@ -144,8 +146,11 @@ export class SeedSchoolLevels1683317172955 implements MigrationInterface {
         // deleting levels will delete everything else bcs of cascade deletion
 
         let levels = await queryRunner.manager.getRepository(SchoolLevel).find();
+        let hsSpecs = await queryRunner.manager.getRepository(ModuleStream).find();
+
 
         await queryRunner.manager.remove(levels);
+        await queryRunner.manager.remove(hsSpecs);
 
     }
 }
