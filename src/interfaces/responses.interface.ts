@@ -5,6 +5,10 @@ import { Course } from "../db/entities/Course/CourseEntity";
 import { PrivateSchool } from "../db/entities/PrivateSchoolEntity";
 import { Student } from "../db/entities/StudentEntity";
 import { User } from "../db/entities/UserEntity";
+import { ModuleStream } from "../db/entities/schoolLevels/ModuleStreamEntity";
+import { SchoolLevel } from "../db/entities/schoolLevels/SchoolLevelEntity";
+import { SchoolModule } from "../db/entities/schoolLevels/SchoolModuleEntity";
+import { SchoolYear } from "../db/entities/schoolLevels/SchoolYearEntity";
 import { IResponseError } from "./responseError.interface";
 
 export interface ISchoolResponse {
@@ -73,4 +77,27 @@ export interface ICitiesResponse {
 export interface ICourseResponse {
     course?: Course,
     error?: IResponseError
+}
+
+
+
+export interface ILevelsResponse {
+    levels?: SchoolLevel[]
+    error?: IResponseError;
+}
+
+
+export interface ISchoolYearResponse {
+    schoolYears?: SchoolYear[]
+    error?: IResponseError;
+}
+
+export interface IModulesResponse {
+    modules?: SchoolModule[]
+    error?: IResponseError;
+}
+
+export interface IHighschoolSpecsResponse {
+    specialities?: ModuleStream[]
+    error?: IResponseError;
 }

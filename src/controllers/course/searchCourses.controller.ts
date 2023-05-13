@@ -70,7 +70,7 @@ export default async function searchCoursesController(req: Request, res: Respons
         }
 
         // convert isActive to a real boolean
-        isActive = (isActive === "true" ? true : false)
+        isActive = isActive === "true"
     }
 
     if (cityId) {
