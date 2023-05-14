@@ -3,6 +3,7 @@ import { Country } from "../db/entities/Address/CountryEntity";
 import { Province } from "../db/entities/Address/ProvinceEntity";
 import { Course } from "../db/entities/Course/CourseEntity";
 import { PrivateSchool } from "../db/entities/PrivateSchoolEntity";
+import { Schedule } from "../db/entities/ScheduleEntity";
 import { Student } from "../db/entities/StudentEntity";
 import { User } from "../db/entities/UserEntity";
 import { ModuleStream } from "../db/entities/schoolLevels/ModuleStreamEntity";
@@ -100,4 +101,14 @@ export interface IModulesResponse {
 export interface IHighschoolSpecsResponse {
     specialities?: ModuleStream[]
     error?: IResponseError;
+}
+
+export interface ICourseScheduleResponse {
+    schedule?: Schedule,
+    error?: IResponseError
+}
+
+export interface ICourseSchedulesResponse {
+    schedules?: Schedule[],
+    error?: IResponseError
 }
