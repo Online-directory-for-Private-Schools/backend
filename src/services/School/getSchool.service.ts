@@ -7,7 +7,6 @@ interface SchoolInfo {
 
 export async function getSchoolService(info: SchoolInfo): Promise<SchoolService> {
 
-
     return checkSchoolExistenceUtil(info);
 
 }

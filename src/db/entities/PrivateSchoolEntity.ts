@@ -27,6 +27,15 @@ export class PrivateSchool extends BaseEntity {
     })
     rating: number
 
+    @Column ()
+    email : string
+
+    @Column ()
+    phone : string
+
+    @Column ()
+    website : string
+
     @Column({
         default: false
     })

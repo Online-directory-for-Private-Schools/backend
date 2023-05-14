@@ -22,7 +22,7 @@ export default async function createSchoolController(req: Request, res: Response
     }
     
 
-    const { name, bio, isHiring, lng, lat, cityId, street_name, userId }: CreateSchoolRequest =
+    const { name, bio, isHiring, email,lng, lat, cityId, street_name, userId, phone, website }: CreateSchoolRequest =
         req.body;
 
 
@@ -48,6 +48,9 @@ export default async function createSchoolController(req: Request, res: Response
             cityId,
             street_name,
             userId,
+            email,
+            phone,
+            website
         });
 
         if (error) {

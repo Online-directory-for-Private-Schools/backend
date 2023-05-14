@@ -58,6 +58,9 @@ export default async function createSchoolService(schoolInfo: CreateSchoolReques
     school.lat = schoolInfo.lat
     school.street = street
     school.owner = Promise.resolve(userExists)
+    school.email = schoolInfo.email;
+    school.phone = schoolInfo.phone;
+    school.website = schoolInfo.website;
 
 
     if(schoolInfo.bio)

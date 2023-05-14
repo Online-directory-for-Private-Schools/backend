@@ -32,6 +32,9 @@ export interface CreateSchoolRequest {
     cityId: number;
     street_name: string;
     userId: string;
+    email : string;
+    phone : string;
+    website : string
 }
 
 export interface GetSchoolRequest {
