@@ -23,6 +23,7 @@ export default async function getCourseSchedulesController(req: Request, res: Re
 
         return res.status(200).json({ schedules });
     } catch (error) {
+        console.log(error)
         return sendErrorResponse("There was an error while fetching schedules.", 500, res);
     }
 

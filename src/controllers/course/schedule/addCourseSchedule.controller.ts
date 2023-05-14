@@ -44,9 +44,11 @@ export async function addCourseScheduleController(req: Request, res: Response) {
         return sendErrorResponse("start time must be less than end time", 400, res);
     }
 
-    if (!(day in DaysEnum)) {
+
+    if (!(Object.values(DaysEnum).includes(day))) {
         return sendErrorResponse("invalid day value, please check DaysEnum", 400, res);
     }
+
 
     try {
         const { schedule, error } = await addCourseScheduleService({courseId: +courseId, start_time, end_time, day}, authUserId);

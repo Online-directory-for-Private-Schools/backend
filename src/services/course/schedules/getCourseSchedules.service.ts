@@ -3,8 +3,13 @@ import { ICourseScheduleResponse, ICourseSchedulesResponse } from "../../../inte
 import makeRespErrorUtil from "../../../utils/makeRespError.util";
 
 export default async function getCourseSchedulesService(courseId: number): Promise<ICourseSchedulesResponse> {
-    const course = await Course.findOneBy({
-        id: courseId,
+    const course = await Course.findOne({
+        where: {
+            id: courseId,
+        },
+        relations: {
+            schedules: true
+        }
     });
 
     if (!course) {

@@ -39,5 +39,7 @@ export default async function deleteCourseSchedulesService(
     // delete schedule
     await scheduleExists.remove();
 
-    return {};
+    return {
+        info: "Successfully deleted course schedule",
+    };
 }

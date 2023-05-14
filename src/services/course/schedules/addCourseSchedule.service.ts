@@ -4,7 +4,7 @@ import { ICourseScheduleResponse } from "../../../interfaces/responses.interface
 import makeRespErrorUtil from "../../../utils/makeRespError.util";
 import getExistingCourse from "../utils/getExistingCourse.util";
 
-export default async function addCourseScheduleController(scheduleInfo: IAddCourseScheduleRequest, userId: string): Promise<ICourseScheduleResponse> {
+export default async function addCourseScheduleService(scheduleInfo: IAddCourseScheduleRequest, userId: string): Promise<ICourseScheduleResponse> {
     const {courseId, day, end_time, start_time} = scheduleInfo
 
     const {course, error} = await getExistingCourse({courseId})
@@ -25,6 +25,8 @@ export default async function addCourseScheduleController(scheduleInfo: IAddCour
 
 
     await schedule.save();
+
+    await schedule.reload()
 
 
     return {schedule}
