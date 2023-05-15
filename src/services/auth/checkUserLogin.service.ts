@@ -1,6 +1,6 @@
 import { resetEnv } from "typeorm-extension";
 import { config } from "../../configs/config";
-import { Auth } from "../../db/entities/AuthEntity";
+import { Auth } from "../../db/entities/Authentication/AuthEntity";
 import { User } from "../../db/entities/UserEntity";
 import { AuthService } from "../../interfaces/user.interface";
 import bcrypt from "bcrypt";

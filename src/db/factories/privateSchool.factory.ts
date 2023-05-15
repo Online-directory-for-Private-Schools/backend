@@ -1,5 +1,5 @@
 import { setSeederFactory } from "typeorm-extension";
-import { Auth } from "../entities/AuthEntity";
+import { Auth } from "../entities/Authentication/AuthEntity";
 import { PrivateSchool } from "../entities/PrivateSchoolEntity";
 import { User, UserType } from "../entities/UserEntity";
 
