@@ -25,8 +25,13 @@ export class EmailFactory {
         return email;
     }
 
-    createVerificationEmail(user: User): EmailService {
-        throw new Error("not implemented");
+    createVerificationEmail(user: User, code: string): EmailService {
+        const subject = `Verify your CourseSeeker account`
+        const body = `Dear ${user.email},\nYour verification code is ${code}`;
+
+        const email = new EmailService(user.email, subject, body);
+
+        return email;
     }
 
     createNewsletterEmail(user: User): EmailService {

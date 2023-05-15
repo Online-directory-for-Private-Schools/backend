@@ -3,8 +3,10 @@ import SMTPTransport from "nodemailer/lib/smtp-transport";
 import { config } from "../../configs/config";
 import { Transporter } from "nodemailer";
 import { MailOptions } from "nodemailer/lib/json-transport";
+import { IEmailService } from "./interface/emailService.interface";
 
-export class EmailService {
+
+export class EmailService implements IEmailService {
 
     private transportConfig: SMTPTransport.Options = {
         service: "Gmail",
