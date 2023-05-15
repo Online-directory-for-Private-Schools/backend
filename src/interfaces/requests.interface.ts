@@ -147,3 +147,7 @@ export interface IAddCourseScheduleRequest {
     end_time: string;
     day: DaysEnum;
 }
+
+export interface IVerifyUserRequest {
+    code: string;
+}

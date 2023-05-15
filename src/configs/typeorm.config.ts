@@ -1,5 +1,5 @@
 import { User } from "../db/entities/UserEntity";
-import { Auth } from "../db/entities/AuthEntity";
+import { Auth } from "../db/entities/Authentication/AuthEntity";
 import { Course } from "../db/entities/Course/CourseEntity";
 import { Photo } from "../db/entities/PhotoEntity";
 import { PrivateSchool } from "../db/entities/PrivateSchoolEntity";
@@ -19,6 +19,7 @@ import { SchoolModule } from "../db/entities/schoolLevels/SchoolModuleEntity";
 import { NonAcademicCourse } from "../db/entities/Course/NonAcademicCourseEntity";
 import { AcademicCourse } from "../db/entities/Course/AcademicCourseEntity";
 import { NonAcademicCourseTypes } from "../db/entities/schoolLevels/NonAcademicCourseType";
+import { EmailVerificationEntity } from "../db/entities/Authentication/EmailVerificationEntity";
 
 export const typeOrmDataSourceOptions: DataSourceOptions & SeederOptions = {
     type: "postgres",
@@ -28,7 +29,7 @@ export const typeOrmDataSourceOptions: DataSourceOptions & SeederOptions = {
     password: "postgres",
     synchronize: true,
     logging: true,
-    entities: [Photo, PrivateSchool, Course, Review, Schedule, Auth, User, City, Country, Province, StreetAddress, ModuleStream, SchoolLevel, SchoolYear, SchoolModule, NonAcademicCourse, AcademicCourse, NonAcademicCourseTypes],
+    entities: [Photo, PrivateSchool, Course, Review, Schedule, Auth, User, City, Country, Province, StreetAddress, ModuleStream, SchoolLevel, SchoolYear, SchoolModule, NonAcademicCourse, AcademicCourse, NonAcademicCourseTypes, EmailVerificationEntity],
     subscribers: [],
     migrations: ["src/db/migrations/**/*.{ts,js}"],
 

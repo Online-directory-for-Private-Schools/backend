@@ -112,3 +112,8 @@ export interface ICourseSchedulesResponse {
     schedules?: Schedule[],
     error?: IResponseError
 }
+
+export interface IUserVerificationResponse {
+    info?: string;
+    error?: IResponseError
+}

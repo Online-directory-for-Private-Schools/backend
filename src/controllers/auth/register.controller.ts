@@ -6,6 +6,7 @@ import { IRegisterRequest } from "../../interfaces/requests.interface";
 import jwt from "jsonwebtoken";
 import { config } from "../../configs/config";
 import { IAuthResponse } from "../../interfaces/responses.interface";
+import { EmailFactory } from "../../services/Email/Email.factory";
 
 export default async function registerController(req: Request, res: Response) {
     let resp: IAuthResponse;
@@ -41,6 +42,8 @@ export default async function registerController(req: Request, res: Response) {
         }
 
         const token = jwt.sign({...user}, config.jwtSecret, { expiresIn: "2 days" });
+
+       await EmailFactory.Instance.createWelcomeEmail(user).send();
 
         resp = {
             token,
