@@ -1,25 +1,16 @@
 import { Router } from "express";
 import registerController from "../../controllers/auth/register.controller";
 import loginController from "../../controllers/auth/login.controller";
+import { VerificationRouter } from "./verification/verification.route";
 
 const router = Router();
 
-router.get("/", (req, res) => {
-  res.send("auth endpoint");
-});
-
-
-
-// TODO: [SEG310-30] implement register, login and logout endpoints
 
 router.post("/register", registerController)
 
 router.post("/login", loginController)
 
-router.post("/logout", (req, res) => {
-    res.status(501).send("logout endpoint");
-})
-
+router.use("/verification", VerificationRouter);
 
 export {
     router as authRouter
