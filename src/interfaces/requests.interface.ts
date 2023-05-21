@@ -151,3 +151,9 @@ export interface IAddCourseScheduleRequest {
 export interface IVerifyUserRequest {
     code: string;
 }
+
+export interface IChangePasswordRequest {
+    oldPassword: string;
+    newPassword: string;
+    newPasswordConfirmation: string;
+}

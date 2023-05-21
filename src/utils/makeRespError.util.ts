@@ -6,10 +6,11 @@ interface errorResponse {
     error: IResponseError
 }
 
-export default function(message: string): errorResponse {
+export default function(message?: string, errors?: string[]): errorResponse {
     return {
         error: {
-            message
+            message,
+            errors
         }
     }
 }
