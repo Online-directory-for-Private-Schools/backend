@@ -43,14 +43,15 @@ export default async function registerController(req: Request, res: Response) {
 
         const token = jwt.sign({...user}, config.jwtSecret, { expiresIn: "2 days" });
 
-       await EmailFactory.Instance.createWelcomeEmail(user).send();
+       EmailFactory.Instance.createWelcomeEmail(user).send().finally(()=>{
+           resp = {
+               token,
+               user
+           };
+    
+           res.status(200).json(resp);
+       }).catch(()=>{});
 
-        resp = {
-            token,
-            user
-        };
-
-        res.status(200).json(resp);
         
     } catch (error) {
         if (error instanceof TypeORMError) {

@@ -23,6 +23,7 @@
     "@types/bcrypt": "^5.0.0",
     "@types/cors": "^2.8.13",
     "@types/express": "^4.17.17",
+    "@types/joi": "^17.2.3",
     "@types/jsonwebtoken": "^9.0.1",
     "@types/node": "^18.15.11",
     "eslint": "^8.37.0",
@@ -40,10 +41,12 @@
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
+    "joi": "^17.9.2",
     "jsonwebtoken": "^9.0.0",
     "nodemailer": "^6.9.2",
     "pg": "^8.10.0",
     "reflect-metadata": "^0.1.13",
-    "typeorm": "^0.3.14"
+    "typeorm": "^0.3.14",
+    "yup": "^1.1.1"
   }
 }

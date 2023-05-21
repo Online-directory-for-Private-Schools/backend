@@ -5,6 +5,7 @@ import { User } from "../../db/entities/UserEntity";
 import { AuthService } from "../../interfaces/user.interface";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import comparePasswordHashUtil from "./utils/comparePasswordHash.util";
 
 interface UserLoginInfo {
     email: string;
@@ -20,7 +21,7 @@ export default async function checkUserLoginService({
     if (!userExists) {
         return {
             error: {
-                message: "there is no user with that email",
+                message: "The provided email or password are incorrect",
             },
         };
     }
@@ -35,12 +36,12 @@ export default async function checkUserLoginService({
         };
     }
 
-    const isValid = await bcrypt.compare(password, auth.hashed_password);
+    const isValid = await comparePasswordHashUtil(password, auth.hashed_password)
 
     if (!isValid) {
         return {
             error: {
-                message: "The provided password is incorrect",
+                message: "The provided email or password are incorrect",
             },
         };
     }

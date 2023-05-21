@@ -6,6 +6,7 @@ import { IRegisterRequest } from "../../interfaces/requests.interface";
 import { City } from "../../db/entities/Address/CityEntity";
 import makeRespErrorUtil from "../../utils/makeRespError.util";
 import { AppDataSource } from "../../data-source";
+import hashPasswordUtil from "./utils/hashPassword.util";
 
 export default async function createUserService(regInfo: IRegisterRequest): Promise<AuthService> {
     // check if user with given info exists
@@ -40,7 +41,7 @@ export default async function createUserService(regInfo: IRegisterRequest): Prom
     // create Auth entity
 
     // Todo: add pw validation
-    const hashedPw = await bcrypt.hash(password, 10);
+    const hashedPw = await hashPasswordUtil(password);
 
     const auth = new Auth();
     auth.hashed_password = hashedPw;

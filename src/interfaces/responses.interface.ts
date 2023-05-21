@@ -117,3 +117,9 @@ export interface IUserVerificationResponse {
     info?: string;
     error?: IResponseError
 }
+
+
+export interface IChangePasswordResponse {
+    info?: string;
+    error?: IResponseError;
+}
