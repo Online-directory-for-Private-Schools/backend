@@ -23,7 +23,7 @@ export default async function verifyUserService(
         return makeRespErrorUtil("User does not exist");
     }
 
-    if (userAuthExists.verified) {
+    if (userAuthExists.verified || !userAuthExists.emailVerification) {
         return makeRespErrorUtil("User is already verified");
     }
 

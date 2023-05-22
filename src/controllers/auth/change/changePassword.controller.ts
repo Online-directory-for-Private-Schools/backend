@@ -5,7 +5,7 @@ import validateChangePasswordReq from "../../../validation/auth/change/changePas
 import sendErrorResponse from "../../utils/makeErrorResponse.util";
 import { sendErrorsResponse } from "../../utils/makeErrorsResponse.util";
 import changePasswordService from "../../../services/auth/change/changePassword.service";
-import { IChangePasswordResponse } from "../../../interfaces/responses.interface";
+import { IChangeAuthInfoResponse } from "../../../interfaces/responses.interface";
 
 export default async function changePasswordController(req: Request, res: Response) {
     const { oldPassword, newPassword, newPasswordConfirmation }: IChangePasswordRequest = req.body;
@@ -36,7 +36,7 @@ export default async function changePasswordController(req: Request, res: Respon
             return sendErrorResponse(error.message, 400, res);
         }
 
-        const resp: IChangePasswordResponse = { info };
+        const resp: IChangeAuthInfoResponse = { info };
 
         return res.json(resp);
     } catch (error) {

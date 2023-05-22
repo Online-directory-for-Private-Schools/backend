@@ -31,6 +31,7 @@ export default async function verifyUserController(req: Request, res: Response) 
         res.send(resp);
         
     } catch (error) {
+        console.log(error)
         return sendErrorResponse("there was an error while verifying the user's email", 500, res);
     }
 }
