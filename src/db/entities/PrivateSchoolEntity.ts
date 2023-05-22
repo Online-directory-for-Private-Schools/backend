@@ -15,6 +15,23 @@ export class PrivateSchool extends BaseEntity {
     @Column()
     name: string;
 
+
+    @Column({
+        nullable: true
+    })
+    email: string;
+
+    @Column({
+        nullable: true
+    })
+    phone_number: string;
+
+    @Column({
+        nullable: true
+    })
+    website: string | null;
+
+
     @Column({
         nullable: true
     })

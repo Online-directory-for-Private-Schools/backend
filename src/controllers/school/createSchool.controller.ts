@@ -25,7 +25,7 @@ export default async function createSchoolController(req: Request, res: Response
     }
     
 
-    const { name, bio, isHiring, lng, lat, cityId, street_name, userId }: ICreateSchoolRequest =
+    const { name, bio, isHiring, email, phone_number, website, lng, lat, cityId, street_name, userId }: ICreateSchoolRequest =
         req.body;
 
 
@@ -52,6 +52,8 @@ export default async function createSchoolController(req: Request, res: Response
             name,
             bio,
             isHiring,
+            email,
+            phone_number,
             lng,
             lat,
             cityId,
@@ -77,8 +79,8 @@ export default async function createSchoolController(req: Request, res: Response
     }
 }
 
-const isRequestValid = ({ userId, name, lng, lat, cityId, street_name}: any) => {
-    const isFull = ![userId, name, lng, lat, cityId, street_name].includes(
+const isRequestValid = ({ userId, name, lng, email, phone_number, lat, cityId, street_name}: any) => {
+    const isFull = ![userId, name, email, phone_number, lng, lat, cityId, street_name].includes(
         undefined
     );
 
