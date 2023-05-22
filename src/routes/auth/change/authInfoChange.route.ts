@@ -8,7 +8,7 @@ const router = Router();
 
 router.use(requireAuth)
 
-router.post("/email/", changeEmailController)
+router.put("/email/", changeEmailController)
 router.post("/password/", changePasswordController)
 
 
