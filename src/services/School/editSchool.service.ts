@@ -1,5 +1,4 @@
 import { AppDataSource } from "../../data-source";
-import { PrivateSchool } from "../../db/entities/PrivateSchoolEntity";
 import { IEditSchoolRequest } from "../../interfaces/requests.interface";
 import { SchoolService } from "../../interfaces/school.interface";
 import getExistingSchool from "./utils/getExistingSchool.util";
@@ -9,14 +8,14 @@ import makeRespErrorUtil from "../../utils/makeRespError.util";
 import filterObjectFromFalsyValues from "../../utils/truthifyObject.util";
 
 interface IEditSchoolService extends IEditSchoolRequest {
-    id: number
+    id: number;
 }
 
 export async function editSchoolService(
     info: IEditSchoolService,
     userId: string
 ): Promise<SchoolService> {
-    const { id, cityId, streetName, name, bio, isHiring, lat, lng } = info;
+    const { id, cityId, streetName, name, email, phone_number, website, bio, isHiring, lat, lng } = info;
 
     const { school, error } = await getExistingSchool({ id });
 

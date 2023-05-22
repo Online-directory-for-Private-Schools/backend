@@ -27,6 +27,9 @@ export interface ICreateSchoolRequest {
     name: string;
     bio?: string;
     isHiring?: boolean;
+    website: string;
+    phone_number: string;
+    email: string;
     lng: string;
     lat: string;
     cityId: number;
@@ -45,6 +48,9 @@ export interface IEditSchoolRequest {
     isHiring?: boolean;
     cityId?: number;
     streetName?: string;
+    website?: string;
+    phone_number?: string;
+    email?: string;
     lat?: string;
     lng?: string;
 }
