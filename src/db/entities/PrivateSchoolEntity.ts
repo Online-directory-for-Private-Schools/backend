@@ -29,7 +29,7 @@ export class PrivateSchool extends BaseEntity {
     @Column({
         nullable: true
     })
-    website: string;
+    website: string | null;
 
 
     @Column({

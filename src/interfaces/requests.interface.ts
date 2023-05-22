@@ -27,7 +27,7 @@ export interface ICreateSchoolRequest {
     name: string;
     bio?: string;
     isHiring?: boolean;
-    website: string;
+    website?: string;
     phone_number: string;
     email: string;
     lng: string;
