@@ -157,3 +157,8 @@ export interface IChangePasswordRequest {
     newPassword: string;
     newPasswordConfirmation: string;
 }
+
+
+export interface IChangeEmailRequest {
+    email: string;
+}

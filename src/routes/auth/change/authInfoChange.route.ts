@@ -1,13 +1,14 @@
 import { Router } from "express";
 import changePasswordController from "../../../controllers/auth/change/changePassword.controller";
 import { requireAuth } from "../../../middlewares/auth/requireAuth.middleware";
+import changeEmailController from "../../../controllers/auth/change/changeEmail.controller";
 
 
 const router = Router();
 
 router.use(requireAuth)
 
-router.post("/email/")
+router.post("/email/", changeEmailController)
 router.post("/password/", changePasswordController)
 
 
