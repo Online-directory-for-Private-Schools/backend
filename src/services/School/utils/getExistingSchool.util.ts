@@ -16,6 +16,13 @@ export default async function getExistingSchool(
         where: { id },
         relations: {
             owner: getOwner,
+            street: {
+                city: {
+                    province: {
+                        country: true
+                    }
+                }
+            }
         },
     });
 
