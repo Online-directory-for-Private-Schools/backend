@@ -23,7 +23,7 @@ export default async function changePasswordController(req: Request, res: Respon
         });
     } catch (error) {
         if (error instanceof ValidationError) {
-            return sendErrorsResponse(error.errors, 400, res);
+            return sendErrorResponse(error.errors[0], 400, res);
         }
 
         return sendErrorResponse("an error occured while validating data", 500, res);
