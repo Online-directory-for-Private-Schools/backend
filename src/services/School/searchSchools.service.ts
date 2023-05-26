@@ -59,8 +59,17 @@ export async function searchSchoolsService(
 
     const totalSchoolsCount = await PrivateSchool.countBy(query);
 
-    // we put `...info` before `name` to override name with the regex pattern
+    
     const schools = await PrivateSchool.find({
+        relations: {
+            street: {
+                city: {
+                    province: {
+                        country: true
+                    }
+                }
+            }
+        },
         where: query,
         loadEagerRelations: false,
         take: limit,
