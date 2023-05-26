@@ -21,7 +21,7 @@ export default async function changeEmailController(req: Request, res: Response)
         });
     } catch (error) {
         if (error instanceof ValidationError) {
-            return sendErrorsResponse(error.errors, 400, res);
+            return sendErrorResponse(error.errors[0], 400, res);
         }
 
         return sendErrorResponse("an error occured while validating data", 500, res);
