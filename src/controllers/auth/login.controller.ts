@@ -5,28 +5,29 @@ import { config } from "../../configs/config";
 import { ILoginRequest } from "../../interfaces/requests.interface";
 import { IAuthResponse } from "../../interfaces/responses.interface";
 import checkUserLoginService from "../../services/auth/checkUserLogin.service";
-
-// TODO: Refactor with Register controller
+import sendErrorResponse from "../utils/makeErrorResponse.util";
+import { ValidationError } from "yup";
+import { validateLogin } from "../../validation/auth/auth.validation";
 
 export default async function loginController(req: Request, res: Response) {
     let resp: IAuthResponse;
 
-    if (!isRequestValid(req.body)) {
-        resp = {
-            error: {
-                message: "Invalid request",
-            },
-        };
-
-        res.status(400).json(resp);
-
-        return;
-    }
-
     const { email, password }: ILoginRequest = req.body;
 
+    let validatedBody: ILoginRequest;
+
     try {
-        const { user, error } = await checkUserLoginService({ email, password });
+        validatedBody = await validateLogin({ email, password });
+    } catch (error) {
+        if (error instanceof ValidationError) {
+            return sendErrorResponse(error.errors[0], 400, res);
+        }
+
+        return sendErrorResponse("an error occured while validating data", 500, res);
+    }
+
+    try {
+        const { user, error } = await checkUserLoginService(validatedBody);
 
         if (error || !user) {
             resp = { error };
@@ -34,7 +35,7 @@ export default async function loginController(req: Request, res: Response) {
             return;
         }
 
-        const token = jwt.sign({...user}, config.jwtSecret, { expiresIn: "2 days" });
+        const token = jwt.sign({ ...user }, config.jwtSecret, { expiresIn: "2 days" });
 
         resp = {
             token,
@@ -42,8 +43,6 @@ export default async function loginController(req: Request, res: Response) {
         };
 
         res.status(200).json(resp);
-
-
     } catch (error) {
         if (error instanceof TypeORMError) {
             console.log(error.message);
