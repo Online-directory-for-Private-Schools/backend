@@ -24,6 +24,7 @@ import { config } from "./config";
 
 export const typeOrmDataSourceOptions: DataSourceOptions & SeederOptions = {
     type: "postgres",
+    database: "",
     host: config.dbHost,
     port: config.dbPort,
     username: config.dbUsername,

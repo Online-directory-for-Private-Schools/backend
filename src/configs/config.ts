@@ -9,6 +9,7 @@ export const config = {
     mailPass: process.env.MAIL_PASS || "",
 
     dbHost: process.env.DB_HOST || "",
+    dbName: process.env.DB_NAME || "",
     dbPort: process.env.DB_PORT ? +process.env.DB_PORT : 5432,
     dbUsername: process.env.DB_USERNAME || "",
     dbPassword: process.env.DB_PASS || "",
