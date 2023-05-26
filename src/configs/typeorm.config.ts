@@ -20,13 +20,14 @@ import { NonAcademicCourse } from "../db/entities/Course/NonAcademicCourseEntity
 import { AcademicCourse } from "../db/entities/Course/AcademicCourseEntity";
 import { NonAcademicCourseTypes } from "../db/entities/schoolLevels/NonAcademicCourseType";
 import { EmailVerificationEntity } from "../db/entities/Authentication/EmailVerificationEntity";
+import { config } from "./config";
 
 export const typeOrmDataSourceOptions: DataSourceOptions & SeederOptions = {
     type: "postgres",
-    host: "localhost",
-    port: 5432,
-    username: "postgres",
-    password: "postgres",
+    host: config.dbHost,
+    port: config.dbPort,
+    username: config.dbUsername,
+    password: config.dbPassword,
     synchronize: true,
     logging: true,
     entities: [Photo, PrivateSchool, Course, Review, Schedule, Auth, User, City, Country, Province, StreetAddress, ModuleStream, SchoolLevel, SchoolYear, SchoolModule, NonAcademicCourse, AcademicCourse, NonAcademicCourseTypes, EmailVerificationEntity],
