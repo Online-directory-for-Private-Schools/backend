@@ -47,7 +47,8 @@ export default async function createSchoolService(
     school.lat = schoolInfo.lat;
     school.email = schoolInfo.email;
     school.phone_number = schoolInfo.phone_number;
-    school.website = schoolInfo.website ? schoolInfo.website : null;
+    if(schoolInfo.website)
+        school.website = schoolInfo.website;
     school.street = street;
     school.owner = userExists;
 
