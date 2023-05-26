@@ -1,4 +1,4 @@
-import { Router } from "express";
+import { Request, Response, Router } from "express";
 
 import { SchoolRouter } from "./school/school.route";
 import { authRouter } from "./auth/auth.route";
@@ -9,6 +9,16 @@ import { CourseRouter } from "./course/course.route";
 import { SchoolModulesRouter } from "./schoolModules/schoolModules.route";
 
 const router = Router()
+
+
+router.get("/", (req: Request, res: Response) => {
+    res.send("API is working")
+})
+
+
+router.head("/", (req: Request, res: Response) => {
+    res.send("API is working")
+})
 
 
 router.use('/schools', SchoolRouter);
