@@ -10,11 +10,11 @@ export default async function getUserSchoolsController(req: Request, res: Respon
 
     const {userId: reqUserId} = req.params
 
-    const { ok, errMessage, status } = checkUserRequest(reqUserId, authUserId);
+    // const { ok, errMessage, status } = checkUserRequest(reqUserId, authUserId);
 
-    if (!ok) {
-        return sendErrorResponse(errMessage!, status!, res);
-    }
+    // if (!ok) {
+    //     return sendErrorResponse(errMessage!, status!, res);
+    // }
     
     let resp: IGetUserSchoolsResponse;
 

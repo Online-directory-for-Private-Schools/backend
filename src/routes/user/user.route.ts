@@ -12,6 +12,7 @@ const router = Router()
 
 router.use(requireAuth)
 
+router.get("/schools/", getUserSchoolsController)
 
 router.get("/:id", getUserController)
 
@@ -22,7 +23,6 @@ router.put("/:id", editUserController)
 router.delete("/:id", deleteUserController)
 
 
-router.get("/schools/:userId", getUserSchoolsController)
 
 
 
