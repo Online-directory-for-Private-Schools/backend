@@ -22,7 +22,7 @@ export default async function getLevelsController(req: Request, res: Response) {
             return sendErrorResponse(error!.message, 400, res);
         }
 
-        return res.status(200).json(levels);
+        return res.status(200).json({levels});
     } catch (error) {
         return sendErrorResponse("There was an error while fetching levels.", 500, res);
     }

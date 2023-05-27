@@ -17,7 +17,9 @@ export default async function getSchoolYearsService(levelId: number, isEager: bo
             },
         },
         relations: isEager ? {
-            modules: true
+            modules: {
+                stream: true
+            }
         }: undefined
     });
 

@@ -6,7 +6,9 @@ export default async function getLevelsService(eager: boolean = false): Promise<
         relations: eager
             ? {
                   years: {
-                      modules: true,
+                      modules: {
+                        stream: true
+                      }
                   },
               }
             : undefined,
