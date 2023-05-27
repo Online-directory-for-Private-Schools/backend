@@ -53,7 +53,7 @@ export default async function createSchoolController(req: Request, res: Response
     if (authUserId !== userId) {
         return sendErrorResponse(
             "You are not authorized to create a school for this user.",
-            401,
+            403,
             res
         );
     }

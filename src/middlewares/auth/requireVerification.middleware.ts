@@ -31,7 +31,7 @@ export async function requireVerification(req: Request, res: Response, next: Nex
 
         // checking the user's verification status
         if(!userAuth.verified) {
-            return sendErrorResponse("User has to be verified to do this operation", 401, res);
+            return sendErrorResponse("User has to be verified to do this operation", 403, res);
         }
         
         next();

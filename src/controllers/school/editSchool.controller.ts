@@ -8,54 +8,54 @@ import filterObjectFromFalsyValues from "../../utils/truthifyObject.util";
 import sendErrorResponse from "../utils/makeErrorResponse.util";
 import { isNumber } from "class-validator";
 import isNumeric from "../../utils/isNumeric.util";
+import { validateEditSchool } from "../../validation/school/school.validation";
+import { ValidationError } from "yup";
 
 export default async function editSchoolController(req: Request, res: Response) {
     const { authUser } = req as IAuthRequest;
 
     const { id } = req.params;
 
-    const { name, bio, cityId, isHiring, email, phone_number, website, streetName, lat, lng }: IEditSchoolRequest = req.body;
-
-    let resp: ISchoolResponse;
-
-    if (!Number(id)) {
-        return sendErrorResponse("id has to be a number", 400, res);
-    }
-
-    if (cityId) {
-        if (!isNumber(cityId)) {
-            return sendErrorResponse("cityId must be a positive number", 400, res);
-        }
-
-        if (cityId < 0) {
-            return sendErrorResponse("cityId must be a positive number", 400, res);
-        }
-    }
-
-    if (lat) {
-        if (!isNumeric(lat)) {
-            return sendErrorResponse("lat must be numeric", 400, res);
-        }
-    }
-
-    if (lng) {
-        if (!isNumeric(lng)) {
-            return sendErrorResponse("lng must be numeric", 400, res);
-        }
-    }
-
-    const filteredBodyObj = filterObjectFromFalsyValues({
+    const {
         name,
         bio,
         cityId,
         isHiring,
-        lat,
-        streetName,
-        lng,
         email,
         phone_number,
-        website
-    });
+        website,
+        streetName,
+        lat,
+        lng,
+    }: IEditSchoolRequest = req.body;
+
+    let resp: ISchoolResponse;
+
+    let validatedBody: IEditSchoolRequest;
+
+    try {
+        validatedBody = await validateEditSchool({
+            id,
+            name,
+            bio,
+            cityId,
+            isHiring,
+            email,
+            phone_number,
+            website,
+            streetName,
+            lat,
+            lng,
+        });
+    } catch (error) {
+        if (error instanceof ValidationError) {
+            return sendErrorResponse(error.errors[0], 400, res);
+        }
+
+        return sendErrorResponse("an error occured while validating data", 500, res);
+    }
+
+    const filteredBodyObj = filterObjectFromFalsyValues(validatedBody);
 
     if (isObjectEmpty(filteredBodyObj)) {
         return sendErrorResponse("At least one school attribute needs to be provided", 400, res);
@@ -63,10 +63,7 @@ export default async function editSchoolController(req: Request, res: Response) 
 
     try {
         // call editUser service
-        const { school, error } = await editSchoolService(
-            { ...filteredBodyObj, id: +id },
-            authUser.id
-        );
+        const { school, error } = await editSchoolService(filteredBodyObj, authUser.id);
 
         // error checking
         if (error || !school) {
