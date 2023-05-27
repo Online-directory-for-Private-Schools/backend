@@ -44,7 +44,7 @@ export async function editSchoolService(
         school.street.city = cityExists;
     }
 
-    const filteredInfo = filterObjectFromFalsyValues({ name, bio, isHiring, lat, lng });
+    const filteredInfo = filterObjectFromFalsyValues({ name, bio, isHiring, lat, lng, email, website, phone_number });
 
     Object.keys(filteredInfo).forEach((key) => {
         (school as any)[key] = filteredInfo[key];
