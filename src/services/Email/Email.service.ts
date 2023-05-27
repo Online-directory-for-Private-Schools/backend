@@ -34,8 +34,10 @@ export class EmailService implements IEmailService {
 
 
 
-    async send() {
-        await this.transporter.sendMail(this.mailOptions);
+    send() {
+        this.transporter.sendMail(this.mailOptions, (err, info)=>{
+            console.log(err)
+        });
     }
 
 

@@ -2,7 +2,6 @@ import { Request, Response } from "express";
 import { IAuthRequest, IChangeEmailRequest } from "../../../interfaces/requests.interface";
 import validateChangeEmailReq from "../../../validation/auth/change/changeEmail.validator";
 import sendErrorResponse from "../../utils/makeErrorResponse.util";
-import { sendErrorsResponse } from "../../utils/makeErrorsResponse.util";
 import { ValidationError } from "yup";
 import { IChangeAuthInfoResponse } from "../../../interfaces/responses.interface";
 import changeEmailService from "../../../services/auth/change/changeEmail.service";
@@ -10,14 +9,15 @@ import changeEmailService from "../../../services/auth/change/changeEmail.servic
 export default async function changeEmailController(req: Request, res: Response) {
     const { id: userId } = (req as IAuthRequest).authUser;
 
-    const {email}: IChangeEmailRequest = req.body;
+    const { email, password }: IChangeEmailRequest = req.body;
 
     let validatedBody: IChangeEmailRequest;
 
     // data validation
     try {
         validatedBody = await validateChangeEmailReq({
-            email
+            email,
+            password
         });
     } catch (error) {
         if (error instanceof ValidationError) {

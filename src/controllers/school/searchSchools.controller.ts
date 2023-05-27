@@ -4,9 +4,7 @@ import filterObjectFromFalsyValues from "../../utils/truthifyObject.util";
 import makeRespError from "../../utils/makeRespError.util";
 import { ISearchSchoolsResponse } from "../../interfaces/responses.interface";
 import { searchSchoolsService } from "../../services/School/searchSchools.service";
-import { isNumber } from "class-validator";
 import sendErrorResponse from "../utils/makeErrorResponse.util";
-import isNumeric from "../../utils/isNumeric.util";
 import { validateSearchSchools } from "../../validation/school/school.validation";
 import { ValidationError } from "yup";
 
@@ -18,16 +16,19 @@ export default async function searchSchoolsController(req: Request, res: Respons
 
     let validatedBody: ISearchSchoolsRequest;
 
+    // filtering the request to only have non-false values
+    const filteredBodyObj = filterObjectFromFalsyValues({
+        name,
+        cityId,
+        countryId,
+        provinceId,
+        isHiring,
+        page,
+        limit,
+    });
+
     try {
-        validatedBody = await validateSearchSchools({
-            name,
-            cityId,
-            countryId,
-            provinceId,
-            isHiring,
-            page,
-            limit,
-        });
+        validatedBody = await validateSearchSchools(filteredBodyObj);
     } catch (error) {
         if (error instanceof ValidationError) {
             return sendErrorResponse(error.errors[0], 400, res);
@@ -36,11 +37,9 @@ export default async function searchSchoolsController(req: Request, res: Respons
         return sendErrorResponse("an error occured while validating data", 500, res);
     }
 
-    // filtering the request to only have non-false values
-    const filteredBodyObj = filterObjectFromFalsyValues(validatedBody);
 
     try {
-        const { data, error } = await searchSchoolsService(filteredBodyObj);
+        const { data, error } = await searchSchoolsService(validatedBody);
 
         // error checking
         if (error || !data) {

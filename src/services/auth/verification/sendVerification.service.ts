@@ -43,7 +43,7 @@ export default async function sendVerificationService(
     });
 
     // send email to the user
-    await EmailFactory.Instance.createVerificationEmail(
+    EmailFactory.Instance.createVerificationEmail(
         userAuthExists.user,
         verificationRecord.code
     ).send();

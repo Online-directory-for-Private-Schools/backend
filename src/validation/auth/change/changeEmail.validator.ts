@@ -3,6 +3,7 @@ import { IChangeEmailRequest } from "../../../interfaces/requests.interface";
 
 const changeEmailSchema = object({
     email: string().email().required(),
+    password: string().required()
 });
 
 // so that in the controller we are not coupled to the YUP library

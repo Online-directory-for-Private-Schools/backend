@@ -6,13 +6,33 @@ import { IChangeEmailRequest } from "../../../interfaces/requests.interface";
 import { IChangeAuthInfoResponse } from "../../../interfaces/responses.interface";
 import makeRespErrorUtil from "../../../utils/makeRespError.util";
 import { EmailFactory } from "../../Email/Email.factory";
+import comparePasswordHashUtil from "../utils/comparePasswordHash.util";
 import generateVerificationCode from "../utils/generateVerificationCode.util";
 
 export default async function changeEmailService(
     emailChangeInfo: IChangeEmailRequest,
     userId: string
 ): Promise<IChangeAuthInfoResponse> {
-    const { email: newEmail } = emailChangeInfo;
+    const { email: newEmail, password } = emailChangeInfo;
+
+
+    // check if password is correct
+    const userAuth = await Auth.findOne({
+        where: { userId },
+        relations: {
+            user: true
+        }
+    });
+
+    if (!userAuth) {
+        return makeRespErrorUtil("user doesn't exist");
+    }
+
+    const isPwValid = await comparePasswordHashUtil(password, userAuth.hashed_password);
+
+    if (!isPwValid) {
+        return makeRespErrorUtil("The provided password is not correct");
+    }
 
 
     // check if email belongs to another user
@@ -26,18 +46,7 @@ export default async function changeEmailService(
         return makeRespErrorUtil("Email already taken")
     }
 
-    // check if user exists
 
-    const userAuth = await Auth.findOne({
-        where: { userId },
-        relations: {
-            user: true
-        }
-    });
-
-    if (!userAuth) {
-        return makeRespErrorUtil("user doesn't exist");
-    }
 
     userAuth.user.email = newEmail;
 
@@ -62,7 +71,7 @@ export default async function changeEmailService(
         await transactionManager.save(userAuth.user);
     });
 
-    await EmailFactory.Instance.createVerificationEmail(
+    EmailFactory.Instance.createVerificationEmail(
         userAuth.user,
         verificationRecord.code
     ).send();

@@ -51,7 +51,7 @@ export default async function searchCoursesController(req: Request, res: Respons
     let validatedBody: ISearchCoursesRequest;
 
     try {
-        validatedBody = await validateSearchCourses(courseInfo);
+        validatedBody = await validateSearchCourses(filterObjectFromFalsyValues(courseInfo));
     } catch (error) {
         if (error instanceof ValidationError) {
             return sendErrorResponse(error.errors[0], 400, res);

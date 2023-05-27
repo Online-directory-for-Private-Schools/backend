@@ -166,5 +166,6 @@ export interface IChangePasswordRequest {
 
 
 export interface IChangeEmailRequest {
+    password: string;
     email: string;
 }
