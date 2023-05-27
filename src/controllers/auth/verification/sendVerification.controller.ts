@@ -5,20 +5,12 @@ import { IUserVerificationResponse } from "../../../interfaces/responses.interfa
 import { IAuthRequest } from "../../../interfaces/requests.interface";
 
 export default async function sendVerificationController(req: Request, res: Response) {
-    const { userId } = req.params;
 
     const { id: authUserId } = (req as IAuthRequest).authUser;
 
-    if (!userId) {
-        return sendErrorResponse("userId is required", 400, res);
-    }
-
-    if (authUserId !== userId) {
-        return sendErrorResponse("you are not allowed to verify this user", 403, res);
-    }
 
     try {
-        const { info, error } = await sendVerificationService(userId);
+        const { info, error } = await sendVerificationService(authUserId);
 
         if (!info && error) {
             return sendErrorResponse(error.message, 400, res);

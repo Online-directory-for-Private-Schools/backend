@@ -1,13 +1,12 @@
-import dotenv from "dotenv"
+import dotenv from "dotenv";
 dotenv.config()
 
 import "reflect-metadata";
-import router from "./routes/routes.index"
-import { config } from "./configs/config"
-import { AppDataSource } from "./data-source"
-import express from "express"
-import { runSeeders } from "typeorm-extension"
-import cors from "cors"
+import router from "./routes/routes.index";
+import { config } from "./configs/config";
+import { AppDataSource } from "./data-source";
+import express, { Request, Response } from "express";
+import cors from "cors";
 
 let initialize =  async () => {
 
@@ -18,10 +17,15 @@ let initialize =  async () => {
 
     app.use("/api/v1/", router);
 
+    app.get("/", (req: Request, res: Response) => {
+        let resp = "<h1>Welcome to the Course Seeker API</h1>\n"
+        resp += `<p>Documentation: <a href="https://course-seeker-api-docs.vercel.app/">https://course-seeker-api-docs.vercel.app/</a></p>`
+
+        res.send(resp)
+    })
+
     try {
         await AppDataSource.initialize()
-
-        // await runSeeders(AppDataSource)
 
         app.listen(config.port, ()=>{
             console.log("listening on port " + config.port)
