@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { IGetUserResponse } from "../../interfaces/responses.interface";
+import { IUserResponse } from "../../interfaces/responses.interface";
 import { IAuthRequest } from "../../interfaces/requests.interface";
 import getUserService from "../../services/user/getUser.service";
 import checkUserRequest from "./utils/checkRequest.util";
@@ -9,7 +9,7 @@ export default async function getUserController(req: Request, res: Response) {
 
     const { id } = req.params;
 
-    let resp: IGetUserResponse;
+    let resp: IUserResponse;
 
     const { ok, errMessage, status } = checkUserRequest(id, authUser.id);
 

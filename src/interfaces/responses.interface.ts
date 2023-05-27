@@ -53,7 +53,7 @@ export interface IAuthResponse {
 }
 
 
-export interface IGetUserResponse extends IAuthResponse {}
+export interface IUserResponse extends IAuthResponse {}
 
 export interface IDeleteResponse {
     info?: string;

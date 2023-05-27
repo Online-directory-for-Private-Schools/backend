@@ -43,8 +43,10 @@ export default async function createSchoolService(
     // creating school
     const school = new PrivateSchool();
     school.name = schoolInfo.name;
-    school.lng = schoolInfo.lng;
-    school.lat = schoolInfo.lat;
+    if(schoolInfo.lng && schoolInfo.lat) {
+        school.lng = schoolInfo.lng;
+        school.lat = schoolInfo.lat;
+    }
     school.email = schoolInfo.email;
     school.phone_number = schoolInfo.phone_number;
     if(schoolInfo.website)

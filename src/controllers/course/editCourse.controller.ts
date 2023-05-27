@@ -4,10 +4,11 @@ import {
     IEditCourseRequest
 } from "../../interfaces/requests.interface";
 import sendErrorResponse from "../utils/makeErrorResponse.util";
-import xor from "../../utils/xor.util";
 import filterObjectFromFalsyValues from "../../utils/truthifyObject.util";
 import isObjectEmpty from "../../utils/isObjectEmpty.util";
 import { editCourseService } from "../../services/course/editCourse.service";
+import { validateEditCourse } from "../../validation/course/course.validation";
+import { ValidationError } from "yup";
 
 export default async function editCourseController(req: Request, res: Response) {
     const { authUser } = req as IAuthRequest;
@@ -40,34 +41,23 @@ export default async function editCourseController(req: Request, res: Response) 
 
 
 
-    
+    let validatedBody: IEditCourseRequest;
 
-
-    if(!Number(courseId)) {
-        return sendErrorResponse("courseId has to be a number", 400, res);
-    }
-
-
-    if(moduleId && nonAcademicTypeId) {
-        return sendErrorResponse("either one of moduleId or nonAcademicId has to be provided", 400, res)
-    }
-
-    if(moduleId) {
-        if (!Number(moduleId)) {
-            return sendErrorResponse("moduleId has to be a number", 400, res);
+    try {
+        validatedBody = await validateEditCourse(courseInfo)
+    } catch (error) {
+        if (error instanceof ValidationError) {
+            return sendErrorResponse(error.errors[0], 400, res);
         }
-    }
 
-    if(nonAcademicTypeId) {
-        if (!Number(nonAcademicTypeId)) {
-            return sendErrorResponse("nonAcademicTypeId has to be a number", 400, res);
-        }
+        return sendErrorResponse("an error occured while validating data", 500, res);
     }
 
 
-    let fileteredObj = filterObjectFromFalsyValues(courseInfo);
 
-    if(isActive !== undefined) {
+    let fileteredObj = filterObjectFromFalsyValues(validatedBody);
+
+    if(validatedBody.isActive !== undefined) {
         fileteredObj = {...fileteredObj, isActive}
     }
 

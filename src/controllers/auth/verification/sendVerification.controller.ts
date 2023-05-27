@@ -14,7 +14,7 @@ export default async function sendVerificationController(req: Request, res: Resp
     }
 
     if (authUserId !== userId) {
-        return sendErrorResponse("you are not allowed to verify this user", 401, res);
+        return sendErrorResponse("you are not allowed to verify this user", 403, res);
     }
 
     try {

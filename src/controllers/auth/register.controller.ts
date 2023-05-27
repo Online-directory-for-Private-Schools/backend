@@ -7,26 +7,19 @@ import jwt from "jsonwebtoken";
 import { config } from "../../configs/config";
 import { IAuthResponse } from "../../interfaces/responses.interface";
 import { EmailFactory } from "../../services/Email/Email.factory";
+import { validateRegister } from "../../validation/auth/auth.validation";
+import { ValidationError } from "yup";
+import sendErrorResponse from "../utils/makeErrorResponse.util";
 
 export default async function registerController(req: Request, res: Response) {
     let resp: IAuthResponse;
 
-    if (!isRequestValid(req.body)) {
-        resp = {
-            error: {
-                message: "Invalid request",
-            },
-        };
+    const { name, email, phone_number, password, type, cityId }: IRegisterRequest = req.body;
 
-        res.status(400).json(resp);
-
-        return;
-    }
-
-    const { name, email, phone_number, password, type, cityId}: IRegisterRequest = req.body;
+    let validatedBody: IRegisterRequest;
 
     try {
-        const { user, error } = await createUserAccountService({
+        validatedBody = await validateRegister({
             name,
             email,
             phone_number,
@@ -34,6 +27,16 @@ export default async function registerController(req: Request, res: Response) {
             type,
             cityId,
         });
+    } catch (error) {
+        if (error instanceof ValidationError) {
+            return sendErrorResponse(error.errors[0], 400, res);
+        }
+
+        return sendErrorResponse("an error occured while validating data", 500, res);
+    }
+
+    try {
+        const { user, error } = await createUserAccountService(validatedBody);
 
         if (error || !user) {
             resp = { error };
@@ -41,24 +44,25 @@ export default async function registerController(req: Request, res: Response) {
             return;
         }
 
-        const token = jwt.sign({...user}, config.jwtSecret, { expiresIn: "2 days" });
+        const token = jwt.sign({ ...user }, config.jwtSecret, { expiresIn: "2 days" });
 
-       EmailFactory.Instance.createWelcomeEmail(user).send().finally(()=>{
-           resp = {
-               token,
-               user
-           };
-    
-           res.status(200).json(resp);
-       }).catch(()=>{});
+        EmailFactory.Instance.createWelcomeEmail(user)
+            .send()
+            .finally(() => {
+                resp = {
+                    token,
+                    user,
+                };
 
-        
+                res.status(200).json(resp);
+            })
+            .catch(() => {});
     } catch (error) {
         if (error instanceof TypeORMError) {
             console.log(error.message);
         }
 
-        console.log(error)
+        console.log(error);
 
         resp = {
             error: {
