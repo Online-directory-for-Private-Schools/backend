@@ -72,7 +72,10 @@ export class PrivateSchool extends BaseEntity {
     
 
     @OneToOne(
-        () => User
+        () => User,
+        {
+            onDelete: "CASCADE",
+        }
     )
     @JoinColumn()
     owner: User;

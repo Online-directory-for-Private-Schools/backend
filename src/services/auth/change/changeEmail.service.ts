@@ -80,6 +80,4 @@ export default async function changeEmailService(
         info: "Email has been changed successfully"
     }
 
-
-    // make user unverified
 }
