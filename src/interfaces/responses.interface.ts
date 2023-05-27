@@ -123,3 +123,9 @@ export interface IChangeAuthInfoResponse {
     info?: string;
     error?: IResponseError;
 }
+
+
+export interface IGetUserSchoolsResponse {
+    schools?: PrivateSchool[],
+    error?: IResponseError
+}
