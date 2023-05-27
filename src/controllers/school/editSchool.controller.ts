@@ -52,6 +52,9 @@ export default async function editSchoolController(req: Request, res: Response) 
         lat,
         streetName,
         lng,
+        email,
+        phone_number,
+        website
     });
 
     if (isObjectEmpty(filteredBodyObj)) {
