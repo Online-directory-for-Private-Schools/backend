@@ -57,6 +57,7 @@ export default async function editSchoolController(req: Request, res: Response) 
 
     const filteredBodyObj = filterObjectFromFalsyValues(validatedBody);
 
+
     if (isObjectEmpty(filteredBodyObj)) {
         return sendErrorResponse("At least one school attribute needs to be provided", 400, res);
     }
