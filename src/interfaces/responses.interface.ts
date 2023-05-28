@@ -53,7 +53,7 @@ export interface IAuthResponse {
 }
 
 
-export interface IGetUserResponse extends IAuthResponse {}
+export interface IUserResponse extends IAuthResponse {}
 
 export interface IDeleteResponse {
     info?: string;
@@ -122,4 +122,10 @@ export interface IUserVerificationResponse {
 export interface IChangeAuthInfoResponse {
     info?: string;
     error?: IResponseError;
+}
+
+
+export interface IGetUserSchoolsResponse {
+    schools?: PrivateSchool[],
+    error?: IResponseError
 }

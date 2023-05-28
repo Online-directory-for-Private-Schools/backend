@@ -7,9 +7,9 @@ const router = Router();
 
 router.use(requireAuth)
 
-router.get("/send/:userId", sendVerificationController)
+router.get("/send/", sendVerificationController)
 
-router.post("/verify/:userId", verifyUserController)
+router.post("/verify/", verifyUserController)
 
 
 export {

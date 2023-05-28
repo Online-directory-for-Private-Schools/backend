@@ -12,7 +12,6 @@ export async function requireAuth(req: Request, res: Response, next: NextFunctio
     try {
         const authHeader = req.header("Authorization")
 
-
         if (!authHeader) {
             res.status(401).json({
                 error: {

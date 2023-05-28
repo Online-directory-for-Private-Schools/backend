@@ -78,7 +78,10 @@ export class SeedSchoolLevels1683317172955 implements MigrationInterface {
                 // if they exist, create and save the module
 
                 const year = await queryRunner.manager.findOneBy(SchoolYear, {
-                    year: module.year,
+                    level: {
+                        level: module.level
+                    },
+                    year: module.year
                 });
 
                 const speciality = await queryRunner.manager.findOneBy(ModuleStream, {

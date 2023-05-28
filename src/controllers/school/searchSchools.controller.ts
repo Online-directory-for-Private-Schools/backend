@@ -4,9 +4,9 @@ import filterObjectFromFalsyValues from "../../utils/truthifyObject.util";
 import makeRespError from "../../utils/makeRespError.util";
 import { ISearchSchoolsResponse } from "../../interfaces/responses.interface";
 import { searchSchoolsService } from "../../services/School/searchSchools.service";
-import { isNumber } from "class-validator";
 import sendErrorResponse from "../utils/makeErrorResponse.util";
-import isNumeric from "../../utils/isNumeric.util";
+import { validateSearchSchools } from "../../validation/school/school.validation";
+import { ValidationError } from "yup";
 
 export default async function searchSchoolsController(req: Request, res: Response) {
     let { name, cityId, countryId, provinceId, isHiring, page, limit }: ISearchSchoolsRequest =
@@ -14,36 +14,7 @@ export default async function searchSchoolsController(req: Request, res: Respons
 
     let resp: ISearchSchoolsResponse;
 
-    if(!page) {
-        page = 1
-    }
-
-    if(!limit) {
-        limit = 20
-    }
-
-    if (!isNumber(+page!) || !isNumber(+limit!)) {
-        return sendErrorResponse("page and limit must be numbers", 400, res);
-    }
-
-    if (cityId) {
-        if (!isNumeric(cityId.toString())) {
-            return sendErrorResponse("cityId must be numeric", 400, res);
-        }
-    }
-
-    if (provinceId) {
-        if (!isNumeric(provinceId.toString())) {
-            return sendErrorResponse("provinceId must be numeric", 400, res);
-        }
-    }
-
-    if (countryId) {
-        if (!isNumeric(countryId.toString())) {
-            return sendErrorResponse("countryId must be numeric", 400, res);
-        }
-    }
-
+    let validatedBody: ISearchSchoolsRequest;
 
     // filtering the request to only have non-false values
     const filteredBodyObj = filterObjectFromFalsyValues({
@@ -52,12 +23,23 @@ export default async function searchSchoolsController(req: Request, res: Respons
         countryId,
         provinceId,
         isHiring,
-        page: +page!,
-        limit: +limit!,
+        page,
+        limit,
     });
 
     try {
-        const { data, error } = await searchSchoolsService(filteredBodyObj);
+        validatedBody = await validateSearchSchools(filteredBodyObj);
+    } catch (error) {
+        if (error instanceof ValidationError) {
+            return sendErrorResponse(error.errors[0], 400, res);
+        }
+
+        return sendErrorResponse("an error occured while validating data", 500, res);
+    }
+
+
+    try {
+        const { data, error } = await searchSchoolsService(validatedBody);
 
         // error checking
         if (error || !data) {

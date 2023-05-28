@@ -11,6 +11,9 @@ export default async function getModulesService(yearId: number): Promise<IModule
     }
 
     const modules = await SchoolModule.find({
+        relations: {
+            stream: true
+        },
         where: {
             year: {
                 id: yearId

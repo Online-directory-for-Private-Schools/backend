@@ -5,22 +5,13 @@ import verifyUserService from "../../../services/auth/verification/verifyUser.se
 import { IUserVerificationResponse } from "../../../interfaces/responses.interface";
 
 export default async function verifyUserController(req: Request, res: Response) {
-    const { userId } = req.params;
-
     const { id: authUserId } = (req as IAuthRequest).authUser;
 
     const { code } = req.body;
 
-    if (!userId) {
-        return sendErrorResponse("userId is required", 400, res);
-    }
-
-    if (authUserId !== userId) {
-        return sendErrorResponse("you are not allowed to verify this user", 401, res);
-    }
 
     try {
-        const { info, error } = await verifyUserService(userId, code);
+        const { info, error } = await verifyUserService(authUserId, code);
 
         if (!info && error) {
             return sendErrorResponse(error.message, 400, res);

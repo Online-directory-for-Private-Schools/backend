@@ -6,5 +6,5 @@ interface SchoolInfo {
 }
 
 export async function getSchoolService(info: SchoolInfo): Promise<SchoolService> {
-    return await getExistingSchool(info, false);
+    return await getExistingSchool(info, true);
 }

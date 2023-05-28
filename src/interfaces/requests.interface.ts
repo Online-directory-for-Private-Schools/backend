@@ -30,8 +30,8 @@ export interface ICreateSchoolRequest {
     website?: string;
     phone_number: string;
     email: string;
-    lng: string;
-    lat: string;
+    lng?: string;
+    lat?: string;
     cityId: number;
     street_name: string;
     userId: string;
@@ -166,5 +166,6 @@ export interface IChangePasswordRequest {
 
 
 export interface IChangeEmailRequest {
+    password: string;
     email: string;
 }
